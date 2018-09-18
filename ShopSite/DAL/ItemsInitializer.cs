@@ -15,12 +15,12 @@ namespace ShopSite.DAL
         {
             var category = new List<Category>
             {
-                new Category() {CategoryId = 1, CategoryName = "Socks", CategoryPicture = "socks.png", CategoryDescription = "When your feets are cold."},
-                new Category() {CategoryId = 2, CategoryName = "Pants", CategoryPicture = "pants.png", CategoryDescription = "Don't go without those!"},
-                new Category() {CategoryId = 3, CategoryName = "T-Shirts", CategoryPicture = "tshirts.png", CategoryDescription = "Shaped like T."},
-                new Category() {CategoryId = 4, CategoryName = "Sweaters", CategoryPicture = "sweaters.png", CategoryDescription = "Don't sweat it!"},
-                new Category() {CategoryId = 5, CategoryName = "Hoodies", CategoryPicture = "hoodies.png", CategoryDescription = "So comfy it is."},
-                new Category() {CategoryId = 6, CategoryName = "Jackets", CategoryPicture = "jackets.png", CategoryDescription = "For rainy days"}
+                new Category() {CategoryId = 1, CategoryName = "Fruits", CategoryPicture = "fruits.png", CategoryDescription = "Lorem ipsum"},
+                new Category() {CategoryId = 2, CategoryName = "Vegetables", CategoryPicture = "vegetables.png", CategoryDescription = "Lorem ipsum"},
+                new Category() {CategoryId = 3, CategoryName = "Meat", CategoryPicture = "meat.png", CategoryDescription = "Lorem ipsum"},
+                new Category() {CategoryId = 4, CategoryName = "Fish", CategoryPicture = "fish.png", CategoryDescription = "Lorem ipsum"},
+                new Category() {CategoryId = 5, CategoryName = "Bread", CategoryPicture = "bread.png", CategoryDescription = "Lorem ipsum"},
+                new Category() {CategoryId = 6, CategoryName = "Dairy Products", CategoryPicture = "dairy.png", CategoryDescription = "Lorem ipsum"}
             };
 
             category.ForEach(k => context.Categories.AddOrUpdate(k));
@@ -28,18 +28,18 @@ namespace ShopSite.DAL
 
             var item = new List<Item>
             {
-                new Item() {ItemId = 1, ItemName = "Socks 39-42", ItemProducer = "Lorem ipsum", ItemDescription = "Plain socks", Bestseller = false,
-                    Available = true, CategoryId = 1, ItemPrice = 19, ItemPicture = "socks.png"  },
-                new Item() {ItemId = 2, ItemName = "Pants 33", ItemProducer = "Lorem ipsum", ItemDescription = "Pants", Bestseller = true,
-                    Available = true, CategoryId = 2, ItemPrice = 45, ItemPicture = "pants.png"  },
-                new Item() {ItemId = 3, ItemName = "Socks 39-42", ItemProducer = "Lorem ipsum", ItemDescription = "Plain socks", Bestseller = false,
-                    Available = true, CategoryId = 3, ItemPrice = 25, ItemPicture = "tshirts.png"  },
-                new Item() {ItemId = 4, ItemName = "Socks 39-42", ItemProducer = "Lorem ipsum", ItemDescription = "Plain socks", Bestseller = false,
-                    Available = true, CategoryId = 4, ItemPrice = 40, ItemPicture = "sweaters.png"  },
-                new Item() {ItemId = 5, ItemName = "Socks 39-42", ItemProducer = "Lorem ipsum", ItemDescription = "Plain socks", Bestseller = true,
-                    Available = true, CategoryId = 5, ItemPrice = 50, ItemPicture = "hoodies.png"  },
-                new Item() {ItemId = 6, ItemName = "Socks 39-42", ItemProducer = "Lorem ipsum", ItemDescription = "Plain socks", Bestseller = false,
-                    Available = true, CategoryId = 6, ItemPrice = 80, ItemPicture = "jackets.png"  }
+                new Item() {ItemId = 1, ItemName = "Apple", ItemProducer = "Lorem ipsum", ItemDescription = "Apple", Bestseller = false,
+                    Available = true, CategoryId = 1, ItemPrice = 5, ItemPicture = "apple.png"  },
+                new Item() {ItemId = 2, ItemName = "Carrot", ItemProducer = "Lorem ipsum", ItemDescription = "Carrot", Bestseller = true,
+                    Available = true, CategoryId = 2, ItemPrice = 3, ItemPicture = "vegetables.png"  },
+                new Item() {ItemId = 3, ItemName = "Chicken", ItemProducer = "Lorem ipsum", ItemDescription = "Chicken", Bestseller = false,
+                    Available = true, CategoryId = 3, ItemPrice = 20, ItemPicture = "meat.png"  },
+                new Item() {ItemId = 4, ItemName = "Carp", ItemProducer = "Lorem ipsum", ItemDescription = "Carp", Bestseller = false,
+                    Available = true, CategoryId = 4, ItemPrice = 30, ItemPicture = "fish.png"  },
+                new Item() {ItemId = 5, ItemName = "Bread", ItemProducer = "Lorem ipsum", ItemDescription = "Bread", Bestseller = true,
+                    Available = true, CategoryId = 5, ItemPrice = 2, ItemPicture = "bread.png"  },
+                new Item() {ItemId = 6, ItemName = "Milk", ItemProducer = "Lorem ipsum", ItemDescription = "Milk", Bestseller = false,
+                    Available = true, CategoryId = 6, ItemPrice = 6, ItemPicture = "dairy.png"  }
             };
 
             item.ForEach(k => context.Items.AddOrUpdate(k));
