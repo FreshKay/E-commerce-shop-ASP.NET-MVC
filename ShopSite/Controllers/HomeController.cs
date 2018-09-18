@@ -14,10 +14,8 @@ namespace ShopSite.Controllers
 
         public ActionResult Index()
         {
-            Category category = new Category { CategoryName = "Socks" };
-            db.Categories.Add(category);
-            db.SaveChanges();
-
+            var categoryList = db.Categories.ToList();
+            
             return View();
         }
     }

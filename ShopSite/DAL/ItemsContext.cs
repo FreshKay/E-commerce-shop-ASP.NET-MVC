@@ -15,6 +15,11 @@ namespace ShopSite.DAL
 
         }
 
+        static ItemsContext()       // Sets up initializer.
+        {
+            Database.SetInitializer<ItemsContext>(new ItemsInitializer());
+        }
+
         public DbSet<Item> Items { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Order> Orders { get; set; }
