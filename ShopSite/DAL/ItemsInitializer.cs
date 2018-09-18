@@ -1,21 +1,17 @@
-﻿using ShopSite.Models;
+﻿using ShopSite.Migrations;
+using ShopSite.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web;
 
 namespace ShopSite.DAL
 {
-    public class ItemsInitializer : DropCreateDatabaseAlways<ItemsContext>   //Initializes example items into DB 
+    public class ItemsInitializer : MigrateDatabaseToLatestVersion<ItemsContext, Configuration>   //Initializes example items into DB 
     {
-        protected override void Seed(ItemsContext context)
-        {
-            SeedItemData(context);
-            base.Seed(context);
-        }
-
-        private void SeedItemData(ItemsContext context)
+        public static void SeedItemData(ItemsContext context)
         {
             var category = new List<Category>
             {
@@ -27,7 +23,7 @@ namespace ShopSite.DAL
                 new Category() {CategoryId = 6, CategoryName = "Jackets", CategoryPicture = "jackets.png", CategoryDescription = "For rainy days"}
             };
 
-            category.ForEach(k => context.Categories.Add(k));
+            category.ForEach(k => context.Categories.AddOrUpdate(k));
             context.SaveChanges();
 
             var item = new List<Item>
@@ -46,7 +42,7 @@ namespace ShopSite.DAL
                     Available = true, CategoryId = 6, ItemPrice = 80, ItemPicture = "jackets.png"  }
             };
 
-            item.ForEach(k => context.Items.Add(k));
+            item.ForEach(k => context.Items.AddOrUpdate(k));
             context.SaveChanges();
 
 
