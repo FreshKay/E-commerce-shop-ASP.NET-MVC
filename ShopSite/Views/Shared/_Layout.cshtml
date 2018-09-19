@@ -1,24 +1,20 @@
-﻿<!--A Design by W3layouts
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+﻿@*@using System.Web.Optimization*@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Markito A Ecommerce Category Flat Bootstarp Resposive Website Template | Home :: w3layouts</title>
+    <title>FoodShop - @ViewBag.Title</title>
     <link href="Content/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="Content/js/jquery.min.js"></script>
     <!-- Custom Theme files -->
     <!--theme-style-->
+   @*@Styles.Render("~/Content/css")*@
     <link href="Content/css/style.css" rel="stylesheet" type="text/css" media="all" />
     <!--//theme-style-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="keywords" content="Markito Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+    Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <!--fonts-->
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
@@ -113,11 +109,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
         </div>
     </div>
-    <!--banner-->
-    <div>
+
+    <div class="container body-content">
         @RenderBody()
+        <hr />
     </div>
- 
+
     <!--footer-->
     <div class="footer">
         <div class="container">
