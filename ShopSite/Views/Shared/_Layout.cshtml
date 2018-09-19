@@ -1,40 +1,167 @@
-﻿<!DOCTYPE html>
+﻿<!--A Design by W3layouts
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <title>Markito A Ecommerce Category Flat Bootstarp Resposive Website Template | Home :: w3layouts</title>
+    <link href="Content/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="Content/js/jquery.min.js"></script>
+    <!-- Custom Theme files -->
+    <!--theme-style-->
+    <link href="Content/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <!--//theme-style-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Markito Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!--fonts-->
+    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <!--//fonts-->
+    <script type="text/javascript" src="Content/js/move-top.js"></script>
+    <script type="text/javascript" src="Content/js/easing.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
+            });
+        });
+    </script>
+    <!-- start menu -->
+    <link href="Content/css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
+    <script type="text/javascript" src="Content/js/megamenu.js"></script>
+    <script>$(document).ready(function () { $(".megamenu").megamenu(); });</script>
+
+    <script src="Content/js/simpleCart.min.js"></script>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+    <!--header-->
+    <div class="header">
+        <div class="top-header">
+            <div class="container">
+                <div class="top-head">
+                    <ul class="header-in">
+                        <li><a href="products.html">  Products</a></li>
+                        <li><a href="404.html">About us</a> </li>
+                        <li><a href="contact.html">   Contact us</a></li>
+                        <li><a href="#">   How to use</a></li>
+                    </ul>
+                    <div class="search-top">
+                        <div class="search">
+                            <form>
+                                <input type="text" value="search about something ?" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'search about something ?';}">
+                                <input type="submit" value="">
+                            </form>
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                </ul>
+        </div>
+        <!---->
+
+        <div class="header-top">
+            <div class="container">
+                <div class="head-top">
+                    <div class="logo">
+                        <a href="index.html"><img src="Content/images/logo.png" alt=""></a>
+                    </div>
+                    <div class="top-nav">
+                        <ul class="megamenu skyblue">
+                            <li class="active grid">
+                                <a href="#">Fruits</a>
+                            </li>
+                            <li>
+                                <a href="#">Vegetables</a>
+                            </li>
+                            <li class="grid">
+                                <a href="#">Meat</a>
+                            </li>
+                            <li class="grid">
+                                <a href="#">Fish</a>
+                            </li>
+                            <li>
+                                <a href="#">Bread</a>
+                            </li>
+                            <li>
+                                <a href="#">Diary Products</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="cart box_1">
+                        <a href="checkout.html">
+                            <h3>
+                                <div class="total">
+                                    <span class="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> items)
+                                </div>
+                                <img src="Content/images/cart.png" alt="" />
+                            </h3>
+                        </a>
+                        <p><a href="javascript:;" class="simpleCart_empty"><img src="images/cart-c.png" alt=""></a></p>
+                        <div class="clearfix"> </div>
+                    </div>
+
+                    <div class="clearfix"> </div>
+                </div>
             </div>
         </div>
     </div>
-
-    <div class="container body-content">
+    <!--banner-->
+    <div>
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+    </div>
+ 
+    <!--footer-->
+    <div class="footer">
+        <div class="container">
+            <div class="col-md-3 footer-left">
+                <a href="index.html"><img src="Content/images/logo.png" alt=""></a>
+                <p class="footer-class">© 2015 Markito All Rights Reserved | Template by  <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
+            </div>
+            <div class="col-md-4 footer-middle">
+                <ul>
+                    <li><a href="404.html">About us</a> </li>
+                    <li><a href="contact.html">   Contact us</a></li>
+                    <li><a href="products.html">  Our stores</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3 footer-right">
+                <h5>WE SUPPORT</h5>
+                <ul>
+                    <li><a href="#"><i> </i></a> </li>
+                    <li><a href="#"><i class="we"> </i></a></li>
+                    <li><a href="#"><i class="we-in"> </i></a></li>
+                    <li><a href="#"><i class="we-at"> </i></a></li>
+                    <li><a href="#"><i class="we-at-at"> </i></a></li>
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                /*
+                var defaults = {
+                        containerID: 'toTop', // fading element id
+                    containerHoverID: 'toTopHover', // fading element hover id
+                    scrollSpeed: 1200,
+                    easingType: 'linear'
+                    };
+                */
+
+                $().UItoTop({ easingType: 'easeOutQuart' });
+
+            });
+        </script>
+        <a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+
     </div>
 
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
 </body>
 </html>
