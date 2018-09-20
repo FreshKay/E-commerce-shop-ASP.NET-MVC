@@ -112,8 +112,7 @@
       <DependentUpon>ShopSite.mdf</DependentUpon>
     </Content>
     <Content Include="Content\404.html" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\checkout.html" />
     <Content Include="Content\contact.html" />
     <Content Include="Content\css\bootstrap.css" />
@@ -201,7 +200,7 @@
     <Content Include="Content\mobile.html" />
     <Content Include="Content\products.html" />
     <Content Include="Content\single.html" />
-    <Content Include="Content\Site.css" />
+    <Content Include="Content\css\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.js" />

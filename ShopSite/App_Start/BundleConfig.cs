@@ -14,12 +14,11 @@ namespace ShopSite.App_Start
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
+            bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/css/style.css",
                       "~/Content/css/bootstrap.css",
                       "~/Content/css/megamenu.css",
                       "~/Content/css/owl.carousel.css",
-                      "~/Content/css/etalage.css",
-                      "~/Content/css/style.css"
+                      "~/Content/css/etalage.css"                      
                       ));
 
             
