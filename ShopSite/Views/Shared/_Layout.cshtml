@@ -44,9 +44,9 @@
                 <div class="top-head">
                     <ul class="header-in">
                         <li><a href="products.html">  Products</a></li>
-                        <li><a href="404.html">About us</a> </li>
-                        <li><a href="Views/Contact.cshtml">   Contact us</a></li>
-                        <li><a href="#">   How to use</a></li>
+                        <li><a href="@Url.Action("StaticSites", "Home", new { name = "about"})">About us</a> </li>
+                        <li><a href="@Url.Action("StaticSites", "Home", new { name = "contact"})">   Contact us</a></li>
+                        <li><a href="@Url.Action("StaticSites", "Home", new { name = "howto"})">   How to use</a></li>
                     </ul>
                     <div class="search-top">
                         <div class="search">
@@ -124,9 +124,9 @@
             </div>
             <div class="col-md-4 footer-middle">
                 <ul>
-                    <li><a href="404.html">About us</a> </li>
-                    <li><a href="contact.html">   Contact us</a></li>
-                    <li><a href="products.html">  Our stores</a></li>
+                    <li><a href="@Url.Action("StaticSites", "Home", new { name = "about"})">About us</a> </li>
+                    <li><a href="@Url.Action("StaticSites", "Home", new { name = "contact"})">   Contact us</a></li>
+                    <li><a href="@Url.Action("StaticSites", "Home", new { name = "howto"})">  Hot to use</a></li>
                 </ul>
             </div>
             <div class="col-md-3 footer-right">
