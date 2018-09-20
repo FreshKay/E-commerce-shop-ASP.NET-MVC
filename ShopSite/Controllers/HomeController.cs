@@ -19,10 +19,9 @@ namespace ShopSite.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult StaticSites(string name)
         {
-           
-            return View();
+            return View(name);
         }
     }
 }
