@@ -23,5 +23,10 @@ namespace ShopSite.Controllers
         {
             return View(name);
         }
+
+        public ActionResult Products()
+        {
+            return View();
+        }
     }
 }
