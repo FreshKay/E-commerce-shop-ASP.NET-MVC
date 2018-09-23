@@ -56,8 +56,8 @@
     <Reference Include="Glimpse.AspNet, Version=1.8.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Glimpse.AspNet.1.8.0\lib\net45\Glimpse.AspNet.dll</HintPath>
     </Reference>
-    <Reference Include="Glimpse.Core, Version=1.8.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Glimpse.1.8.2\lib\net45\Glimpse.Core.dll</HintPath>
+    <Reference Include="Glimpse.Core, Version=1.8.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Glimpse.1.8.6\lib\net45\Glimpse.Core.dll</HintPath>
     </Reference>
     <Reference Include="Glimpse.Mvc5, Version=1.5.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Glimpse.Mvc5.1.5.3\lib\net45\Glimpse.Mvc5.dll</HintPath>
@@ -120,83 +120,27 @@
     <Content Include="App_Data\ShopSite_log.ldf">
       <DependentUpon>ShopSite.mdf</DependentUpon>
     </Content>
-    <Content Include="Content\404.html" />
     <Content Include="Content\css\bootstrap.min.css" />
-    <Content Include="Content\checkout.html" />
-    <Content Include="Content\contact.html" />
     <Content Include="Content\css\bootstrap.css" />
     <Content Include="Content\css\etalage.css" />
     <Content Include="Content\css\megamenu.css" />
     <Content Include="Content\css\owl.carousel.css" />
     <Content Include="Content\css\style.css" />
-    <Content Include="Content\decor.html" />
     <Content Include="Content\images\11.png" />
     <Content Include="Content\images\ad1.png" />
     <Content Include="Content\images\apple.jpg" />
-    <Content Include="Content\images\ba.png" />
-    <Content Include="Content\images\ba11.png" />
-    <Content Include="Content\images\ba12.png" />
-    <Content Include="Content\images\ba2.png" />
-    <Content Include="Content\images\ba21.png" />
-    <Content Include="Content\images\ba22.png" />
     <Content Include="Content\images\bread.jpg" />
     <Content Include="Content\images\carrot.jpg" />
     <Content Include="Content\images\cart-c.png" />
     <Content Include="Content\images\cart.png" />
     <Content Include="Content\images\chicken.jpg" />
     <Content Include="Content\images\close_1.png" />
-    <Content Include="Content\images\de.jpg" />
-    <Content Include="Content\images\de1.jpg" />
-    <Content Include="Content\images\de2.jpg" />
-    <Content Include="Content\images\de3.jpg" />
-    <Content Include="Content\images\de4.jpg" />
-    <Content Include="Content\images\de5.jpg" />
-    <Content Include="Content\images\fa.jpg" />
-    <Content Include="Content\images\fa1.jpg" />
-    <Content Include="Content\images\fa2.jpg" />
-    <Content Include="Content\images\fa3.jpg" />
-    <Content Include="Content\images\fa4.jpg" />
-    <Content Include="Content\images\fa5.jpg" />
-    <Content Include="Content\images\fa6.jpg" />
-    <Content Include="Content\images\fa7.jpg" />
-    <Content Include="Content\images\fa8.jpg" />
-    <Content Include="Content\images\he.jpg" />
-    <Content Include="Content\images\he1.jpg" />
-    <Content Include="Content\images\he2.jpg" />
-    <Content Include="Content\images\he3.jpg" />
-    <Content Include="Content\images\he4.jpg" />
-    <Content Include="Content\images\he5.jpg" />
     <Content Include="Content\images\img-sprite.png" />
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\mes.png" />
     <Content Include="Content\images\milk.jpg" />
-    <Content Include="Content\images\ni.jpg" />
-    <Content Include="Content\images\ni1.jpg" />
-    <Content Include="Content\images\ph.jpg" />
-    <Content Include="Content\images\ph1.jpg" />
-    <Content Include="Content\images\ph2.jpg" />
-    <Content Include="Content\images\ph3.jpg" />
-    <Content Include="Content\images\ph4.jpg" />
-    <Content Include="Content\images\ph5.jpg" />
-    <Content Include="Content\images\ph6.jpg" />
-    <Content Include="Content\images\ph7.jpg" />
-    <Content Include="Content\images\pi.jpg" />
-    <Content Include="Content\images\pi11.jpg" />
-    <Content Include="Content\images\pi12.jpg" />
-    <Content Include="Content\images\pi13.jpg" />
-    <Content Include="Content\images\pic1.jpg" />
-    <Content Include="Content\images\pic2.jpg" />
-    <Content Include="Content\images\s1.jpg" />
-    <Content Include="Content\images\s2.jpg" />
-    <Content Include="Content\images\s3.jpg" />
-    <Content Include="Content\images\s4.jpg" />
-    <Content Include="Content\images\si.jpg" />
-    <Content Include="Content\images\si1.jpg" />
-    <Content Include="Content\images\si2.jpg" />
-    <Content Include="Content\images\si3.jpg" />
     <Content Include="Content\images\up.png" />
     <Content Include="Content\images\zoom.png" />
-    <Content Include="Content\index.html" />
     <Content Include="Content\js\easing.js" />
     <Content Include="Content\js\jquery.etalage.min.js" />
     <Content Include="Content\js\jquery.min.js" />
@@ -205,9 +149,6 @@
     <Content Include="Content\js\move-top.js" />
     <Content Include="Content\js\owl.carousel.js" />
     <Content Include="Content\js\simpleCart.min.js" />
-    <Content Include="Content\mobile.html" />
-    <Content Include="Content\products.html" />
-    <Content Include="Content\single.html" />
     <Content Include="Content\css\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -229,15 +170,22 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ItemsController.cs" />
     <Compile Include="DAL\ItemsContext.cs" />
     <Compile Include="DAL\ItemsInitializer.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\AppConfig.cs" />
+    <Compile Include="Infrastructure\UrlHelpers.cs" />
     <Compile Include="Migrations\201809181611225_InitialCreate.cs" />
     <Compile Include="Migrations\201809181611225_InitialCreate.Designer.cs">
       <DependentUpon>201809181611225_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809211328287_AddDate.cs" />
+    <Compile Include="Migrations\201809211328287_AddDate.Designer.cs">
+      <DependentUpon>201809211328287_AddDate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
@@ -245,6 +193,7 @@
     <Compile Include="Models\ItemPosition.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\HomeViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -263,10 +212,15 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Items\" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201809181611225_InitialCreate.resx">
       <DependentUpon>201809181611225_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809211328287_AddDate.resx">
+      <DependentUpon>201809211328287_AddDate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

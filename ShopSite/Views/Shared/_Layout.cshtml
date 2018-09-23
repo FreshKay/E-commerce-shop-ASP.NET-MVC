@@ -1,4 +1,6 @@
 ﻿@*@using System.Web.Optimization*@
+@model ShopSite.ViewModels.HomeViewModel
+@using ShopSite.Infrastructure
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,13 +10,13 @@
     <script src="~/Content/js/jquery.min.js"></script>
     <!-- Custom Theme files -->
     <!--theme-style-->
-   @*@Styles.Render("~/Content/css")*@
+    @*@Styles.Render("~/Content/css")*@
     <link href="~/Content/css/style.css" rel="stylesheet" type="text/css" media="all" />
     <!--//theme-style-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     @*<meta name="keywords" content="Markito Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
-    Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />*@
+        Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />*@
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <!--fonts-->
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
@@ -71,24 +73,14 @@
                     </div>
                     <div class="top-nav">
                         <ul class="megamenu skyblue">
-                            <li class="active grid">
-                                <a href="#">Fruits</a>
-                            </li>
-                            <li>
-                                <a href="#">Vegetables</a>
-                            </li>
-                            <li class="grid">
-                                <a href="#">Meat</a>
-                            </li>
-                            <li class="grid">
-                                <a href="#">Fish</a>
-                            </li>
-                            <li>
-                                <a href="#">Bread</a>
-                            </li>
-                            <li>
-                                <a href="#">Diary Products</a>
-                            </li>
+
+                            @foreach (var category in Model.Categories)
+                            {
+                                <li class="active grid">
+                                    <a href="@Url.Action( "List", "Items", new { name = category.CategoryName.ToLower() })">@category.CategoryName</a>
+                                </li>
+                            }
+
                         </ul>
                     </div>
                     <div class="cart box_1">

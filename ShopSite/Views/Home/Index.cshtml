@@ -1,4 +1,5 @@
-﻿
+﻿@model ShopSite.ViewModels.HomeViewModel
+@using ShopSite.Infrastructure
 
 @{
     ViewBag.Title = "Main";
@@ -10,7 +11,26 @@
     <div class="product">
         <h2 class="new">Bestsellers</h2>
         <div class="pink">
-            <div class="col-md-3 box-in-at">
+            @foreach (var bests in Model.Bestseller)
+            {
+                <div class="col-md-3 box-in-at">
+                    <div class=" grid_box portfolio-wrapper">
+                        <a href="@Url.Action( "Details", "Items", new { id = bests.ItemId })"> <img src="@Url.PicturePath(bests.ItemPicture)" class="img-responsive" alt=""></a>
+                    </div>
+                    <div class="grid_1 simpleCart_shelfItem">
+                        <a href="" class="cup item_add"><span class=" item_price">@bests.ItemName - @bests.ItemPrice <i> </i> </span></a>
+                    </div>
+                </div>
+            }
+            @*<div class="col-md-3 box-in-at">
+                <div class=" grid_box portfolio-wrapper">
+                    <a href="single.html"> <img src="~/Content/images/milk.jpg" class="img-responsive" alt=""></a>
+                </div>
+                <div class="grid_1 simpleCart_shelfItem">
+                    <a href="#" class="cup item_add"><span class=" item_price">45 $ <i> </i> </span></a>
+                </div>
+            </div>*@
+            @*<div class="col-md-3 box-in-at">
                 <div class=" grid_box portfolio-wrapper">
                     <a href="single.html"> <img src="~/Content/images/milk.jpg" class="img-responsive" alt=""></a>
                 </div>
@@ -33,53 +53,50 @@
                 <div class="grid_1 simpleCart_shelfItem">
                     <a href="#" class="cup item_add"><span class=" item_price">45 $ <i> </i> </span></a>
                 </div>
-            </div>
-            <div class="col-md-3 box-in-at">
-                <div class=" grid_box portfolio-wrapper">
-                    <a href="single.html"> <img src="~/Content/images/milk.jpg" class="img-responsive" alt=""></a>
-                </div>
-                <div class="grid_1 simpleCart_shelfItem">
-                    <a href="#" class="cup item_add"><span class=" item_price">45 $ <i> </i> </span></a>
-                </div>
-            </div>
+            </div>*@
             <div class="clearfix"> </div>
         </div>
     </div>
     <div class="product">
         <h2 class="new">New arrivals</h2>
         <div class="pink">
-            <div class="col-md-3 box-in-at">
-                <div class=" grid_box portfolio-wrapper">
-                    <a href="single.html"> <img src="~/Content/images/milk.jpg" class="img-responsive" alt=""></a>
+
+            @foreach (var newOness in Model.New)
+            {
+
+                <div class="col-md-3 box-in-at">
+                    <div class=" grid_box portfolio-wrapper">
+                        <a href="@Url.Action( "Details", "Items", new { id = newOness.ItemId })"> <img src="@Url.PicturePath(newOness.ItemPicture)" class="img-responsive" alt=""></a>
+                    </div>
+                    <div class="grid_1 simpleCart_shelfItem">
+                        <a href="" class="cup item_add"><span class=" item_price">@newOness.ItemName - @newOness.ItemPrice <i> </i> </span></a>
+                    </div>
                 </div>
-                <div class="grid_1 simpleCart_shelfItem">
-                    <a href="#" class="cup item_add"><span class=" item_price">45 $ <i> </i> </span></a>
+            }
+            @*<div class="col-md-3 box-in-at">
+                    <div class=" grid_box portfolio-wrapper">
+                        <a href="single.html"> <img src="~/Content/images/milk.jpg" class="img-responsive" alt=""></a>
+                    </div>
+                    <div class="grid_1 simpleCart_shelfItem">
+                        <a href="#" class="cup item_add"><span class=" item_price">45 $ <i> </i> </span></a>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-3 box-in-at">
-                <div class=" grid_box portfolio-wrapper">
-                    <a href="single.html"> <img src="~/Content/images/milk.jpg" class="img-responsive" alt=""></a>
+                <div class="col-md-3 box-in-at">
+                    <div class=" grid_box portfolio-wrapper">
+                        <a href="single.html"> <img src="~/Content/images/milk.jpg" class="img-responsive" alt=""></a>
+                    </div>
+                    <div class="grid_1 simpleCart_shelfItem">
+                        <a href="#" class="cup item_add"><span class=" item_price">45 $ <i> </i> </span></a>
+                    </div>
                 </div>
-                <div class="grid_1 simpleCart_shelfItem">
-                    <a href="#" class="cup item_add"><span class=" item_price">45 $ <i> </i> </span></a>
-                </div>
-            </div>
-            <div class="col-md-3 box-in-at">
-                <div class=" grid_box portfolio-wrapper">
-                    <a href="single.html"> <img src="~/Content/images/milk.jpg" class="img-responsive" alt=""></a>
-                </div>
-                <div class="grid_1 simpleCart_shelfItem">
-                    <a href="#" class="cup item_add"><span class=" item_price">45 $ <i> </i> </span></a>
-                </div>
-            </div>
-            <div class="col-md-3 box-in-at">
-                <div class=" grid_box portfolio-wrapper">
-                    <a href="single.html"> <img src="~/Content/images/milk.jpg" class="img-responsive" alt=""></a>
-                </div>
-                <div class="grid_1 simpleCart_shelfItem">
-                    <a href="#" class="cup item_add"><span class=" item_price">45 $ <i> </i> </span></a>
-                </div>
-            </div>
+                <div class="col-md-3 box-in-at">
+                    <div class=" grid_box portfolio-wrapper">
+                        <a href="single.html"> <img src="~/Content/images/milk.jpg" class="img-responsive" alt=""></a>
+                    </div>
+                    <div class="grid_1 simpleCart_shelfItem">
+                        <a href="#" class="cup item_add"><span class=" item_price">45 $ <i> </i> </span></a>
+                    </div>
+                </div>*@
             <div class="clearfix"> </div>
         </div>
 

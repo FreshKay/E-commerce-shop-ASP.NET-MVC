@@ -1,5 +1,6 @@
 ﻿using ShopSite.DAL;
 using ShopSite.Models;
+using ShopSite.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +15,20 @@ namespace ShopSite.Controllers
 
         public ActionResult Index()
         {
-            var categoryList = db.Categories.ToList();
+            var category = db.Categories.ToList();
+
+            var best = db.Items.Where(a => a.Available && a.Bestseller).OrderBy(a => Guid.NewGuid()).Take(4).ToList();
+
+            var newOnes = db.Items.Where(a => a.Available).OrderByDescending(a => a.AddDate).Take(4).ToList();
+
+            var vm = new HomeViewModel()
+            {
+                Bestseller = best,
+                New = newOnes,                    
+                Categories = category               
+            };
             
-            return View();
+            return View(vm);
         }
 
         public ActionResult StaticSites(string name)

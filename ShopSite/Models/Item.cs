@@ -21,6 +21,7 @@ namespace ShopSite.Models
         public string ItemDescription { get; set; }
         public bool Bestseller { get; set; }
         public bool Available { get; set; }
+        public DateTime AddDate { get; set; }
 
         public virtual Category Category { get; set; }
     }
