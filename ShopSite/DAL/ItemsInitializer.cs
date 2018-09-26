@@ -29,17 +29,17 @@ namespace ShopSite.DAL
             var item = new List<Item>
             {
                 new Item() {ItemId = 1, ItemName = "Apple", ItemProducer = "Lorem ipsum", ItemDescription = "Apple", Bestseller = false,
-                    Available = true, CategoryId = 1, ItemPrice = 5, ItemPicture = "apple.png"  },
+                    Available = true, CategoryId = 1, ItemPrice = 5, ItemPicture = "apple.jpg"  },
                 new Item() {ItemId = 2, ItemName = "Carrot", ItemProducer = "Lorem ipsum", ItemDescription = "Carrot", Bestseller = true,
-                    Available = true, CategoryId = 2, ItemPrice = 3, ItemPicture = "vegetables.png"  },
+                    Available = true, CategoryId = 2, ItemPrice = 3, ItemPicture = "carrot.jpg"  },
                 new Item() {ItemId = 3, ItemName = "Chicken", ItemProducer = "Lorem ipsum", ItemDescription = "Chicken", Bestseller = false,
-                    Available = true, CategoryId = 3, ItemPrice = 20, ItemPicture = "meat.png"  },
+                    Available = true, CategoryId = 3, ItemPrice = 20, ItemPicture = "chicken.jpg"  },
                 new Item() {ItemId = 4, ItemName = "Carp", ItemProducer = "Lorem ipsum", ItemDescription = "Carp", Bestseller = false,
                     Available = true, CategoryId = 4, ItemPrice = 30, ItemPicture = "fish.png"  },
                 new Item() {ItemId = 5, ItemName = "Bread", ItemProducer = "Lorem ipsum", ItemDescription = "Bread", Bestseller = true,
-                    Available = true, CategoryId = 5, ItemPrice = 2, ItemPicture = "bread.png"  },
+                    Available = true, CategoryId = 5, ItemPrice = 2, ItemPicture = "bread.jpg"  },
                 new Item() {ItemId = 6, ItemName = "Milk", ItemProducer = "Lorem ipsum", ItemDescription = "Milk", Bestseller = false,
-                    Available = true, CategoryId = 6, ItemPrice = 6, ItemPicture = "dairy.png"  }
+                    Available = true, CategoryId = 6, ItemPrice = 6, ItemPicture = "milk.jpg"  }
             };
 
             item.ForEach(k => context.Items.AddOrUpdate(k));
