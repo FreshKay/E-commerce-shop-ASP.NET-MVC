@@ -24,16 +24,17 @@ namespace ShopSite.Controllers
             var vm = new HomeViewModel()
             {
                 Bestseller = best,
-                New = newOnes,                    
-                Categories = category               
+                New = newOnes,
+                Categories = category
             };
-            
+
             return View(vm);
         }
 
-        public ActionResult StaticSites(string name)
+        public ActionResult StaticSites(string nameCat)
         {
-            return View(name);
+           
+            return View(nameCat);
         }
 
         public ActionResult Products()

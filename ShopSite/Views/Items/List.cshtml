@@ -1,119 +1,33 @@
-﻿
+﻿@model IEnumerable<ShopSite.Models.Item>
+@using ShopSite.Infrastructure
+
+
 @{
-    ViewBag.Title = "Products";
+    ViewBag.Title = "List";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Products</h2>
+
 
 <div class="container">
     <div class="product">
         <h2 class="new">Category</h2>
         <div class="pink">
-            <div class="col-md-3 box-in-at">
-                <div class=" grid_box portfolio-wrapper">
-                    <a href="single.html"> <img src="~/Content/images/milk.jpg" class="img-responsive" alt=""></a>
+            @foreach (var items in Model)
+            {
+                <div class="col-md-3 box-in-at">
+                    <div class=" grid_box portfolio-wrapper">
+                        <a href="@Url.Action( "Details", "Items", new { id = items.ItemId })"> <img src="@Url.PicturePath(items.ItemPicture)" class="img-responsive" alt=""></a>
+                    </div>
+                    <div class="grid_1 simpleCart_shelfItem">
+                        <a href="@Url.Action( "Details", "Items", new { id = items.ItemId })" class="cup"><span class=" item_price">@items.ItemName - @items.ItemPrice <i> </i> </span></a>@*cup item_add*@
+                    </div>
                 </div>
-                <div class="grid_1 simpleCart_shelfItem">
-                    <a href="#" class="cup item_add"><span class=" item_price">45 $ <i> </i> </span></a>
-                </div>
-            </div>
-            <div class="col-md-3 box-in-at">
-                <div class=" grid_box portfolio-wrapper">
-                    <a href="single.html"> <img src="~/Content/images/milk.jpg" class="img-responsive" alt=""></a>
-                </div>
-                <div class="grid_1 simpleCart_shelfItem">
-                    <a href="#" class="cup item_add"><span class=" item_price">45 $ <i> </i> </span></a>
-                </div>
-            </div>
-            <div class="col-md-3 box-in-at">
-                <div class=" grid_box portfolio-wrapper">
-                    <a href="single.html"> <img src="~/Content/images/milk.jpg" class="img-responsive" alt=""></a>
-                </div>
-                <div class="grid_1 simpleCart_shelfItem">
-                    <a href="#" class="cup item_add"><span class=" item_price">45 $ <i> </i> </span></a>
-                </div>
-            </div>
-            <div class="col-md-3 box-in-at">
-                <div class=" grid_box portfolio-wrapper">
-                    <a href="single.html"> <img src="~/Content/images/milk.jpg" class="img-responsive" alt=""></a>
-                </div>
-                <div class="grid_1 simpleCart_shelfItem">
-                    <a href="#" class="cup item_add"><span class=" item_price">45 $ <i> </i> </span></a>
-                </div>
-            </div>
+            }
             <div class="clearfix"> </div>
         </div>
-        <div class="pink">
-            <div class="col-md-3 box-in-at">
-                <div class=" grid_box portfolio-wrapper">
-                    <a href="single.html"> <img src="~/Content/images/milk.jpg" class="img-responsive" alt=""></a>
-                </div>
-                <div class="grid_1 simpleCart_shelfItem">
-                    <a href="#" class="cup item_add"><span class=" item_price">45 $ <i> </i> </span></a>
-                </div>
-            </div>
-            <div class="col-md-3 box-in-at">
-                <div class=" grid_box portfolio-wrapper">
-                    <a href="single.html"> <img src="~/Content/images/milk.jpg" class="img-responsive" alt=""></a>
-                </div>
-                <div class="grid_1 simpleCart_shelfItem">
-                    <a href="#" class="cup item_add"><span class=" item_price">45 $ <i> </i> </span></a>
-                </div>
-            </div>
-            <div class="col-md-3 box-in-at">
-                <div class=" grid_box portfolio-wrapper">
-                    <a href="single.html"> <img src="~/Content/images/milk.jpg" class="img-responsive" alt=""></a>
-                </div>
-                <div class="grid_1 simpleCart_shelfItem">
-                    <a href="#" class="cup item_add"><span class=" item_price">45 $ <i> </i> </span></a>
-                </div>
-            </div>
-            <div class="col-md-3 box-in-at">
-                <div class=" grid_box portfolio-wrapper">
-                    <a href="single.html"> <img src="~/Content/images/milk.jpg" class="img-responsive" alt=""></a>
-                </div>
-                <div class="grid_1 simpleCart_shelfItem">
-                    <a href="#" class="cup item_add"><span class=" item_price">45 $ <i> </i> </span></a>
-                </div>
-            </div>
-            <div class="clearfix"> </div>
-        </div>
-        <div class="pink">
-            <div class="col-md-3 box-in-at">
-                <div class=" grid_box portfolio-wrapper">
-                    <a href="single.html"> <img src="~/Content/images/milk.jpg" class="img-responsive" alt=""></a>
-                </div>
-                <div class="grid_1 simpleCart_shelfItem">
-                    <a href="#" class="cup item_add"><span class=" item_price">45 $ <i> </i> </span></a>
-                </div>
-            </div>
-            <div class="col-md-3 box-in-at">
-                <div class=" grid_box portfolio-wrapper">
-                    <a href="single.html"> <img src="~/Content/images/milk.jpg" class="img-responsive" alt=""></a>
-                </div>
-                <div class="grid_1 simpleCart_shelfItem">
-                    <a href="#" class="cup item_add"><span class=" item_price">45 $ <i> </i> </span></a>
-                </div>
-            </div>
-            <div class="col-md-3 box-in-at">
-                <div class=" grid_box portfolio-wrapper">
-                    <a href="single.html"> <img src="~/Content/images/milk.jpg" class="img-responsive" alt=""></a>
-                </div>
-                <div class="grid_1 simpleCart_shelfItem">
-                    <a href="#" class="cup item_add"><span class=" item_price">45 $ <i> </i> </span></a>
-                </div>
-            </div>
-            <div class="col-md-3 box-in-at">
-                <div class=" grid_box portfolio-wrapper">
-                    <a href="single.html"> <img src="~/Content/images/milk.jpg" class="img-responsive" alt=""></a>
-                </div>
-                <div class="grid_1 simpleCart_shelfItem">
-                    <a href="#" class="cup item_add"><span class=" item_price">45 $ <i> </i> </span></a>
-                </div>
-            </div>
-            <div class="clearfix"> </div>
-        </div>
+
+
     </div>
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
@@ -128,3 +42,5 @@
             </li>
         </ul>
     </nav>
+</div>
+

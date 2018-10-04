@@ -1,6 +1,6 @@
 ﻿@*@using System.Web.Optimization*@
-@model ShopSite.ViewModels.HomeViewModel
 @using ShopSite.Infrastructure
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,10 +45,10 @@
             <div class="container">
                 <div class="top-head">
                     <ul class="header-in">
-                        <li><a href="products.html">  Products</a></li>
-                        <li><a href="@Url.Action("StaticSites", "Home", new { name = "about"})">About us</a> </li>
-                        <li><a href="@Url.Action("StaticSites", "Home", new { name = "contact"})">   Contact us</a></li>
-                        <li><a href="@Url.Action("StaticSites", "Home", new { name = "howto"})">   How to use</a></li>
+                        <li><a href="@Url.Action( "Index", "Home" )">  Products</a></li>
+                        <li><a href="@Url.Action("StaticSites", "Home", new { nameCat = "about"})">About us</a> </li>
+                        <li><a href="@Url.Action("StaticSites", "Home", new { nameCat = "contact"})">   Contact us</a></li>
+                        <li><a href="@Url.Action("StaticSites", "Home", new { nameCat = "howto"})">   How to use</a></li>
                     </ul>
                     <div class="search-top">
                         <div class="search">
@@ -69,18 +69,28 @@
             <div class="container">
                 <div class="head-top">
                     <div class="logo">
-                        <a href="index.html"><img src="~/Content/images/logo.png" alt=""></a>
+                        <a href="@Url.Action( "Index", "Home" )"><img src="~/Content/images/logo.png" alt=""></a>
                     </div>
                     <div class="top-nav">
                         <ul class="megamenu skyblue">
-
-                            @foreach (var category in Model.Categories)
-                            {
-                                <li class="active grid">
-                                    <a href="@Url.Action( "List", "Items", new { name = category.CategoryName.ToLower() })">@category.CategoryName</a>
-                                </li>
-                            }
-
+                            <li class="active grid">
+                                <a href="@Url.Action( "List", "Items", new { name = "Meat" })">Meat</a>
+                            </li>
+                            <li class="active grid">
+                                <a href="@Url.Action( "List", "Items", new { name = "Vegetables" })">Vegetables</a>
+                            </li>
+                            <li class="active grid">
+                                <a href="@Url.Action( "List", "Items", new { name = "Fruits" })">Fruits</a>
+                            </li>
+                            <li class="active grid">
+                                <a href="@Url.Action( "List", "Items", new { name = "Fish" })">Fish</a>
+                            </li>
+                            <li class="active grid">
+                                <a href="@Url.Action( "List", "Items", new { name = "Bread" })">Bread</a>
+                            </li>
+                            <li class="active grid">
+                                <a href="@Url.Action( "List", "Items", new { name = "Dairy Products" })">Dairy Products</a>
+                            </li>
                         </ul>
                     </div>
                     <div class="cart box_1">
@@ -111,14 +121,14 @@
     <div class="footer">
         <div class="container">
             <div class="col-md-3 footer-left">
-                <a href="index.html"><img src="~/Content/images/logo.png" alt=""></a>
+                <a href="@Url.Action( "Index", "Home" )"><img src="~/Content/images/logo.png" alt=""></a>
                 <p class="footer-class">© 2015 Markito All Rights Reserved | Template by  <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
             </div>
             <div class="col-md-4 footer-middle">
                 <ul>
-                    <li><a href="@Url.Action("StaticSites", "Home", new { name = "about"})">About us</a> </li>
-                    <li><a href="@Url.Action("StaticSites", "Home", new { name = "contact"})">   Contact us</a></li>
-                    <li><a href="@Url.Action("StaticSites", "Home", new { name = "howto"})">  Hot to use</a></li>
+                    <li><a href="@Url.Action("StaticSites", "Home", new { nameCat = "about"})">About us</a> </li>
+                    <li><a href="@Url.Action("StaticSites", "Home", new { nameCat = "contact"})">   Contact us</a></li>
+                    <li><a href="@Url.Action("StaticSites", "Home", new { nameCat = "howto"})">  Hot to use</a></li>
                 </ul>
             </div>
             <div class="col-md-3 footer-right">

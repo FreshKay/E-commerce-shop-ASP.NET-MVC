@@ -9,7 +9,7 @@ namespace ShopSite.Infrastructure
 {
     public static class UrlHelpers
     {
-        public static string PicturePath (this UrlHelper helper, string namePicture)
+        public static string PicturePath(this UrlHelper helper, string namePicture)
         {
             var pictureFolder = AppConfig.PicturesFolder;
             var path = Path.Combine(pictureFolder, namePicture);

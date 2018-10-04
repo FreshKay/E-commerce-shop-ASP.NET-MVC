@@ -18,7 +18,7 @@
                         <a href="@Url.Action( "Details", "Items", new { id = bests.ItemId })"> <img src="@Url.PicturePath(bests.ItemPicture)" class="img-responsive" alt=""></a>
                     </div>
                     <div class="grid_1 simpleCart_shelfItem">
-                        <a href="" class="cup"><span class=" item_price">@bests.ItemName - @bests.ItemPrice <i> </i> </span></a>@*cup item_add*@
+                        <a href="@Url.Action( "Details", "Items", new { id = bests.ItemId })" class="cup"><span class=" item_price">@bests.ItemName - @bests.ItemPrice <i> </i> </span></a>@*cup item_add*@
                     </div>
                 </div>
             }
@@ -38,7 +38,7 @@
                         <a href="@Url.Action( "Details", "Items", new { id = newOness.ItemId })"> <img src="@Url.PicturePath(newOness.ItemPicture)" class="img-responsive" alt=""></a>
                     </div>
                     <div class="grid_1 simpleCart_shelfItem">
-                        <a href="" class="cup"><span class=" item_price">@newOness.ItemName - @newOness.ItemPrice <i> </i> </span></a>
+                        <a href="@Url.Action( "Details", "Items", new { id = newOness.ItemId })" class="cup"><span class=" item_price">@newOness.ItemName - @newOness.ItemPrice <i> </i> </span></a>
                     </div>
                 </div>
             }
