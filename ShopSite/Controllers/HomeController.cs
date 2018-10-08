@@ -32,8 +32,7 @@ namespace ShopSite.Controllers
         }
 
         public ActionResult StaticSites(string nameCat)
-        {
-           
+        {           
             return View(nameCat);
         }
 

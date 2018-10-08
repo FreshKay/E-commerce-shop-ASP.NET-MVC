@@ -11,6 +11,5 @@ namespace ShopSite.ViewModels
         public IEnumerable<Item> Bestseller { get; set; }
         public IEnumerable<Item> New { get; set; }
         public IEnumerable<Category> Categories { get; set; }
-        public IEnumerable<Item> Categories_2 { get; set; }
     }
 }

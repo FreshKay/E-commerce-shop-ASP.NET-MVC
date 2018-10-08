@@ -25,9 +25,10 @@ namespace ShopSite.Controllers
             return View(items);
         }
 
-        public ActionResult Details(string id)
+        public ActionResult Details(int id)
         {
-            return View();
+            var item = db.Items.Find(id);
+            return View(item);
         }
 
     }
