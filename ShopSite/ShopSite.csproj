@@ -162,7 +162,6 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\HowTo.cshtml" />
-    <Content Include="Views\Home\Products.cshtml" />
     <Content Include="Views\Home\Cart.cshtml" />
     <Content Include="Views\Home\Single.cshtml" />
   </ItemGroup>
@@ -179,6 +178,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\AppConfig.cs" />
+    <Compile Include="Infrastructure\Consts.cs" />
+    <Compile Include="Infrastructure\DefaultCacheProvider.cs" />
+    <Compile Include="Infrastructure\ICacheProvider.cs" />
     <Compile Include="Infrastructure\UrlHelpers.cs" />
     <Compile Include="Migrations\201809181611225_InitialCreate.cs" />
     <Compile Include="Migrations\201809181611225_InitialCreate.Designer.cs">

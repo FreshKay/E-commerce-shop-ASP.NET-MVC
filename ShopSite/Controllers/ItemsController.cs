@@ -17,6 +17,7 @@ namespace ShopSite.Controllers
             return View();
         }
 
+        [OutputCache(Duration = 60000)]
         public ActionResult List(string name)
         {
             var category = db.Categories.Include("Items").Where(k => k.CategoryName.ToUpper() == name.ToUpper()).Single();

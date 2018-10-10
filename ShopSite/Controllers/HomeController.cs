@@ -1,4 +1,5 @@
 ﻿using ShopSite.DAL;
+using ShopSite.Infrastructure;
 using ShopSite.Models;
 using ShopSite.ViewModels;
 using System;
@@ -19,7 +20,18 @@ namespace ShopSite.Controllers
 
             var best = db.Items.Where(a => a.Available && a.Bestseller).OrderBy(a => Guid.NewGuid()).Take(4).ToList();
 
-            var newOnes = db.Items.Where(a => a.Available).OrderByDescending(a => a.AddDate).Take(4).ToList();
+            ICacheProvider cache = new DefaultCacheProvider();
+            List<Item> newOnes;
+            if (cache.IsSet(Consts.NewsCacheKey))
+            {
+                newOnes = cache.Get(Consts.NewsCacheKey) as List<Item>;
+            }
+            else
+            {
+                newOnes = db.Items.Where(a => a.Available).OrderByDescending(a => a.AddDate).Take(4).ToList();
+                cache.Set(Consts.NewsCacheKey, newOnes, 60);
+            }
+          
 
             var vm = new HomeViewModel()
             {
@@ -34,22 +46,7 @@ namespace ShopSite.Controllers
         public ActionResult StaticSites(string nameCat)
         {           
             return View(nameCat);
-        }
-
-        public ActionResult Products()
-        {
-            return View();
-        }
-
-        public ActionResult Cart()
-        {
-            return View();
-        }
-
-        public ActionResult Single()
-        {
-            return View();
-        }
+        }        
 
     }
 }
