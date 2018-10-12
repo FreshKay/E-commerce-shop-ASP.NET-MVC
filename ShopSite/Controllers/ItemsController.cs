@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 
 namespace ShopSite.Controllers
 {
@@ -30,7 +31,7 @@ namespace ShopSite.Controllers
         {
             var item = db.Items.Find(id);
             return View(item);
-        }
+        }        
 
     }
 }
