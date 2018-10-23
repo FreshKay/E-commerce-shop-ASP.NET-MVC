@@ -8,7 +8,5 @@ namespace ShopSite.Infrastructure
     public class Consts
     {
         public const string NewsCacheKey = "NewsCacheKey";
-        public const string BessellerCacheKey = "BestsellerCacheKey";
-        public const string CategoriesCacheKey = "CategoriesCacheKey";
     }
 }

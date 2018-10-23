@@ -16,31 +16,11 @@ namespace ShopSite.Controllers
 
         public ActionResult Index()
         {
-            
+            var category = db.Categories.ToList();
+
+            var best = db.Items.Where(a => a.Available && a.Bestseller).OrderBy(a => Guid.NewGuid()).Take(4).ToList();
+
             ICacheProvider cache = new DefaultCacheProvider();
-
-            List<Category> category;
-            if (cache.IsSet(Consts.CategoriesCacheKey))
-            {
-                category = cache.Get(Consts.CategoriesCacheKey) as List<Category>;
-            }
-            else
-            {
-                category = db.Categories.ToList();
-                cache.Set(Consts.CategoriesCacheKey, category, 60);
-            }
-
-            List<Item> bestseller;
-            if (cache.IsSet(Consts.BessellerCacheKey))
-            {
-                bestseller = cache.Get(Consts.BessellerCacheKey) as List<Item>;
-            }
-            else
-            {
-                bestseller = db.Items.Where(a => a.Available && a.Bestseller).OrderBy(a => Guid.NewGuid()).Take(4).ToList();
-                cache.Set(Consts.BessellerCacheKey, bestseller, 1);
-            }
-            
             List<Item> newOnes;
             if (cache.IsSet(Consts.NewsCacheKey))
             {
@@ -49,13 +29,13 @@ namespace ShopSite.Controllers
             else
             {
                 newOnes = db.Items.Where(a => a.Available).OrderByDescending(a => a.AddDate).Take(4).ToList();
-                cache.Set(Consts.NewsCacheKey, newOnes, 1);
+                cache.Set(Consts.NewsCacheKey, newOnes, 60);
             }
           
 
             var vm = new HomeViewModel()
             {
-                Bestseller = bestseller,
+                Bestseller = best,
                 New = newOnes,
                 Categories = category
             };
@@ -66,14 +46,7 @@ namespace ShopSite.Controllers
         public ActionResult StaticSites(string nameCat)
         {           
             return View(nameCat);
-        }
-
-        public ActionResult ItemsSugestions(string term)
-        {
-            var items = this.db.Items.Where(a => a.Available && a.ItemName.ToLower().Contains(term.ToLower())).Take(5).Select(a => new { label = a.ItemName });
-
-            return Json(items, JsonRequestBehavior.AllowGet);
-        }
+        }        
 
     }
 }
