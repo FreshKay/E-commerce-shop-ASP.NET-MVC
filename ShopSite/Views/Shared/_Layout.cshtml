@@ -53,7 +53,7 @@
                     <div class="search-top">
                         <div class="search">
                             <form>
-                                <input type="search" id="search-filter" name="searchQuery" placeholder="Search.." data-autocomplete-source ="@Url.Action("ItemsSugestions")" >
+                                <input type="text" value="search about something ?" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'search about something ?';}">
                                 <input type="submit" value="">
                             </form>
                         </div>
@@ -158,35 +158,8 @@
 
             });
         </script>
-        <script>
-            $(function () {
-
-                var setupAutoComplete = function () {
-                    var $input = $(this);
-
-                    var options =
-                    {
-                        source: $input.attr("data-autocomplete-source"),
-                        select: function (event, ui) {
-                            $input = $(this);
-                            $input.val(ui.item.label);
-                            var $form = $input.parents("form:first");
-                            $form.submit();
-                        }
-                    };
-
-                    $input.autocomplete(options);
-                };
-
-                $("#search-filter").each(setupAutoComplete);
-
-
-            });
-        </script>
         <a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
-        <script src="~/Scripts/jquery-3.3.1.js"></script>
-        <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
-        <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+
     </div>
 
 </body>
