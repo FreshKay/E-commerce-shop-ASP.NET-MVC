@@ -12,14 +12,19 @@ namespace ShopSite.App_Start
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/jquery.min.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/css/style.css",
+            bundles.Add(new ScriptBundle("~/bundles/javascript").Include(
+                        "~/Scripts/move-top.js",
+                        "~/Scripts/easing.js",
+                        "~/Scripts/megamenu.js",
+                        "~/Scripts/simpleCart.min.js"));
+
+            bundles.Add(new StyleBundle("~/bundles/css").Include(
                       "~/Content/css/bootstrap.css",
-                      "~/Content/css/megamenu.css",
-                      "~/Content/css/owl.carousel.css",
-                      "~/Content/css/etalage.css"                      
-                      ));
+                      "~/Content/css/style.css",                      
+                      "~/Content/css/megamenu.css"));
 
             
         }
