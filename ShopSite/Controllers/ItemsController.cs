@@ -17,7 +17,6 @@ namespace ShopSite.Controllers
             return View();
         }
 
-        [OutputCache(Duration = 60000)]
         public ActionResult List(string name)
         {
             var category = db.Categories.Include("Items").Where(k => k.CategoryName.ToUpper() == name.ToUpper()).Single();
@@ -30,7 +29,7 @@ namespace ShopSite.Controllers
         {
             var item = db.Items.Find(id);
             return View(item);
-        }
+        }       
 
     }
 }

@@ -13,7 +13,8 @@ namespace ShopSite.App_Start
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js",
-                        "~/Scripts/jquery.min.js"));
+                        "~/Scripts/jquery.min.js",
+                        "~/Scripts/jquery-ui-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/javascript").Include(
                         "~/Scripts/move-top.js",
@@ -24,7 +25,11 @@ namespace ShopSite.App_Start
             bundles.Add(new StyleBundle("~/bundles/css").Include(
                       "~/Content/css/bootstrap.css",
                       "~/Content/css/style.css",                      
-                      "~/Content/css/megamenu.css"));
+                      "~/Content/css/megamenu.css",
+                      "~/Content/themes/base/core.css",
+                      "~/Content/themes/base/menu.css",
+                      "~/Content/themes/base/theme.css",
+                      "~/Content/themes/base/autocomplete.css"));
 
             
         }

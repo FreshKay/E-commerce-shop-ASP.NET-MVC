@@ -33,7 +33,7 @@ namespace ShopSite.Models
         public DateTime AdditionDate { get; set; }
         public OrderState OrderState { get; set; }
                
-        List<ItemPosition> ItemPosition { get; set; }
+        public List<ItemPosition> ItemPosition { get; set; }
     }
 
     public enum OrderState

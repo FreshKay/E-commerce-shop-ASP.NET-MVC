@@ -122,9 +122,7 @@
     </Content>
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\bootstrap.css" />
-    <Content Include="Content\css\etalage.css" />
     <Content Include="Content\css\megamenu.css" />
-    <Content Include="Content\css\owl.carousel.css" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\images\11.png" />
     <Content Include="Content\images\ad1.png" />
@@ -149,7 +147,6 @@
     <Content Include="Scripts\move-top.js" />
     <Content Include="Scripts\owl.carousel.js" />
     <Content Include="Scripts\simpleCart.min.js" />
-    <Content Include="Content\css\Site.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -224,9 +221,12 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\AppConfig.cs" />
+    <Compile Include="Infrastructure\BucketManager.cs" />
     <Compile Include="Infrastructure\Consts.cs" />
     <Compile Include="Infrastructure\DefaultCacheProvider.cs" />
     <Compile Include="Infrastructure\ICacheProvider.cs" />
+    <Compile Include="Infrastructure\ISessionManager.cs" />
+    <Compile Include="Infrastructure\SessionManager.cs" />
     <Compile Include="Infrastructure\UrlHelpers.cs" />
     <Compile Include="Migrations\201809181611225_InitialCreate.cs" />
     <Compile Include="Migrations\201809181611225_InitialCreate.Designer.cs">
@@ -237,6 +237,7 @@
       <DependentUpon>201809211328287_AddDate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\BucketStatus.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\ItemPosition.cs" />
