@@ -1,0 +1,88 @@
+﻿@model ShopSite.ViewModels.BasketViewModel
+@{
+    ViewBag.Title = "Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Basket</h2>
+
+<h2>Cart</h2>
+
+<div class="container">
+    <div class="check">
+        <div class="col-md-3 cart-total">
+            <a class="continue" href="#">Continue to basket</a>
+            <div class="price-details">
+                <h3>Price Details</h3>
+                <span>Total</span>
+                <span class="total-value">@String.Format("{0:0.##}", Model.PriceSum) zł</span>
+                <span>Discount</span>
+                <span class="total1">---</span>
+                <span>Delivery Charges</span>
+                <span class="total1">150.00</span>
+                <div class="clearfix"></div>
+            </div>
+            <ul class="total_price">
+                <li class="last_price"> <h4>TOTAL</h4></li>
+                <li class="last_price"><span>333</span></li>
+            </ul>
+            <div class="clearfix">
+            </div>
+
+            <div class="clearfix"></div>
+            @if (Model.PriceSum > 0)
+            {
+                <a class="order" id="cart-pay" href="@Url.Action("Pay", "Bucket")">Place Order</a>
+            }
+            <div class="total-item">
+                <h3>OPTIONS</h3>
+                <h4>COUPONS</h4>
+                <a class="cpns" href="#">Apply Coupons</a>
+                <p><a href="#">Log In</a> to use accounts - linked coupons</p>
+            </div>
+        </div>
+        <div class="col-md-9 cart-items">
+            <h1>My Shopping Bag </h1>
+
+            @foreach (var bucketStatus in Model.BucketStatus)
+            {
+                @*<script>
+                    $(document).ready(function (c) {
+                        $('.close1').on('click', function (c) {
+                            $('.cart-header').fadeOut('slow', function (c) {
+                                $('.cart-header').remove();
+                            });
+                        });
+                    });
+                </script>*@
+                <div class="cart-header" id="in-bucket-@bucketStatus.Item.ItemId">
+                    <div class="close1"> </div>
+                    <div class="cart-sec simpleCart_shelfItem">
+                        <div class="cart-item cyc">
+                            <img src="@Url.Content("~/Content/images" + bucketStatus.Item.ItemPicture)" class="img-responsive" alt="" />
+                        </div>
+                        <div class="cart-item-info">
+                            <h3><a href="@Url.Action("Details", "Items", new { id = bucketStatus.Item.ItemId })" > @bucketStatus.Item.ItemName </a><span>Model No: 3578</span></h3>
+                            <ul class="qty">
+                                <li><p>Qty : <span id="cart-id-@bucketStatus.Item.ItemId">@bucketStatus.Quantity</span></p></li>
+                                <li><p>Cost: <span>@String.Format("{0:0.##}", bucketStatus.Value) zł</span></p></li>
+                                <li><p><a class="deleteItem" data-id="@bucketStatus.Item.ItemId">Delete</a></p></li>
+                            </ul>
+                        </div>
+                        <div class="clearfix"></div>
+
+                    </div>
+                </div>
+            }
+
+            <tr id="empty-bucket" @if (Model.BucketStatus != null && Model.BucketStatus.Count > 0)
+                                   {
+                                        <text>class="hidden"</text>
+                                   }                
+                <td>Your cart is empty.</td>
+            </tr>
+            
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+</div>
