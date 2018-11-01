@@ -8,7 +8,7 @@ namespace ShopSite.ViewModels
 {
     public class BasketViewModel
     {
-        public List<BucketStatus> BucketStatus { get; set; }
+        public List<BasketStatus> BasketStatus { get; set; }
         public decimal PriceSum { get; set; }
     }
 }

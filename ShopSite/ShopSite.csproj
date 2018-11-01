@@ -221,7 +221,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\AppConfig.cs" />
-    <Compile Include="Infrastructure\BucketManager.cs" />
+    <Compile Include="Infrastructure\BasketManager.cs" />
     <Compile Include="Infrastructure\Consts.cs" />
     <Compile Include="Infrastructure\DefaultCacheProvider.cs" />
     <Compile Include="Infrastructure\ICacheProvider.cs" />
@@ -237,13 +237,14 @@
       <DependentUpon>201809211328287_AddDate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\BucketStatus.cs" />
+    <Compile Include="Models\BasketStatus.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\ItemPosition.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\BasketViewModel.cs" />
+    <Compile Include="ViewModels\BasketDeletionViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

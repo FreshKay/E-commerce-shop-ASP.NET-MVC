@@ -40,7 +40,7 @@
                             <div class="clearfix"> </div>
                         </div>
 
-                        <label class="add-to">$@Model.ItemPrice - <a href="@Url.Action("Index", "Basket", new { id = Model.ItemId })" class="cup item_add">Add to cart</a></label>
+                        <label class="add-to">$@Model.ItemPrice - <a href="@Url.Action("AddToBasket", "Basket", new { id = Model.ItemId })" class="cup item_add">Add to cart</a></label>
 
                     </div>
                 </div>

@@ -5,7 +5,7 @@ using System.Web;
 
 namespace ShopSite.Models
 {
-    public class BucketStatus
+    public class BasketStatus
     {
         public Item Item{ get; set; }
         public int Quantity { get; set; }

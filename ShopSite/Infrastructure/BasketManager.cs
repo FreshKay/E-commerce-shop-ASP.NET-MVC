@@ -7,28 +7,28 @@ using System.Web;
 
 namespace ShopSite.Infrastructure
 {
-    public class BucketManager
+    public class BasketManager
     {
         private ItemsContext db;
         private ISessionManager session;
 
-        public BucketManager(ISessionManager session, ItemsContext db)
+        public BasketManager(ISessionManager session, ItemsContext db)
         {
             this.session = session;
             this.db = db;
         }
 
-        public List<BucketStatus> DownloadBucket()
+        public List<BasketStatus> DownloadBucket()
         {
-            List<BucketStatus> bucket;
+            List<BasketStatus> bucket;
             
-            if (session.Get<List<BucketStatus>>(Consts.BucketSessionKey)==null)
+            if (session.Get<List<BasketStatus>>(Consts.BasketSessionKey)==null)
             {
-                bucket = new List<BucketStatus>();
+                bucket = new List<BasketStatus>();
             }
             else
             {
-                bucket = session.Get<List<BucketStatus>>(Consts.BucketSessionKey) as List<BucketStatus>;
+                bucket = session.Get<List<BasketStatus>>(Consts.BasketSessionKey) as List<BasketStatus>;
             }
 
             return bucket;
@@ -49,7 +49,7 @@ namespace ShopSite.Infrastructure
 
                 if(itemToAdd != null)
                 {
-                    var newBucketStatus = new BucketStatus
+                    var newBucketStatus = new BasketStatus
                     {
                         Item = itemToAdd,
                         Quantity = 1,
@@ -60,7 +60,7 @@ namespace ShopSite.Infrastructure
                 }
             }
 
-            session.Set(Consts.BucketSessionKey, bucket);
+            session.Set(Consts.BasketSessionKey, bucket);
         }
 
         public int DeleteFromBucket (int itemId)
@@ -133,7 +133,7 @@ namespace ShopSite.Infrastructure
 
         public void EmptyBucket()
         {
-            session.Set<List<BucketStatus>>(Consts.BucketSessionKey, null);
+            session.Set<List<BasketStatus>>(Consts.BasketSessionKey, null);
         }
     }
 }
