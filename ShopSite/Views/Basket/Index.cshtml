@@ -5,7 +5,7 @@
 }
 
 
-<h2>Basket <span id="basket-count">(@Html.Action("GetBasketQuantity", "Basket"))</span></h2>
+<h2>Basket - <span id="basket-count">@Html.Action("GetBasketQuantity", "Basket")</span></h2>
 
 <div class="container">
     <div class="check">
@@ -14,7 +14,7 @@
             <div class="price-details">
                 <h3>Price Details</h3>
                 <span>Total</span>
-                <span class="total-value">@String.Format("{0:0.##}", Model.PriceSum) zł</span>
+                <span id="total-value">@String.Format("{0:0.##}", Model.PriceSum)</span>zł
                 <span>Discount</span>
                 <span class="total1">---</span>
                 <span>Delivery Charges</span>
@@ -23,7 +23,7 @@
             </div>
             <ul class="total_price">
                 <li class="last_price"> <h4>TOTAL</h4></li>
-                <li class="last_price"><span class="total-value">@String.Format("{0:0.##}", Model.PriceSum) zł</span></li>
+                <li class="last_price" id="total-value-1">@String.Format("{0:0.##}", Model.PriceSum)</li>zł
             </ul>
             <div class="clearfix">
             </div>
@@ -34,7 +34,7 @@
                 <a class="order" id="cart-pay" href="@Url.Action("Pay", "Basket")">Place Order</a>
             }
             <div class="total-item">
-                <h3>OPTIONS</h3>
+                <br />
                 <h4>COUPONS</h4>
                 <a class="cpns" href="#">Apply Coupons</a>
                 <p><a href="#">Log In</a> to use accounts - linked coupons</p>
@@ -46,7 +46,9 @@
             @foreach (var basketStatus in Model.BasketStatus)
             {
                 <div class="cart-header" id="in-bucket-@basketStatus.Item.ItemId">
-                    @*<div class="close1">*@<a class="deleteItem" data-id="@basketStatus.Item.ItemId">lllll</a>@*</div>*@
+                    @*<div class="close1">
+                    <a class="deleteItem" id="delete-item" data-id="@basketStatus.Item.ItemId"></a>
+                    </div>*@
                     <div class="cart-sec simpleCart_shelfItem">
                         <div class="cart-item cyc">
                             <img src="@Url.Content("~/Content/images" + basketStatus.Item.ItemPicture)" class="img-responsive" alt="" />
@@ -56,7 +58,7 @@
                             <ul class="qty">
                                 <li><p>Qty : <span id="cart-quantity-@basketStatus.Item.ItemId">@basketStatus.Quantity</span></p></li>
                                 <li><p>Cost: <span>@String.Format("{0:0.##}", basketStatus.Value) zł</span></p></li>
-                                @*<li><p><a class="deleteItem" data-id="@basketStatus.Item.ItemId">Delete</a></p></li>*@
+                                <li><p><a class="deleteItem" data-id="@basketStatus.Item.ItemId">Delete</a></p></li>
                             </ul>
                         </div>
                         <div class="clearfix"></div>
@@ -87,7 +89,7 @@
                     $.post("/Basket/Delete", { "itemId": itemToDelete },
                         function (response) {
                             if (response.QuantityToDelete == 0) {
-                                $('#cart-header-' + response.ItemIdToRemove).fadeOut('slow', function () {
+                                $('#in-bucket-' + response.ItemIdToRemove).fadeOut('slow', function () {
                                     if (response.BasketQuantity == 0) {
                                         $("#empty-bucket").removeClass("hidden");
                                     }
@@ -100,44 +102,15 @@
                                 $('#cart-pay').addClass('hidden');
                                 $('#total-value').addClass('invisible');
                             }
-                            $('#total-value').text(response.BucketValue);
-                            $('#basket-count').text(response.BucketQuantity);
+                            $('#total-value').text(response.BasketValue);
+                            $('#total-value-1').text(response.BasketValue);
+                            $('#basket-count').text(response.BasketQuantity);
+                            $('#basket-count-1').text(response.BasketQuantity);
                         });
                     return false;
                 }
             });
         });
+        window.onload = go;
     </script>
-@*<script type="text/javascript">
-        $(function () {
-            $(".usunKurs").click(function () {
-
-                var recordDoUsuniecia = $(this).attr("data-id");
-
-                if (recordDoUsuniecia != '') {
-                    $.post("/Koszyk/UsunZKoszyka", { "kursId": recordDoUsuniecia },
-                        function (response) {
-                            if (response.IloscPozycjiUsuwanej == 0) {
-
-                                $('#koszyk-wiersz-' + response.IdPozycjiUsuwanej).fadeOut('slow', function () {
-                                    if (response.KoszykIloscPozycji == 0) {
-                                        $("#koszyk-empty-message").removeClass("hidden");
-                                    }
-                                });
-                            } else {
-                                $('#koszyk-ilosc-pozycji-' + response.IdPozycjiUsuwanej).text(response.IloscPozycjiUsuwanej);
-                            }
-
-                            if (response.KoszykIloscPozycji == 0) {
-                                $('#koszyk-button-zaplac').addClass('hidden');
-                                $('#CenaCalkowita').addClass('invisible');
-                            }
-                            $('#calkowita-cena-wartosc').text(response.KoszykCenaCalkowita);
-                            $('#koszyk-naglowek-ilosc-elementow').text(response.KoszykIloscPozycji);
-                        });
-                    return false;
-                }
-            });
-        });
-</script>*@
 }

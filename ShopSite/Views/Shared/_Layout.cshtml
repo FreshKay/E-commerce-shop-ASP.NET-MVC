@@ -105,12 +105,11 @@
                         <a href="@Url.Action("Index", "Basket")">
                             <h3>
                                 <div class="total">
-                                    <span class="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity">@Html.Action("GetBasketQuantity", "Basket"))</span>
+                                    <span id="basket-count-1" class="simpleCart_quantity">@Html.Action("GetBasketQuantity", "Basket")</span>
                                 </div>
                                 <img src="~/Content/images/cart.png" alt="" />
                             </h3>
                         </a>
-                        <p><a href="javascript:;" class="simpleCart_empty"><img src="~/Content/images/cart-c.png" alt=""></a></p>
                         <div class="clearfix"> </div>
                     </div>
 
