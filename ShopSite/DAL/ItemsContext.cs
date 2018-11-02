@@ -1,4 +1,5 @@
-﻿using ShopSite.Models;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using ShopSite.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -8,11 +9,16 @@ using System.Web;
 
 namespace ShopSite.DAL
 {
-    public class ItemsContext : DbContext
+    public class ItemsContext : IdentityDbContext<ApplicationUser>
     {
         public ItemsContext(): base("ItemsContext")  //Sets up connection string. 
         {
 
+        }
+
+        public static ItemsContext Create()
+        {
+            return new ItemsContext();
         }
 
         static ItemsContext()       // Sets up initializer.
