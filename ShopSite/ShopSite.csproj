@@ -274,6 +274,10 @@
     <Compile Include="Migrations\201811021946569_AddAspIdentity.Designer.cs">
       <DependentUpon>201811021946569_AddAspIdentity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811031811074_ChangeToModels.cs" />
+    <Compile Include="Migrations\201811031811074_ChangeToModels.Designer.cs">
+      <DependentUpon>201811031811074_ChangeToModels.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BasketStatus.cs" />
     <Compile Include="Models\Category.cs" />
@@ -306,7 +310,6 @@
     <Content Include="Views\Basket\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -324,6 +327,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811021946569_AddAspIdentity.resx">
       <DependentUpon>201811021946569_AddAspIdentity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811031811074_ChangeToModels.resx">
+      <DependentUpon>201811031811074_ChangeToModels.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

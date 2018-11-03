@@ -1,9 +1,14 @@
-﻿using ShopSite.DAL;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using ShopSite.App_Start;
+using ShopSite.DAL;
 using ShopSite.Infrastructure;
+using ShopSite.Models;
 using ShopSite.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -19,7 +24,7 @@ namespace ShopSite.Controllers
         {
             db = new ItemsContext();
             sessionManager = new SessionManager();
-            basketManager = new BasketManager(sessionManager , db);
+            basketManager = new BasketManager(sessionManager, db);
         }
 
 
@@ -57,12 +62,47 @@ namespace ShopSite.Controllers
             {
                 BasketQuantity = quantity,
                 BasketValue = basketValue,
-                QuantityToDelete =  quantityToDelete,
+                QuantityToDelete = quantityToDelete,
                 ItemIdToRemove = itemId
             };
 
             return Json(vd);
         }
 
+        public async Task<ActionResult> Pay()
+        {
+            if (Request.IsAuthenticated)
+            {
+                var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+
+                var order = new Order
+                {
+                    Name = user.UsersData.Name,
+                    Surname = user.UsersData.Surname,
+                    City = user.UsersData.City,
+                    Street = user.UsersData.Street,
+                    EMail = user.UsersData.Email,
+                    PhoneNumber = user.UsersData.Number,
+                    PostalCode = user.UsersData.PostalCode
+                };
+                return View(order);
+            }
+            else
+                return RedirectToAction("Login", "Account", new { returnUrl = Url.Action("Pay", "Basket") });
+        }
+
+        private ApplicationUserManager _userManager;
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
+
+        }
     }
 }

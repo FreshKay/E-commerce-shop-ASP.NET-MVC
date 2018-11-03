@@ -10,8 +10,9 @@ namespace ShopSite.Models
     {
         public string Name { get; set; }
         public string Surname { get; set; }
-        public string Address { get; set; }
+        public string Street { get; set; }
         public string City { get; set; }
+        public string PostalCode { get; set; }
 
         [RegularExpression(@"(\+\d{2})*[\d\s-)]+", ErrorMessage = "Wrong phone number format.")]
         public string Number { get; set; }

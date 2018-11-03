@@ -34,7 +34,7 @@ namespace ShopSite.ViewModels
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Type password again")]
+        [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "Passwords are not the same.")]
         public string ConfirmPassword { get; set; }
     }
