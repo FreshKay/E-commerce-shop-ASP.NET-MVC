@@ -91,6 +91,36 @@ namespace ShopSite.Controllers
                 return RedirectToAction("Login", "Account", new { returnUrl = Url.Action("Pay", "Basket") });
         }
 
+        [HttpPost]
+        public async Task<ActionResult> Pay(Order orderDetails)
+        {
+            if (ModelState.IsValid)
+            {
+                // pobieramy id uzytkownika aktualnie zalogowanego
+                var userId = User.Identity.GetUserId();
+
+                // utworzenie obiektu zamowienia na podstawie tego co mamy w koszyku
+                var newOrder = basketManager.CreateOrder(orderDetails, userId);
+
+                // szczegóły użytkownika - aktualizacja danych 
+                var user = await UserManager.FindByIdAsync(userId);
+                TryUpdateModel(user.UsersData);
+                await UserManager.UpdateAsync(user);
+
+                // opróżnimy nasz koszyk zakupów
+                basketManager.EmptyBucket();
+
+                return RedirectToAction("OrderConfirmation");
+            }
+            else
+                return View(orderDetails);
+        }
+
+        public ActionResult OrderConfirmation()
+        {
+            return View();
+        }
+
         private ApplicationUserManager _userManager;
         public ApplicationUserManager UserManager
         {

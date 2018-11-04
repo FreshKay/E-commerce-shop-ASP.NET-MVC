@@ -278,6 +278,14 @@
     <Compile Include="Migrations\201811031811074_ChangeToModels.Designer.cs">
       <DependentUpon>201811031811074_ChangeToModels.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811041430542_Orders.cs" />
+    <Compile Include="Migrations\201811041430542_Orders.Designer.cs">
+      <DependentUpon>201811041430542_Orders.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811041507326_OrderChanges.cs" />
+    <Compile Include="Migrations\201811041507326_OrderChanges.Designer.cs">
+      <DependentUpon>201811041507326_OrderChanges.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BasketStatus.cs" />
     <Compile Include="Models\Category.cs" />
@@ -310,6 +318,8 @@
     <Content Include="Views\Basket\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Basket\Pay.cshtml" />
+    <Content Include="Views\Basket\OrderConfirmation.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -330,6 +340,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811031811074_ChangeToModels.resx">
       <DependentUpon>201811031811074_ChangeToModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811041430542_Orders.resx">
+      <DependentUpon>201811041430542_Orders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811041507326_OrderChanges.resx">
+      <DependentUpon>201811041507326_OrderChanges.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

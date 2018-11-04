@@ -101,7 +101,7 @@ namespace ShopSite.Infrastructure
         {
             var bucket = DownloadBucket();
             newOrder.AdditionDate = DateTime.Now;
-            //newOrder.userId = userId;
+            newOrder.UserId = userId;
 
             db.Orders.Add(newOrder);
 
