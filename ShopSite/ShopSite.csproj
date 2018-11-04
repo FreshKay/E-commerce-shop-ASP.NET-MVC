@@ -248,6 +248,7 @@
     <Compile Include="Controllers\BasketController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemsController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="DAL\ItemsContext.cs" />
     <Compile Include="DAL\ItemsInitializer.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
@@ -327,7 +328,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Manage\" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201809181611225_InitialCreate.resx">
       <DependentUpon>201809181611225_InitialCreate.cs</DependentUpon>
