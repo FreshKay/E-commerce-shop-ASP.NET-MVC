@@ -301,6 +301,7 @@
     <Compile Include="ViewModels\BasketViewModel.cs" />
     <Compile Include="ViewModels\BasketDeletionViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
+    <Compile Include="ViewModels\ManageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -321,6 +322,7 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Basket\Pay.cshtml" />
     <Content Include="Views\Basket\OrderConfirmation.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -328,9 +330,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Manage\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201809181611225_InitialCreate.resx">
       <DependentUpon>201809181611225_InitialCreate.cs</DependentUpon>
