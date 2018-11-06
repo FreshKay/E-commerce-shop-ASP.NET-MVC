@@ -2,10 +2,12 @@
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ShopSite.App_Start;
+using ShopSite.DAL;
 using ShopSite.Models;
 using ShopSite.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -16,6 +18,8 @@ namespace ShopSite.Controllers
     [Authorize]
     public class ManageController : Controller
     {
+        private ItemsContext db = new ItemsContext();
+
         public enum ManageMessageId
         {
             ChangePasswordSuccess,
@@ -138,6 +142,38 @@ namespace ShopSite.Controllers
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie, DefaultAuthenticationTypes.TwoFactorCookie);
             AuthenticationManager.SignIn(new AuthenticationProperties { IsPersistent = isPersistent }, await user.GenerateUserIdentityAsync(UserManager));
+        }
+
+        public ActionResult OrderList()
+        {
+            bool isAdmin = User.IsInRole("Admin");
+            ViewBag.UserIsAdmin = isAdmin;
+
+            IEnumerable<Order> userOrders;
+
+            // Dla administratora zwracamy wszystkie zamowienia
+            if (isAdmin)
+            {
+                userOrders = db.Orders.Include("ItemPosition").OrderByDescending(o => o.AdditionDate).ToArray();
+            }
+            else
+            {
+                var userId = User.Identity.GetUserId();
+                userOrders = db.Orders.Where(o => o.UserId == userId).Include("ItemPosition").OrderByDescending(o => o.AdditionDate).ToArray();
+            }
+
+            return View(userOrders);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public OrderState ChangeOrderState(Order order)
+        {
+            Order orderToChange = db.Orders.Find(order.OrderId);
+            orderToChange.OrderState = order.OrderState;
+            db.SaveChanges();
+
+            return order.OrderState;
         }
 
     }

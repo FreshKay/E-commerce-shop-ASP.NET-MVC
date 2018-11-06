@@ -1,0 +1,120 @@
+﻿
+@model IEnumerable<ShopSite.Models.Order>
+@{
+    ViewBag.Title = "YourOrders";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <hr />
+    <h2 class="manageHeader">Your orders</h2>
+
+    <div>
+        @if (Model.Any())
+        {
+            <table>
+
+                @foreach (var order in Model)
+                {
+                    <tr @if (order.OrderState == ShopSite.Models.OrderState.New) { <text> class="newOrder" </text> }>
+                        <td>
+                            <strong>Order number: </strong>@order.OrderId
+                        </td>
+                        <td>
+                            <strong>Date: </strong>
+                            @order.AdditionDate.ToString("dd-MM-yyyy")
+                        </td>
+                        <td>
+                            <strong>State: </strong><br />
+
+                            @if (ViewBag.UserIsAdmin)
+                            {
+                                using (Html.BeginForm("ChangeOrderState", "Manage"))
+                                {
+                                    @Html.HiddenFor(o => order.AdditionDate)
+                                    @Html.EnumDropDownListFor(o => order.OrderState, new { @class = "OrderStateChange" })
+                                }
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(o => order.OrderState)
+                            }
+                        </td>
+                        <td>
+                            <strong>Data for sending:</strong><br />
+                            @order.Name @order.Surname<br />
+                            @order.Street<br />
+                            @order.PostalCode @order.City<br />
+                        </td>
+                        <td>
+                            <strong>Comment </strong><br />
+                            @order.Comment
+                        </td>
+                        <td>
+                            <strong>Price :</strong> @order.OrderValue zł
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6">
+                            <section>
+                                <ul>
+
+                                    @foreach (var itemPosition in order.ItemPosition)
+                                    {
+                                        <li>
+                                            <article>
+                                                <a href="@Url.Action("Details", "Items", new { id = itemPosition.ItemId })">
+                                                    <img class="kurs" src="@Url.Content("~/Content/images/" + itemPosition.Item.ItemPicture)" />
+                                                    <h1>
+                                                        @itemPosition.Item.ItemProducer - @itemPosition.Item.ItemName<br />
+                                                        <strong>sztuk: @itemPosition.Quantity, łącznie: @(itemPosition.Quantity * @itemPosition.OrderValue)  zł</strong>
+                                                    </h1>
+                                                </a>
+                                            </article>
+                                        </li>
+                                    }
+                                </ul>
+                            </section>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6"></td>
+                    </tr>
+                    <!-- nastepne zamowienie -->
+                }
+            </table>
+        }
+        else
+        {
+            <div style="text-align: center; margin-top: 50px; margin-bottom: 50px;">
+                No orders.
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+
+    <script>
+        $(".OrderStateChange").on('change', function (e) {
+        //e.preventDefault();
+
+        var f = $(this.form);
+        var tr = f.closest("tr");
+        var action = f.attr("action");
+        var serializedForm = f.serialize();
+
+        $.post(action, serializedForm).done(function (data) {
+            if (data == '@ShopSite.Models.OrderState.New.ToString()') {
+                tr.addClass("newOrder");
+            }
+            else {
+                tr.removeClass("newOrder");
+            }
+          });
+    });
+    </script>
+}
+

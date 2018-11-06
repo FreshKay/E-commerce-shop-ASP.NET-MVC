@@ -8,6 +8,8 @@
 <hr />
 <h2 style="margin-bottom: 30px">Your profile</h2>
 
+<a href="@Url.Action("OrderList", "Manage")">Your orders</a>
+
 @using (@Html.BeginForm("ChangeProfile", "Manage"))
 {
     @Html.AntiForgeryToken()
