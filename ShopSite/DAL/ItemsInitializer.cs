@@ -1,4 +1,6 @@
-﻿using ShopSite.Migrations;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using ShopSite.Migrations;
 using ShopSite.Models;
 using System;
 using System.Collections.Generic;
@@ -44,8 +46,38 @@ namespace ShopSite.DAL
 
             item.ForEach(k => context.Items.AddOrUpdate(k));
             context.SaveChanges();
+        }
 
+        public static void SeedUsers(ItemsContext db)
+        {
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
 
+            const string name = "admin@praktycznekursy.pl";
+            const string password = "P@ssw0rd";
+            const string roleName = "Admin";
+
+            var user = userManager.FindByName(name);
+            if (user == null)
+            {
+                user = new ApplicationUser { UserName = name, Email = name, UsersData = new UsersData() };
+                var result = userManager.Create(user, password);
+            }
+
+            // utworzenie roli Admin jeśli nie istnieje 
+            var role = roleManager.FindByName(roleName);
+            if (role == null)
+            {
+                role = new IdentityRole(roleName);
+                var roleresult = roleManager.Create(role);
+            }
+
+            // dodanie uzytkownika do roli Admin jesli juz nie jest w roli
+            var rolesForUser = userManager.GetRoles(user.Id);
+            if (!rolesForUser.Contains(role.Name))
+            {
+                var result = userManager.AddToRole(user.Id, role.Name);
+            }
         }
     }
 }

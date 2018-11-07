@@ -3,11 +3,13 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ShopSite.App_Start;
 using ShopSite.DAL;
+using ShopSite.Infrastructure;
 using ShopSite.Models;
 using ShopSite.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -174,6 +176,79 @@ namespace ShopSite.Controllers
             db.SaveChanges();
 
             return order.OrderState;
+        }
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult AddItem(int? itemId, bool? confirmation)
+        {
+            Item item;
+            if (itemId.HasValue)
+            {
+                ViewBag.EditMode = true;
+                item = db.Items.Find(itemId);
+            }
+            else
+            {
+                ViewBag.EditMode = false;
+                item = new Item();
+            }
+
+            var result = new EditItemViewModel();
+            result.Categories = db.Categories.ToList();
+            result.Item = item;
+            result.Confirmation = confirmation;
+
+            return View(result);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public ActionResult AddItem (EditItemViewModel model, HttpPostedFileBase file)
+        {
+            if (model.Item.ItemId > 0)
+            {
+                // modyfikacja kursu
+                db.Entry(model.Item).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("AddItem", new { confirmation = true });
+            }
+            else
+            {
+                // Sprawdzenie, czy użytkownik wybrał plik
+                if (file != null && file.ContentLength > 0)
+                {
+                    if (ModelState.IsValid)
+                    {
+                        // Generowanie pliku
+                        var fileExt = Path.GetExtension(file.FileName);
+                        var filename = Guid.NewGuid() + fileExt;
+
+                        var path = Path.Combine(Server.MapPath(AppConfig.PicturesFolder), filename);
+                        file.SaveAs(path);
+
+                        model.Item.ItemPicture = filename;
+                        model.Item.AddDate = DateTime.Now;
+
+                        db.Entry(model.Item).State = EntityState.Added;
+                        db.SaveChanges();
+
+                        return RedirectToAction("AddItem", new { confirmation = true });
+                    }
+                    else
+                    {
+                        var categories = db.Categories.ToList();
+                        model.Categories = categories;
+                        return View(model);
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("", "File not slected.");
+                    var categories = db.Categories.ToList();
+                    model.Categories = categories;
+                    return View(model);
+                }
+            }
         }
 
     }

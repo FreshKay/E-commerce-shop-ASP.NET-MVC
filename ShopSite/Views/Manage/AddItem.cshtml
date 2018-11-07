@@ -1,0 +1,100 @@
+﻿@model ShopSite.ViewModels.EditItemViewModel
+
+@{
+    ViewBag.Title = "AddItem";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<hr />
+<h2 class="manageHeader">Edit item</h2>
+<div>
+    @if (Model.Confirmation.HasValue && Model.Confirmation.Value)
+    {
+        <div style="text-align: center; margin: 50px;">
+            Success!
+        </div>
+    }
+
+    @using (@Html.BeginForm("AddItem", "Manage", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="error-summary-centered">
+            @Html.ValidationSummary()
+        </div>
+        @Html.HiddenFor(o => o.Item.ItemId)
+        @Html.HiddenFor(o => o.Item.AddDate)
+        @Html.HiddenFor(o => o.Item.ItemPicture)
+
+        <div style="text-align: center;">
+            <table id="albumedit-address-table">
+                <tr>
+                    <td>@Html.LabelFor(o => o.Item.ItemProducer, "Producer:")</td>
+                    <td>@Html.TextBoxFor(o => o.Item.ItemProducer)</td>
+                    <td>@Html.ValidationMessageFor(o => o.Item.ItemProducer)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(o => o.Item.ItemName, "Item:")</td>
+                    <td>@Html.TextBoxFor(o => o.Item.ItemName)</td>
+                    <td>@Html.ValidationMessageFor(o => o.Item.ItemName)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(o => o.Item.ItemDescription, "Item description:")</td>
+                    <td>@Html.TextBoxFor(o => o.Item.ItemDescription)</td>
+                    <td>@Html.ValidationMessageFor(o => o.Item.ItemDescription)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(o => o.Categories, "Category:")</td>
+                    <td>@Html.DropDownListFor(m => m.Item.CategoryId, new SelectList(Model.Categories, "CategoryId", "CategoryName", Model.Categories.First().CategoryId))</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(o => o.Item.ItemPrice, "Price:")</td>
+                    <td>@Html.TextBoxFor(o => o.Item.ItemPrice)</td>
+                    <td>@Html.ValidationMessageFor(o => o.Item.ItemPrice)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(o => o.Item.Bestseller, "Bestseller:")</td>
+                    <td>@Html.CheckBoxFor(o => o.Item.Bestseller)</td>
+                    <td></td>
+                </tr>
+                @if (ViewBag.EditMode == null || !ViewBag.EditMode)
+                {
+                    <tr>
+                        <td colspan="3">
+                            <div class="upload">
+                                <input type="file" name="file" />
+                            </div>
+                        </td>
+                    </tr>
+                }
+                <tr>
+
+                    @*<td style="text-align: left">
+                        @if (ViewBag.EditMode)
+                        {
+                            if (Model.Kurs.Ukryty)
+                            {
+                                <a href="@Url.Action("PokazKurs", "Manage", new { kursId = Model.Kurs.KursId })" style="display: block; margin-top: 15px; font-weight: bold;">
+                                    Przywróć
+                                </a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("UkryjKurs", "Manage", new { kursId = Model.Kurs.KursId })" style="display: block; margin-top: 15px; font-weight: bold;">
+                                    Usuń
+                                </a>
+                            }
+                        }
+                    </td>*@
+
+
+                    <td style="text-align: right;">
+                        <input type="submit" value="Save" class="submitLink" style="height: 40px; margin-right: 0px; margin-top: 30px; font-weight: bold;" />
+                    </td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+    }
+</div>
