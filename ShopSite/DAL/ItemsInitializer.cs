@@ -31,17 +31,17 @@ namespace ShopSite.DAL
             var item = new List<Item>
             {
                 new Item() {ItemId = 1, ItemName = "Apple", ItemProducer = "Lorem ipsum", ItemDescription = "Apple", Bestseller = false,
-                    Available = true, CategoryId = 1, ItemPrice = 5, ItemPicture = "apple.jpg"  },
+                    Available = true, CategoryId = 1, ItemPrice = 5, ItemPicture = "apple.jpg", AddDate= DateTime.Now  },
                 new Item() {ItemId = 2, ItemName = "Carrot", ItemProducer = "Lorem ipsum", ItemDescription = "Carrot", Bestseller = true,
-                    Available = true, CategoryId = 2, ItemPrice = 3, ItemPicture = "carrot.jpg"  },
+                    Available = true, CategoryId = 2, ItemPrice = 3, ItemPicture = "carrot.jpg", AddDate= DateTime.Now  },
                 new Item() {ItemId = 3, ItemName = "Chicken", ItemProducer = "Lorem ipsum", ItemDescription = "Chicken", Bestseller = false,
-                    Available = true, CategoryId = 3, ItemPrice = 20, ItemPicture = "chicken.jpg"  },
+                    Available = true, CategoryId = 3, ItemPrice = 20, ItemPicture = "chicken.jpg", AddDate= DateTime.Now  },
                 new Item() {ItemId = 4, ItemName = "Carp", ItemProducer = "Lorem ipsum", ItemDescription = "Carp", Bestseller = false,
-                    Available = true, CategoryId = 4, ItemPrice = 30, ItemPicture = "fish.png"  },
+                    Available = true, CategoryId = 4, ItemPrice = 30, ItemPicture = "fish.png" , AddDate= DateTime.Now },
                 new Item() {ItemId = 5, ItemName = "Bread", ItemProducer = "Lorem ipsum", ItemDescription = "Bread", Bestseller = true,
-                    Available = true, CategoryId = 5, ItemPrice = 2, ItemPicture = "bread.jpg"  },
+                    Available = true, CategoryId = 5, ItemPrice = 2, ItemPicture = "bread.jpg", AddDate= DateTime.Now  },
                 new Item() {ItemId = 6, ItemName = "Milk", ItemProducer = "Lorem ipsum", ItemDescription = "Milk", Bestseller = false,
-                    Available = true, CategoryId = 6, ItemPrice = 6, ItemPicture = "milk.jpg"  }
+                    Available = true, CategoryId = 6, ItemPrice = 6, ItemPicture = "milk.jpg" , AddDate= DateTime.Now }
             };
 
             item.ForEach(k => context.Items.AddOrUpdate(k));

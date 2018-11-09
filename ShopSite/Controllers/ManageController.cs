@@ -251,5 +251,25 @@ namespace ShopSite.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
+        public ActionResult HideItem(int itemId)
+        {
+            var item = db.Items.Find(itemId);
+            item.Available = false;
+            db.SaveChanges();
+
+            return RedirectToAction("AddItem", new { confirmation = true });
+        }
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult ShowItem(int itemId)
+        {
+            var item = db.Items.Find(itemId);
+            item.Available = true;
+            db.SaveChanges();
+
+            return RedirectToAction("AddItem", new { confirmation = true });
+        }
+
     }
 }

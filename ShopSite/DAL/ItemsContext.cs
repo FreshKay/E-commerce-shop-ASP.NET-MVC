@@ -14,16 +14,16 @@ namespace ShopSite.DAL
         public ItemsContext(): base("ItemsContext")  //Sets up connection string. 
         {
 
+        }        
+
+        static ItemsContext()       // Sets up initializer.
+        {
+            Database.SetInitializer<ItemsContext>(new ItemsInitializer());
         }
 
         public static ItemsContext Create()
         {
             return new ItemsContext();
-        }
-
-        static ItemsContext()       // Sets up initializer.
-        {
-            Database.SetInitializer<ItemsContext>(new ItemsInitializer());
         }
 
         public DbSet<Item> Items { get; set; }

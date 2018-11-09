@@ -287,6 +287,10 @@
     <Compile Include="Migrations\201811041507326_OrderChanges.Designer.cs">
       <DependentUpon>201811041507326_OrderChanges.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811091823391_DbChange.cs" />
+    <Compile Include="Migrations\201811091823391_DbChange.Designer.cs">
+      <DependentUpon>201811091823391_DbChange.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BasketStatus.cs" />
     <Compile Include="Models\Category.cs" />
@@ -353,6 +357,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811041507326_OrderChanges.resx">
       <DependentUpon>201811041507326_OrderChanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811091823391_DbChange.resx">
+      <DependentUpon>201811091823391_DbChange.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

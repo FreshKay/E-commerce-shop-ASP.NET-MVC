@@ -60,6 +60,10 @@
                                     <ul>
                                         <li>Producer - @Model.ItemProducer</li>
                                         <li>In store - @Model.Available</li>
+                                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                                        {
+                                        <li><a href="@Url.Action("AddItem", "Manage", new { kursId = Model.ItemId })" style="margin-top: 20px; font-weight: bold; display: block;">Edit item</a></li>
+                                        }
                                     </ul>
                                 </div>
                             </div>
