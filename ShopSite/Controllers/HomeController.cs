@@ -1,4 +1,5 @@
-﻿using ShopSite.DAL;
+﻿using NLog;
+using ShopSite.DAL;
 using ShopSite.Infrastructure;
 using ShopSite.Models;
 using ShopSite.ViewModels;
@@ -12,6 +13,7 @@ namespace ShopSite.Controllers
 {
     public class HomeController : Controller
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
         private ItemsContext db = new ItemsContext();
 
         public ActionResult Index()

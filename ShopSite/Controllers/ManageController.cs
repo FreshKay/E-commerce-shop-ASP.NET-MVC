@@ -203,7 +203,7 @@ namespace ShopSite.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        public ActionResult AddItem (EditItemViewModel model, HttpPostedFileBase file)
+        public ActionResult AddItem(EditItemViewModel model, HttpPostedFileBase file)
         {
             if (model.Item.ItemId > 0)
             {

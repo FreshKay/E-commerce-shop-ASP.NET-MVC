@@ -13,119 +13,55 @@
     <a href="@Url.Action("AddItem", "Manage")">
         Add item
     </a>
+    <a class="manageLink" href="@Url.Content("~/elmah")">
+        Logs
+    </a>
 }
 
-    <hr />
+<hr />
 
-    <a href="@Url.Action("OrderList", "Manage")">Your orders</a>
+<a href="@Url.Action("OrderList", "Manage")">Your orders</a>
 
-    @using (@Html.BeginForm("ChangeProfile", "Manage"))
-    {
-        @Html.AntiForgeryToken()
+@using (@Html.BeginForm("ChangeProfile", "Manage"))
+{
+    @Html.AntiForgeryToken()
 
-        <div style="text-align: center;">
-            <table id="userdata-address-table">
-                <tr>
-                    <td>@Html.LabelFor(o => o.UsersData.Name, "Name:")</td>
-                    <td>@Html.TextBoxFor(o => o.UsersData.Name)</td>
-                    <td>@Html.ValidationMessageFor(o => o.UsersData.Name)</td>
-                </tr>
-                <tr>
-                    <td>@Html.LabelFor(o => o.UsersData.Surname, "Surname")</td>
-                    <td>@Html.TextBoxFor(o => o.UsersData.Surname)</td>
-                    <td>@Html.ValidationMessageFor(o => o.UsersData.Surname)</td>
-                </tr>
-                <tr>
-                    <td>@Html.LabelFor(o => o.UsersData.Street, "Address")</td>
-                    <td>@Html.TextBoxFor(o => o.UsersData.Street)</td>
-                    <td>@Html.ValidationMessageFor(o => o.UsersData.Street)</td>
-                </tr>
-                <tr>
-                    <td>@Html.LabelFor(o => o.UsersData.City, "City")</td>
-                    <td>@Html.TextBoxFor(o => o.UsersData.City)</td>
-                    <td>@Html.ValidationMessageFor(o => o.UsersData.City)</td>
-                </tr>
-                <tr>
-                    <td>@Html.LabelFor(o => o.UsersData.PostalCode, "Postal code")</td>
-                    <td>@Html.TextBoxFor(o => o.UsersData.PostalCode)</td>
-                    <td>@Html.ValidationMessageFor(o => o.UsersData.PostalCode)</td>
-                </tr>
-                <tr>
-                    <td>@Html.LabelFor(o => o.UsersData.Number, "Phone number")</td>
-                    <td>@Html.TextBoxFor(o => o.UsersData.Number)</td>
-                    <td>@Html.ValidationMessageFor(o => o.UsersData.Number)</td>
-                </tr>
-                <tr>
-                    <td>@Html.LabelFor(o => o.UsersData.Email, "Adres e-mail")</td>
-                    <td>@Html.TextBoxFor(o => o.UsersData.Email)</td>
-                    <td>@Html.ValidationMessageFor(o => o.UsersData.Email)</td>
-                </tr>
-                <tr style="text-align: right;">
-                    <td></td>
-                    <td colspan="3">
-                        <div class="checkbox" style="margin-bottom: 10px;">
-                        </div>
-
-                        <input type="submit" value="Confirm" class="submitLink" style="height: 40px; margin-right: 5px;" />
-                    </td>
-                </tr>
-            </table>
-        </div>
-    }
-
-    <hr />
-    <h2 style="margin-bottom: 30px">Password change</h2>
-
-    @using (Html.BeginForm("ChangePassword", "Manage", FormMethod.Post))
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="manage-error">
-            @Html.ValidationMessage("password-error", "")
-        </div>
-
-        if (Model.Message.HasValue)
-        {
-            <div class="manage-message">
-                @switch (Model.Message)
-                {
-                    case ShopSite.Controllers.ManageController.ManageMessageId.ChangePasswordSuccess:
-                        @: Your password have been changed!
-                        break;
-                    case ShopSite.Controllers.ManageController.ManageMessageId.Error:
-                        @: Error occured.
-                        break;
-                }
-            </div>
-        }
-
-        <table id="password-table" style="margin-left: auto; margin-right: auto;">
+    <div style="text-align: center;">
+        <table id="userdata-address-table">
             <tr>
-                <td>@Html.LabelFor(o => o.ChangePasswordViewModel.OldPassword, "Old password:")</td>
-                <td>
-                    @Html.PasswordFor(o => o.ChangePasswordViewModel.OldPassword)
-                    <div class="login-validation-message">
-                        @Html.ValidationMessageFor(o => o.ChangePasswordViewModel.OldPassword)
-                    </div>
-                </td>
+                <td>@Html.LabelFor(o => o.UsersData.Name, "Name:")</td>
+                <td>@Html.TextBoxFor(o => o.UsersData.Name)</td>
+                <td>@Html.ValidationMessageFor(o => o.UsersData.Name)</td>
             </tr>
             <tr>
-                <td>@Html.LabelFor(o => o.ChangePasswordViewModel.NewPassword, "Old password:")</td>
-                <td>
-                    @Html.PasswordFor(o => o.ChangePasswordViewModel.NewPassword)
-                    <div class="login-validation-message">
-                        @Html.ValidationMessageFor(o => o.ChangePasswordViewModel.NewPassword)
-                    </div>
-                </td>
+                <td>@Html.LabelFor(o => o.UsersData.Surname, "Surname")</td>
+                <td>@Html.TextBoxFor(o => o.UsersData.Surname)</td>
+                <td>@Html.ValidationMessageFor(o => o.UsersData.Surname)</td>
             </tr>
             <tr>
-                <td>@Html.LabelFor(o => o.ChangePasswordViewModel.ConfirmPassword, "Confirm new password:")</td>
-                <td>
-                    @Html.PasswordFor(o => o.ChangePasswordViewModel.ConfirmPassword)
-                    <div class="login-validation-message">
-                        @Html.ValidationMessageFor(o => o.ChangePasswordViewModel.ConfirmPassword)
-                    </div>
-                </td>
+                <td>@Html.LabelFor(o => o.UsersData.Street, "Address")</td>
+                <td>@Html.TextBoxFor(o => o.UsersData.Street)</td>
+                <td>@Html.ValidationMessageFor(o => o.UsersData.Street)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(o => o.UsersData.City, "City")</td>
+                <td>@Html.TextBoxFor(o => o.UsersData.City)</td>
+                <td>@Html.ValidationMessageFor(o => o.UsersData.City)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(o => o.UsersData.PostalCode, "Postal code")</td>
+                <td>@Html.TextBoxFor(o => o.UsersData.PostalCode)</td>
+                <td>@Html.ValidationMessageFor(o => o.UsersData.PostalCode)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(o => o.UsersData.Number, "Phone number")</td>
+                <td>@Html.TextBoxFor(o => o.UsersData.Number)</td>
+                <td>@Html.ValidationMessageFor(o => o.UsersData.Number)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(o => o.UsersData.Email, "Adres e-mail")</td>
+                <td>@Html.TextBoxFor(o => o.UsersData.Email)</td>
+                <td>@Html.ValidationMessageFor(o => o.UsersData.Email)</td>
             </tr>
             <tr style="text-align: right;">
                 <td></td>
@@ -133,15 +69,82 @@
                     <div class="checkbox" style="margin-bottom: 10px;">
                     </div>
 
-                    <input type="submit" value="Change" class="submitLink" style="height: 40px;" />
+                    <input type="submit" value="Confirm" class="submitLink" style="height: 40px; margin-right: 5px;" />
                 </td>
             </tr>
         </table>
+    </div>
+}
+
+<hr />
+<h2 style="margin-bottom: 30px">Password change</h2>
+
+@using (Html.BeginForm("ChangePassword", "Manage", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="manage-error">
+        @Html.ValidationMessage("password-error", "")
+    </div>
+
+    if (Model.Message.HasValue)
+    {
+        <div class="manage-message">
+            @switch (Model.Message)
+            {
+                case ShopSite.Controllers.ManageController.ManageMessageId.ChangePasswordSuccess:
+                    @: Your password have been changed!
+                    break;
+                case ShopSite.Controllers.ManageController.ManageMessageId.Error:
+                    @: Error occured.
+                    break;
+            }
+        </div>
     }
 
-    @section Scripts
+    <table id="password-table" style="margin-left: auto; margin-right: auto;">
+        <tr>
+            <td>@Html.LabelFor(o => o.ChangePasswordViewModel.OldPassword, "Old password:")</td>
+            <td>
+                @Html.PasswordFor(o => o.ChangePasswordViewModel.OldPassword)
+                <div class="login-validation-message">
+                    @Html.ValidationMessageFor(o => o.ChangePasswordViewModel.OldPassword)
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(o => o.ChangePasswordViewModel.NewPassword, "Old password:")</td>
+            <td>
+                @Html.PasswordFor(o => o.ChangePasswordViewModel.NewPassword)
+                <div class="login-validation-message">
+                    @Html.ValidationMessageFor(o => o.ChangePasswordViewModel.NewPassword)
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(o => o.ChangePasswordViewModel.ConfirmPassword, "Confirm new password:")</td>
+            <td>
+                @Html.PasswordFor(o => o.ChangePasswordViewModel.ConfirmPassword)
+                <div class="login-validation-message">
+                    @Html.ValidationMessageFor(o => o.ChangePasswordViewModel.ConfirmPassword)
+                </div>
+            </td>
+        </tr>
+        <tr style="text-align: right;">
+            <td></td>
+            <td colspan="3">
+                <div class="checkbox" style="margin-bottom: 10px;">
+                </div>
+
+                <input type="submit" value="Change" class="submitLink" style="height: 40px;" />
+            </td>
+        </tr>
+    </table>
+}
+
+@section Scripts
 {
-        <script src="~/Scripts/jquery-2.2.1.js"></script>
-        <script src="~/Scripts/jquery.validate.js"></script>
-        <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
-    }
+    <script src="~/Scripts/jquery-2.2.1.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+}
