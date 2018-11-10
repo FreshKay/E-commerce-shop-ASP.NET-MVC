@@ -1,0 +1,28 @@
+﻿@model ShopSite.ViewModels.OrderConfirmationEmail
+Content-Type: text/plain; charset=utf-8
+
+Thank you!
+
+You have made order in our shop!.
+Here are items you have ordered :
+
+@{
+    IEnumerable<ShopSite.Models.ItemPosition> itemPositions = Model.ItemPositions;
+
+    for (int i = 0; i < itemPositions.Count(); i++)
+    {
+        @itemPositions.ElementAt(i).Item.ItemName
+    }
+}
+
+Please send @Model.Value euro, with title: order nr @Model.OrderNumber on our bank account:
+
+Food Shoop
+xxxxxxxxxxx
+ 10 0000 0000 0000 0000 0000
+
+Right after your payment, we will send items to you!
+
+Thanks for using our site!
+See you around!
+Food Shop.

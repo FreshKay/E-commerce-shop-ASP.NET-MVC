@@ -110,6 +110,19 @@ namespace ShopSite.Controllers
                 // opróżnimy nasz koszyk zakupów
                 basketManager.EmptyBucket();
 
+                var order = db.Orders.Include("ItemPosition").Include("ItemPosition.Item").SingleOrDefault(o => o.OrderId == newOrder.OrderId);
+                    
+                OrderConfirmationEmail email = new OrderConfirmationEmail();
+                email.To = order.EMail;
+                email.From = "mojmail@o2.pl";
+                email.Value = order.OrderValue;
+                email.OrderNumber = order.OrderId;
+                email.ItemPositions = order.ItemPosition;
+                email.Send();
+
+
+
+
                 return RedirectToAction("OrderConfirmation");
             }
             else
