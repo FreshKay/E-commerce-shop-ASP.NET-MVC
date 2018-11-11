@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using Hangfire;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using ShopSite.App_Start;
 using ShopSite.DAL;
@@ -8,6 +9,7 @@ using ShopSite.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -17,7 +19,7 @@ namespace ShopSite.Controllers
     public class BasketController : Controller
     {
         private BasketManager basketManager;
-        private SessionManager sessionManager { get; set; }
+        private ISessionManager sessionManager { get; set; }
         private ItemsContext db;
 
         public BasketController()
@@ -110,23 +112,37 @@ namespace ShopSite.Controllers
                 // opróżnimy nasz koszyk zakupów
                 basketManager.EmptyBucket();
 
-                var order = db.Orders.Include("ItemPosition").Include("ItemPosition.Item").SingleOrDefault(o => o.OrderId == newOrder.OrderId);
-                    
-                OrderConfirmationEmail email = new OrderConfirmationEmail();
-                email.To = order.EMail;
-                email.From = "mojmail@o2.pl";
-                email.Value = order.OrderValue;
-                email.OrderNumber = order.OrderId;
-                email.ItemPositions = order.ItemPosition;
-                email.Send();
-
-
+                string url = Url.Action("OrderConfirmationEmail", "Basket", new { orderId = newOrder.OrderId, surname = newOrder.Surname }, Request.Url.Scheme);
+                //BackgroundJob.Enqueue(() => Call(url));
 
 
                 return RedirectToAction("OrderConfirmation");
             }
             else
                 return View(orderDetails);
+        }
+
+        public static void Call(string url)
+        {
+            var req = WebRequest.Create(url);
+            req.GetResponseAsync();
+        }
+
+        public ActionResult OrderConfirmationEmail(int orderId, string surname)
+        {
+            var order = db.Orders.Include("ItemPosition").Include("ItemPosition.Item").SingleOrDefault(o => o.OrderId == orderId && o.Surname == surname);
+
+            if (order == null) return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+
+            OrderConfirmationEmail email = new OrderConfirmationEmail();
+            email.To = order.EMail;
+            email.From = "mikolaj.jon@gmail.com";
+            email.Value = order.OrderValue;
+            email.OrderNumber = order.OrderId;
+            email.ItemPositions = order.ItemPosition;
+            email.Send();
+
+            return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
 
         public ActionResult OrderConfirmation()
