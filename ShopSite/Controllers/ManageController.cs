@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -21,11 +22,17 @@ namespace ShopSite.Controllers
     public class ManageController : Controller
     {
         private ItemsContext db = new ItemsContext();
+        private IMailService mailService;
 
         public enum ManageMessageId
         {
             ChangePasswordSuccess,
             Error
+        }
+
+        public ManageController(IMailService mailService)
+        {
+            this.mailService = mailService;
         }
 
 
@@ -175,6 +182,11 @@ namespace ShopSite.Controllers
             orderToChange.OrderState = order.OrderState;
             db.SaveChanges();
 
+            if (orderToChange.OrderState == OrderState.Executed)
+            {
+                mailService.OrderSendMessage(orderToChange);
+            }
+
             return order.OrderState;
         }
 
@@ -271,5 +283,40 @@ namespace ShopSite.Controllers
             return RedirectToAction("AddItem", new { confirmation = true });
         }
 
+        [AllowAnonymous]
+        public ActionResult OrderConfirmaitonMessage(int orderId, string surname)
+        {
+            var order = db.Orders.Include("ItemPosition").Include("ItemPosition.Item")
+                               .SingleOrDefault(o => o.OrderId == orderId && o.Surname == surname);
+
+            if (order == null) return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+
+            OrderConfirmationEmail email = new OrderConfirmationEmail();
+            email.To = order.EMail;
+            email.From = "mikolaj.jon@gmail.com";
+            email.Value = order.OrderValue;
+            email.OrderNumber = order.OrderId;
+            email.ItemPositions = order.ItemPosition;
+            email.Send();
+
+            return new HttpStatusCodeResult(HttpStatusCode.OK);
+        }
+
+        [AllowAnonymous]
+        public ActionResult OrderSendMessage(int orderId, string surname)
+        {
+            var order = db.Orders.Include("ItemPosition").Include("ItemPosition.Item")
+                               .SingleOrDefault(o => o.OrderId == orderId && o.Surname == surname);
+
+            if (order == null) return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+
+            OrderSendEmail email = new OrderSendEmail();
+            email.To = order.EMail;
+            email.From = "mikolaj.jon@gmail.com";
+            email.OrderNumber = order.OrderId;
+            email.Send();
+
+            return new HttpStatusCodeResult(HttpStatusCode.OK);
+        }
     }
 }

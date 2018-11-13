@@ -31,7 +31,7 @@
                             {
                                 using (Html.BeginForm("ChangeOrderState", "Manage"))
                                 {
-                                    @Html.HiddenFor(o => order.AdditionDate)
+                                    @Html.HiddenFor(o => order.OrderId)
                                     @Html.EnumDropDownListFor(o => order.OrderState, new { @class = "OrderStateChange" })
                                 }
                             }

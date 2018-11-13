@@ -1,0 +1,12 @@
+﻿@model ShopSite.ViewModels.OrderSendEmail
+Content-Type: text/html; charset=utf-8
+
+<html>
+<body>
+    @Html.EmbedImage("~/content/Images/logo.png")
+    <p>Thank you!</p>
+    <p>Your order nr @Model.OrderNumber</p>
+    <p>was already send.</p>
+    <p>Have a good day!</p>
+</body>
+</html>

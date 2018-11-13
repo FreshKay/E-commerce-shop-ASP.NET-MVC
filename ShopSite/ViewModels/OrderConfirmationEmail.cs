@@ -16,10 +16,10 @@ namespace ShopSite.ViewModels
         public List<ItemPosition> ItemPositions { get; set; }
     }
 
-    public class ZamowienieZrealizowaneEmail : Email
+    public class OrderSendEmail : Email
     {
         public string To { get; set; }
         public string From { get; set; }
-        public int NumerZamowienia { get; set; }
+        public int OrderNumber { get; set; }
     }
 }

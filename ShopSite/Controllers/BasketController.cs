@@ -21,9 +21,11 @@ namespace ShopSite.Controllers
         private BasketManager basketManager;
         private ISessionManager sessionManager { get; set; }
         private ItemsContext db;
+        private IMailService mailService;
 
-        public BasketController()
+        public BasketController(IMailService mailService)
         {
+            this.mailService = mailService;
             db = new ItemsContext();
             sessionManager = new SessionManager();
             basketManager = new BasketManager(sessionManager, db);
@@ -112,8 +114,7 @@ namespace ShopSite.Controllers
                 // opróżnimy nasz koszyk zakupów
                 basketManager.EmptyBucket();
 
-                string url = Url.Action("OrderConfirmationEmail", "Basket", new { orderId = newOrder.OrderId, surname = newOrder.Surname }, Request.Url.Scheme);
-                //BackgroundJob.Enqueue(() => Call(url));
+                mailService.OrderConfirmaitonMessage(newOrder);
 
 
                 return RedirectToAction("OrderConfirmation");
@@ -121,30 +122,7 @@ namespace ShopSite.Controllers
             else
                 return View(orderDetails);
         }
-
-        public static void Call(string url)
-        {
-            var req = WebRequest.Create(url);
-            req.GetResponseAsync();
-        }
-
-        public ActionResult OrderConfirmationEmail(int orderId, string surname)
-        {
-            var order = db.Orders.Include("ItemPosition").Include("ItemPosition.Item").SingleOrDefault(o => o.OrderId == orderId && o.Surname == surname);
-
-            if (order == null) return new HttpStatusCodeResult(HttpStatusCode.NotFound);
-
-            OrderConfirmationEmail email = new OrderConfirmationEmail();
-            email.To = order.EMail;
-            email.From = "mikolaj.jon@gmail.com";
-            email.Value = order.OrderValue;
-            email.OrderNumber = order.OrderId;
-            email.ItemPositions = order.ItemPosition;
-            email.Send();
-
-            return new HttpStatusCodeResult(HttpStatusCode.OK);
-        }
-
+              
         public ActionResult OrderConfirmation()
         {
             return View();
