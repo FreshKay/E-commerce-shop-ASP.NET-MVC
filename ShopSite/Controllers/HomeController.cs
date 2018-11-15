@@ -50,8 +50,10 @@ namespace ShopSite.Controllers
             return View(nameCat);
         }
 
+       
+
         public ActionResult ItemSuggestions(string term)
-        {
+        { 
             var items = db.Items.Where(a => a.Available && a.ItemName.ToLower().Contains(term.ToLower())).Take(5).Select(a => new { label = a.ItemName });
 
             return Json(items, JsonRequestBehavior.AllowGet);

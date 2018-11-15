@@ -162,9 +162,29 @@ ul.header-in li{
         ul.header-in li a:hover {
             color: #99d9ea;
         }
+
+ul.header-in-right {
+    float: right;
+    margin-top: 0.5em;
+}
+
+    ul.header-in-right li {
+        display: inline-block;
+    }
+
+        ul.header-in-right li a {
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 1em;
+            margin: 0em 1em;
+        }
+
+            ul.header-in-right li a:hover {
+                color: #99d9ea;
+            }
 .search-top{
 	float:left;
-	  width: 40%;
+	  width: 30%;
 }
 .world {
   float: right;

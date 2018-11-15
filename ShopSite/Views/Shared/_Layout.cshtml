@@ -9,18 +9,18 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
-    <script type="text/javascript">
-        jQuery(document).ready(function ($) {
-            $(".scroll").click(function (event) {
-                event.preventDefault();
-                $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
+    @*<script type="text/javascript">
+            jQuery(document).ready(function ($) {
+                $(".scroll").click(function (event) {
+                    event.preventDefault();
+                    $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
+                });
             });
-        });
-    </script>
-    <script>$(document).ready(function () { $(".megamenu").megamenu(); });</script>
+        </script>*@
+    @*<script>$(document).ready(function () { $(".megamenu").megamenu(); });</script>*@
     @Styles.Render("~/bundles/jquery", "~/bundles/javascript", "~/bundles/css")
 
-
+    
 
 </head>
 <body>
@@ -45,7 +45,6 @@
             };
 
             $("#search-filter").each(setupAutoComplete);
-
         });
     </script>
     <!--header-->
@@ -59,10 +58,10 @@
                         <li><a href="@Url.Action("StaticSites", "Home", new { nameCat = "contact"})">   Contact us</a></li>
                         <li><a href="@Url.Action("StaticSites", "Home", new { nameCat = "howto"})">   How to use</a></li>
                     </ul>
-                    <div class="search-top">
+                    <div class="search-top" id="search">
                         <div class="search">
-                            <form>
-                                <input id="search-filter" type="text" name="searchQuery" placeholder="search about something ?">
+                            <form id="search-form" method="get">
+                                <input id="search-filter" type="text" name="searchQuery" data-autocomplete-source="@Url.Action("ItemSuggestions")" placeholder="search about something ?">
                                 <input type="submit" value="">
                             </form>
                         </div>
@@ -74,7 +73,7 @@
                         {
                             @Html.AntiForgeryToken()
 
-                            <ul class="header-in">
+                            <ul class="header-in-right">
                                 <li>
                                     @Html.ActionLink(User.Identity.GetUserName(), "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
                                 </li>
@@ -84,7 +83,7 @@
                     }
                     else
                     {
-                        <ul class="header-in">
+                        <ul class="header-in-right">
                             <li>@Html.ActionLink("Sign up", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
                             <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
                         </ul>
@@ -123,9 +122,6 @@
                             </li>
                         </ul>
                     </div>
-
-
-
                     <div class="cart box_1">
                         <a href="@Url.Action("Index", "Basket")">
                             <h3>
@@ -175,6 +171,29 @@
             </div>
             <div class="clearfix"> </div>
         </div>
+        <script>
+            $(function () {
+
+                var setupAutoComplete = function () {
+                    var $input = $(this);
+
+                    var options =
+                    {
+                        source: $input.attr("data-autocomplete-source"),
+                        select: function (event, ui) {
+                            $input = $(this);
+                            $input.val(ui.item.label);
+                            var $form = $input.parents("form:first");
+                            $form.submit();
+                        }
+                    };
+
+                    $input.autocomplete(options);
+                };
+
+                $("#search-filter").each(setupAutoComplete);
+            });
+        </script>
         <script type="text/javascript">
             $(document).ready(function () {
                 /*
