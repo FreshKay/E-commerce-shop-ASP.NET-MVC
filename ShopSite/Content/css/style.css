@@ -118,6 +118,10 @@ ul.social-in li  i.ic:hover{
 ul.social-in li  i.ic1:hover{
 	background-position:-62px -48px;
 }
+
+::placeholder {
+    color: #fff;
+}
 .search {
     position: relative;
     border-left: 1px solid #fff;
@@ -794,16 +798,16 @@ a.go:hover{
 
 }
 /*--contact--*/
-.contact h2{
-	font-size: 3em;
-  color: #000;
-  text-align: center;
+.contact h2 {
+    font-size: 3em;
+    color: #48964c;
+    text-align: center;
 }
-.contact-right  h5 {
-	color:#fa7455;
-	margin-bottom:0.5em;
-	font-size:1.7em;
-	margin-top: 0px;	
+.contact-right h5 {
+    color: #48964c;
+    margin-bottom: 0.5em;
+    font-size: 1.7em;
+    margin-top: 0px;
 }
 .contact-left input[type="text"],.contact-left textarea{
 	padding:14px;
