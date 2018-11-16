@@ -39,7 +39,7 @@
                         <a href="@Url.Action( "Details", "Items", new { id = newOness.ItemId })"> <img src="@Url.PicturePath(newOness.ItemPicture)" class="img-responsive" alt=""></a>
                     </div>
                     <div class="grid_1 simpleCart_shelfItem">
-                        <a href="@Url.Action( "Details", "Items", new { id = newOness.ItemId })" class="cup"><span class=" item_price">@newOness.ItemName&emsp;@newOness.ItemPrice <i> </i> </span></a>
+                        <a href="@Url.Action( "Details", "Items", new { id = newOness.ItemId })" class="cup"><span class=" item_price">@newOness.ItemName&emsp;$@newOness.ItemPrice <i> </i> </span></a>
                     </div>
                 </div>
             }

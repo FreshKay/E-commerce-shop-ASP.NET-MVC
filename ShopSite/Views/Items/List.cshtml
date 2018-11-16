@@ -1,13 +1,10 @@
 ﻿@model IEnumerable<ShopSite.Models.Item>
 @using ShopSite.Infrastructure
 
-
 @{
     ViewBag.Title = "List";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-
 
 <div class="container">
     <div class="product">
@@ -20,14 +17,12 @@
                         <a href="@Url.Action( "Details", "Items", new { id = items.ItemId })"> <img src="@Url.PicturePath(items.ItemPicture)" class="img-responsive" alt=""></a>
                     </div>
                     <div class="grid_1 simpleCart_shelfItem">
-                        <a href="@Url.Action( "Details", "Items", new { id = items.ItemId })" class="cup"><span class=" item_price">@items.ItemName&emsp;@items.ItemPrice <i> </i> </span></a>@*cup item_add*@
+                        <a href="@Url.Action( "Details", "Items", new { id = items.ItemId })" class="cup"><span class=" item_price">@items.ItemName&emsp;$@items.ItemPrice <i> </i> </span></a>@*cup item_add*@
                     </div>
                 </div>
             }
             <div class="clearfix"> </div>
         </div>
-
-
     </div>
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">

@@ -5,60 +5,60 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Pay</h2>
+
 
 @using (@Html.BeginForm("Pay", "Basket"))
 {
-<table id="checkout-address-table">
-    <tr>
-        <td>@Html.LabelFor(o => o.Name, "Name:")</td>
-        <td>@Html.TextBoxFor(o => o.Name)</td>
-        <td>@Html.ValidationMessageFor(o => o.Name)</td>
-    </tr>
-    <tr>
-        <td>@Html.LabelFor(o => o.Surname, "Surname")</td>
-        <td>@Html.TextBoxFor(o => o.Surname)</td>
-        <td>@Html.ValidationMessageFor(o => o.Surname)</td>
-    </tr>
-    <tr>
-        <td>@Html.LabelFor(o => o.Street, "Address")</td>
-        <td>@Html.TextBoxFor(o => o.Street)</td>
-        <td>@Html.ValidationMessageFor(o => o.Street)</td>
-    </tr>
-    <tr>
-        <td>@Html.LabelFor(o => o.City, "City")</td>
-        <td>@Html.TextBoxFor(o => o.City)</td>
-        <td>@Html.ValidationMessageFor(o => o.City)</td>
-    </tr>
-    <tr>
-        <td>@Html.LabelFor(o => o.PostalCode, "PostalCode")</td>
-        <td>@Html.TextBoxFor(o => o.PostalCode)</td>
-        <td>@Html.ValidationMessageFor(o => o.PostalCode)</td>
-    </tr>
-    <tr>
-        <td>@Html.LabelFor(o => o.PhoneNumber, "Phone number")</td>
-        <td>@Html.TextBoxFor(o => o.PhoneNumber)</td>
-        <td>@Html.ValidationMessageFor(o => o.PhoneNumber)</td>
-    </tr>
-    <tr>
-        <td>@Html.LabelFor(o => o.EMail, "E-mail address")</td>
-        <td>@Html.TextBoxFor(o => o.EMail)</td>
-        <td>@Html.ValidationMessageFor(o => o.EMail)</td>
-    </tr>
-    <tr>
-        <td><label for="Comment">Comment</label></td>
-        <td>
-            <textarea cols="40" rows="3" name="Comment">@Model.Comment</textarea>
-        </td>
-    </tr>
-</table>
-
-    @Html.ValidationSummary()
-
-    <hr style="margin-bottom: 50px;" />
-
-    <div>
-        <label><a href="" class="cup item_add">Back</a></label>            
-            <input type="submit" style="" value="Confirm" />
+    <div class="contact">
+        <h3>Fill out the form :</h3><br />
+        <div class=" col-md-6 contact-left">
+            <form>
+                <div>
+                    <span>@Html.LabelFor(o => o.Name, "Name:")</span>
+                    @Html.TextBoxFor(o => o.Name)
+                    @Html.ValidationMessageFor(o => o.Name)
+                </div>
+                <div>
+                    <span>@Html.LabelFor(o => o.Surname, "Surname:")</span>
+                    @Html.TextBoxFor(o => o.Surname)
+                    @Html.ValidationMessageFor(o => o.Surname)
+                </div>
+                <div>
+                    <span>@Html.LabelFor(o => o.Street, "Address:")</span>
+                    @Html.TextBoxFor(o => o.Street)
+                    @Html.ValidationMessageFor(o => o.Street)
+                </div>
+                <div>
+                    <span>@Html.LabelFor(o => o.City, "City:")</span>
+                    @Html.TextBoxFor(o => o.City)
+                    @Html.ValidationMessageFor(o => o.City)
+                </div>
+                <div>
+                    <span>@Html.LabelFor(o => o.PostalCode, "Postal code:")</span>
+                    @Html.TextBoxFor(o => o.PostalCode)
+                    @Html.ValidationMessageFor(o => o.PostalCode)
+                </div>
+                <div>
+                    <span>@Html.LabelFor(o => o.PhoneNumber, "Phone number:")</span>
+                    @Html.TextBoxFor(o => o.PhoneNumber)
+                    @Html.ValidationMessageFor(o => o.PhoneNumber)
+                </div>
+                <div>
+                    <span>@Html.LabelFor(o => o.EMail, "E-mail address:")</span>
+                    @Html.TextBoxFor(o => o.EMail)
+                    @Html.ValidationMessageFor(o => o.EMail)
+                </div>
+                <div>
+                    <label for="Comment">Comment</label>                    
+                    <textarea cols="40" rows="3" name="Comment">@Model.Comment</textarea>                   
+                </div>
+            </form>        
+                
+            @Html.ValidationSummary()
+            <div>                
+                <input type="submit" style="" value="Confirm" />
+            </div>
+        </div>
     </div>
-}
+ }
+    
