@@ -9,8 +9,6 @@
 
 
 <div class="content">
-    <br />
-    <h2>@Model.ItemName</h2>
     <div class="container">
         <div class="single">
             <div class="col-md-9 top-in-single">
@@ -23,8 +21,8 @@
                 </div>
                 <div class="col-md-7 single-top-in">
                     <div class="single-para">
-                        <h4>@Model.ItemName - @Model.ItemProducer</h4>
-                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
+                        <h3>@Model.ItemName - @Model.ItemProducer</h3>
+                        <p>@Model.ItemDescription</p>
                         <div class="star-on">
                             <ul>
                                 <li><a href="#"><i> </i></a></li>
@@ -39,9 +37,12 @@
                             </div>
                             <div class="clearfix"> </div>
                         </div>
-
-                        <label class="add-to">$@Model.ItemPrice - <a href="@Url.Action("AddToBasket", "Basket", new { id = Model.ItemId })" class="cup item_add">Add to cart</a></label>
-
+                        <div class="col-md-7 single-top-in">
+                            <h1>$@Model.ItemPrice</h1>
+                        </div>
+                        <div class="col-md-5 single-top-in">
+                            <a href="@Url.Action("AddToBasket", "Basket", new { id = Model.ItemId })" class="cup item_add">Add to cart</a>
+                        </div>             
                     </div>
                 </div>
                 <div class="clearfix"> </div>
@@ -56,7 +57,7 @@
                             <h2 class="resp-accordion resp-tab-active" role="tab" aria-controls="tab_item-0"><span class="resp-arrow"></span>Product Description</h2>
                             <div class="tab-1 resp-tab-content resp-tab-content-active" aria-labelledby="tab_item-0" style="display:block">
                                 <div class="facts">
-                                    <p> @Model.ItemDescription</p>
+                                    <p><h3> @Model.ItemDescription</h3></p>
                                     <ul>
                                         <li>Producer - @Model.ItemProducer</li>
                                         <li>In store - @Model.Available</li>

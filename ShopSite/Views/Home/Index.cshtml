@@ -11,6 +11,7 @@
     <div class="product">
         <h2 class="new">Bestsellers</h2>
         <div class="pink">
+
             @foreach (var bests in Model.Bestseller)
             {
                 <div class="col-md-3 box-in-at">
@@ -18,7 +19,7 @@
                         <a href="@Url.Action( "Details", "Items", new { id = bests.ItemId })"> <img src="@Url.PicturePath(bests.ItemPicture)" class="img-responsive" alt=""></a>
                     </div>
                     <div class="grid_1 simpleCart_shelfItem">
-                        <a href="@Url.Action( "Details", "Items", new { id = bests.ItemId })" class="cup"><span class=" item_price">@bests.ItemName - @bests.ItemPrice <i> </i> </span></a>@*cup item_add*@
+                        <a href="@Url.Action( "Details", "Items", new { id = bests.ItemId })" class="cup"><span class=" item_price">@bests.ItemName&emsp;$@bests.ItemPrice <i> </i> </span></a>@*cup item_add*@
                     </div>
                 </div>
             }
@@ -38,34 +39,12 @@
                         <a href="@Url.Action( "Details", "Items", new { id = newOness.ItemId })"> <img src="@Url.PicturePath(newOness.ItemPicture)" class="img-responsive" alt=""></a>
                     </div>
                     <div class="grid_1 simpleCart_shelfItem">
-                        <a href="@Url.Action( "Details", "Items", new { id = newOness.ItemId })" class="cup"><span class=" item_price">@newOness.ItemName - @newOness.ItemPrice <i> </i> </span></a>
+                        <a href="@Url.Action( "Details", "Items", new { id = newOness.ItemId })" class="cup"><span class=" item_price">@newOness.ItemName&emsp;@newOness.ItemPrice <i> </i> </span></a>
                     </div>
                 </div>
             }
             
             <div class="clearfix"> </div>
         </div>
-
     </div>
-    <div class="content-bottom">
-        <div class="col-md-8 latter">
-            <h6>NEWSLETTER</h6>
-            <p>sign up now to our newsletter discount! to get the Welcome discount</p>
-
-            <div class="clearfix"> </div>
-        </div>
-        <div class="col-md-4 latter-right">
-
-            <form>
-                <div class="join">
-                    <input type="text" value="your email here" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'your email here';}">
-                    <i> </i>
-                </div>
-                <input type="submit" value="join us">
-            </form>
-
-        </div>
-        <div class="clearfix"> </div>
-    </div>
-    <!---->
 </div>

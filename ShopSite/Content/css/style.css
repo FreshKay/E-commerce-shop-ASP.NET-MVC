@@ -889,10 +889,10 @@ a.go:hover{
 	line-height:1.5em;
 	font-weight: 600;
 }
-label.add-to{
-	display:block;
-	font-size: 2em;
-	color: #fa7455;
+label.add-to {
+    display: block;
+    font-size: 2em;
+    color: #48964c;
 }
 .single-para p{
 	font-size:1em;
@@ -916,7 +916,7 @@ a.cart:hover{
 }
 /*----*/
 .star-on {
-  padding: 1em 0;
+    padding: 1em 0;
 }
 .star-on ul {
   float:left;
@@ -951,6 +951,9 @@ a.cart:hover{
 }
 .single {
   padding: 4em 0;
+}
+.single h1 {
+    color: #48964C;
 }
 .available h6{
 	color:#fa7455;
