@@ -6,7 +6,7 @@
 }
 
 <hr />
-<h2 class="manageHeader">Edit item</h2>
+
 <div>
     @if (Model.Confirmation.HasValue && Model.Confirmation.Value)
     {
@@ -26,75 +26,76 @@
         @Html.HiddenFor(o => o.Item.AddDate)
         @Html.HiddenFor(o => o.Item.ItemPicture)
 
-        <div style="text-align: center;">
-            <table id="albumedit-address-table">
-                <tr>
-                    <td>@Html.LabelFor(o => o.Item.ItemProducer, "Producer:")</td>
-                    <td>@Html.TextBoxFor(o => o.Item.ItemProducer)</td>
-                    <td>@Html.ValidationMessageFor(o => o.Item.ItemProducer)</td>
-                </tr>
-                <tr>
-                    <td>@Html.LabelFor(o => o.Item.ItemName, "Item:")</td>
-                    <td>@Html.TextBoxFor(o => o.Item.ItemName)</td>
-                    <td>@Html.ValidationMessageFor(o => o.Item.ItemName)</td>
-                </tr>
-                <tr>
-                    <td>@Html.LabelFor(o => o.Item.ItemDescription, "Item description:")</td>
-                    <td>@Html.TextBoxFor(o => o.Item.ItemDescription)</td>
-                    <td>@Html.ValidationMessageFor(o => o.Item.ItemDescription)</td>
-                </tr>
-                <tr>
-                    <td>@Html.LabelFor(o => o.Categories, "Category:")</td>
-                    <td>@Html.DropDownListFor(m => m.Item.CategoryId, new SelectList(Model.Categories, "CategoryId", "CategoryName", Model.Categories.First().CategoryId))</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>@Html.LabelFor(o => o.Item.ItemPrice, "Price:")</td>
-                    <td>@Html.TextBoxFor(o => o.Item.ItemPrice)</td>
-                    <td>@Html.ValidationMessageFor(o => o.Item.ItemPrice)</td>
-                </tr>
-                <tr>
-                    <td>@Html.LabelFor(o => o.Item.Bestseller, "Bestseller:")</td>
-                    <td>@Html.CheckBoxFor(o => o.Item.Bestseller)</td>
-                    <td></td>
-                </tr>
-                @if (ViewBag.EditMode == null || !ViewBag.EditMode)
-                {
-                    <tr>
-                        <td colspan="3">
-                            <div class="upload">
-                                <input type="file" name="file" />
+        <h3>Add item:</h3><br />
+        <div class=" col-md-6 contact-left">
+            <form>
+                <div>
+                    <span>@Html.LabelFor(o => o.Item.ItemProducer, "Producer:")</span>
+                    @Html.TextBoxFor(o => o.Item.ItemProducer)
+                    @Html.ValidationMessageFor(o => o.Item.ItemProducer)
+                </div>
+                <div>
+                    <span>@Html.LabelFor(o => o.Item.ItemName, "Name:")</span>
+                    @Html.TextBoxFor(o => o.Item.ItemName)
+                    @Html.ValidationMessageFor(o => o.Item.ItemName)
+                </div>
+                <div>
+                    <span>@Html.LabelFor(o => o.Item.ItemDescription, "Item description:")</span>
+                    @Html.TextBoxFor(o => o.Item.ItemDescription)
+                    @Html.ValidationMessageFor(o => o.Item.ItemDescription)
+                </div>
+                <div>
+                    <span>@Html.LabelFor(o => o.Categories, "Category:")</span>
+                    @Html.DropDownListFor(m => m.Item.CategoryId, new SelectList(Model.Categories, "CategoryId", "CategoryName", Model.Categories.First().CategoryId))
+                </div>
+                <div>
+                    <span>@Html.LabelFor(o => o.Item.ItemPrice, "Price:")</span>
+                    @Html.TextBoxFor(o => o.Item.ItemPrice)
+                    @Html.ValidationMessageFor(o => o.Item.ItemPrice)
+                </div>
+                <div>
+                    <span>@Html.LabelFor(o => o.Item.Bestseller, "Bastseller:")</span>
+                    @Html.CheckBoxFor(o => o.Item.Bestseller)
+                </div>
+                <br />
+                
+                    @if (ViewBag.EditMode == null || !ViewBag.EditMode)
+                    {
+                        <div>
+                            <div colspan="3">
+                                <div class="upload">
+                                    <input type="file" name="file" />
+                                </div>
                             </div>
-                        </td>
-                    </tr>
-                }
-                <tr>
-
-                    <td style="text-align: left">
-                        @if (ViewBag.EditMode)
-                        {
-                            if (Model.Item.Available)
+                        </div>
+                    }
+                    
+                        <div style="text-align: left">
+                            @if (ViewBag.EditMode)
                             {
-                                <a href="@Url.Action("HideItem", "Manage", new { kursId = Model.Item.ItemId })" style="display: block; margin-top: 15px; font-weight: bold;">
-                                    Delete
-                                </a>
+                                if (Model.Item.Available)
+                                {
+                                    <a href="@Url.Action("HideItem", "Manage", new { kursId = Model.Item.ItemId })" style="display: block; margin-top: 15px; font-weight: bold;">
+                                        Delete
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a href="@Url.Action("ShowItem", "Manage", new { kursId = Model.Item.ItemId })" style="display: block; margin-top: 15px; font-weight: bold;">
+                                        Show
+                                    </a>
+                                }
                             }
-                            else
-                            {
-                                <a href="@Url.Action("ShowItem", "Manage", new { kursId = Model.Item.ItemId })" style="display: block; margin-top: 15px; font-weight: bold;">
-                                    Show
-                                </a>
-                            }
-                        }
-                    </td>
-
-
-                    <td style="text-align: right;">
-                        <input type="submit" value="Save" class="submitLink" style="height: 40px; margin-right: 0px; margin-top: 30px; font-weight: bold;" />
-                    </td>
-                    <td></td>
-                </tr>
-            </table>
+                        </div>
+                    
+                <div style="text-align: right;">
+                    <div colspan="3">
+                        <div class="checkbox" style="margin-bottom: 10px;">
+                        </div>
+                        <input type="submit" value="Change" class="submitLink" style="height: 40px;" />
+                    </div>
+                </div>                
+            </form><br />
         </div>
-    }
+     }
 </div>

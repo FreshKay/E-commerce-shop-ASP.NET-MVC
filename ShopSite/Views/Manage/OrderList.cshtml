@@ -64,7 +64,7 @@
                                         <li>
                                             <article>
                                                 <a href="@Url.Action("Details", "Items", new { id = itemPosition.ItemId })">
-                                                    <img class="kurs" src="@Url.Content("~/Content/images/" + itemPosition.Item.ItemPicture)" />
+                                                    @*<img class="kurs" src="@Url.Content("~/Content/images/" + itemPosition.Item.ItemPicture)" />*@
                                                     <h1>
                                                         @itemPosition.Item.ItemProducer - @itemPosition.Item.ItemName<br />
                                                         <strong>sztuk: @itemPosition.Quantity, łącznie: @(itemPosition.Quantity * @itemPosition.OrderValue)  zł</strong>

@@ -6,81 +6,121 @@
 }
 
 <hr />
-<h2 style="margin-bottom: 30px">Your profile</h2>
+<h2 style="margin-bottom: 10px">Your profile</h2>
 
-@if (@User.IsInRole("Admin"))
-{
-    <a href="@Url.Action("AddItem", "Manage")">
-        Add item
-    </a>
-    <a class="manageLink" href="@Url.Content("~/elmah")">
-        Logs
-    </a>
-    <a class="manageLink" href="@Url.Content("~/hangfire")">
-        Tasks
-    </a>
-}
 
-<hr />
+<div class="contact">
+    @if (@User.IsInRole("Admin"))
+    {
+    <a class="continue" href="@Url.Action("AddItem", "Manage")">Add item</a>
+    <a class="continue" href="@Url.Content("~/elmah")">Logs</a>
+    <a class="continue" href="@Url.Content("~/hangfire")">Tasks</a>
+    }
+    <a class="continue"href="@Url.Action("OrderList", "Manage")">Your orders</a>
 
-<a href="@Url.Action("OrderList", "Manage")">Your orders</a>
+    @using (@Html.BeginForm("ChangeProfile", "Manage"))
+    {
+        @Html.AntiForgeryToken()
 
-@using (@Html.BeginForm("ChangeProfile", "Manage"))
-{
-    @Html.AntiForgeryToken()
+        <h3>Your information :</h3><br />
+        <div class=" col-md-6 contact-left">
+            <form>
+                <div>
+                    <span>@Html.LabelFor(o => o.UsersData.Name, "Name:")</span>
+                    @Html.TextBoxFor(o => o.UsersData.Name)
+                    @Html.ValidationMessageFor(o => o.UsersData.Name)
+                </div>
+                <div>
+                    <span>@Html.LabelFor(o => o.UsersData.Surname, "Surname:")</span>
+                    @Html.TextBoxFor(o => o.UsersData.Surname)
+                    @Html.ValidationMessageFor(o => o.UsersData.Surname)
+                </div>
+                <div>
+                    <span>@Html.LabelFor(o => o.UsersData.Street, "Address:")</span>
+                    @Html.TextBoxFor(o => o.UsersData.Street)
+                    @Html.ValidationMessageFor(o => o.UsersData.Street)
+                </div>
+                <div>
+                    <span>@Html.LabelFor(o => o.UsersData.City, "City:")</span>
+                    @Html.TextBoxFor(o => o.UsersData.City)
+                    @Html.ValidationMessageFor(o => o.UsersData.City)
+                </div>
+                <div>
+                    <span>@Html.LabelFor(o => o.UsersData.PostalCode, "Postal code:")</span>
+                    @Html.TextBoxFor(o => o.UsersData.PostalCode)
+                    @Html.ValidationMessageFor(o => o.UsersData.PostalCode)
+                </div>
+                <div>
+                    <span>@Html.LabelFor(o => o.UsersData.Email, "E-mail address:")</span>
+                    @Html.TextBoxFor(o => o.UsersData.Email)
+                    @Html.ValidationMessageFor(o => o.UsersData.Email)
+                </div>
+                <tr style="text-align: right;">
+                    <td></td>
+                    <td colspan="3">
+                        <input type="submit" value="Confirm" class="submitLink" style="height: 40px; margin-right: 5px;" />
 
-    <div style="text-align: center;">
-        <table id="userdata-address-table">
-            <tr>
-                <td>@Html.LabelFor(o => o.UsersData.Name, "Name:")</td>
-                <td>@Html.TextBoxFor(o => o.UsersData.Name)</td>
-                <td>@Html.ValidationMessageFor(o => o.UsersData.Name)</td>
-            </tr>
-            <tr>
-                <td>@Html.LabelFor(o => o.UsersData.Surname, "Surname")</td>
-                <td>@Html.TextBoxFor(o => o.UsersData.Surname)</td>
-                <td>@Html.ValidationMessageFor(o => o.UsersData.Surname)</td>
-            </tr>
-            <tr>
-                <td>@Html.LabelFor(o => o.UsersData.Street, "Address")</td>
-                <td>@Html.TextBoxFor(o => o.UsersData.Street)</td>
-                <td>@Html.ValidationMessageFor(o => o.UsersData.Street)</td>
-            </tr>
-            <tr>
-                <td>@Html.LabelFor(o => o.UsersData.City, "City")</td>
-                <td>@Html.TextBoxFor(o => o.UsersData.City)</td>
-                <td>@Html.ValidationMessageFor(o => o.UsersData.City)</td>
-            </tr>
-            <tr>
-                <td>@Html.LabelFor(o => o.UsersData.PostalCode, "Postal code")</td>
-                <td>@Html.TextBoxFor(o => o.UsersData.PostalCode)</td>
-                <td>@Html.ValidationMessageFor(o => o.UsersData.PostalCode)</td>
-            </tr>
-            <tr>
-                <td>@Html.LabelFor(o => o.UsersData.Number, "Phone number")</td>
-                <td>@Html.TextBoxFor(o => o.UsersData.Number)</td>
-                <td>@Html.ValidationMessageFor(o => o.UsersData.Number)</td>
-            </tr>
-            <tr>
-                <td>@Html.LabelFor(o => o.UsersData.Email, "Adres e-mail")</td>
-                <td>@Html.TextBoxFor(o => o.UsersData.Email)</td>
-                <td>@Html.ValidationMessageFor(o => o.UsersData.Email)</td>
-            </tr>
-            <tr style="text-align: right;">
-                <td></td>
-                <td colspan="3">
-                    <div class="checkbox" style="margin-bottom: 10px;">
-                    </div>
+                    </td>
+                </tr>
+            </form><br />
+        </div>
+    }
+    @using (Html.BeginForm("ChangePassword", "Manage", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
 
-                    <input type="submit" value="Confirm" class="submitLink" style="height: 40px; margin-right: 5px;" />
-                </td>
-            </tr>
-        </table>
-    </div>
-}
+        <div class="manage-error">
+            @Html.ValidationMessage("password-error", "")
+        </div>
 
-<hr />
-<h2 style="margin-bottom: 30px">Password change</h2>
+        if (Model.Message.HasValue)
+        {
+            <div class="manage-message">
+                @switch (Model.Message)
+                {
+                    case ShopSite.Controllers.ManageController.ManageMessageId.ChangePasswordSuccess:
+                        @: Your password have been changed!
+                        break;
+                    case ShopSite.Controllers.ManageController.ManageMessageId.Error:
+                        @: Error occured.
+                        break;
+                }
+            </div>
+        }
+        <h3>Change password:</h3><br />
+        <div class=" col-md-6 contact-left">
+            <form>
+                <div>
+                    <span>@Html.LabelFor(o => o.ChangePasswordViewModel.OldPassword, "Old password:")</span>
+                    @Html.PasswordFor(o => o.ChangePasswordViewModel.OldPassword)
+                    @Html.ValidationMessageFor(o => o.ChangePasswordViewModel.OldPassword)
+                </div>
+                <div>
+                    <span>@Html.LabelFor(o => o.ChangePasswordViewModel.NewPassword, "Confirm old password:")</span>
+                    @Html.PasswordFor(o => o.ChangePasswordViewModel.NewPassword)
+                    @Html.ValidationMessageFor(o => o.ChangePasswordViewModel.NewPassword)
+                </div>
+                <div>
+                    <span>@Html.LabelFor(o => o.ChangePasswordViewModel.ConfirmPassword, "Insert new password:")</span>
+                    @Html.PasswordFor(o => o.ChangePasswordViewModel.ConfirmPassword)
+                    @Html.ValidationMessageFor(o => o.ChangePasswordViewModel.ConfirmPassword)
+                </div>
+                <tr style="text-align: right;">
+                    <td></td>
+                    <td colspan="3">
+                        <div class="checkbox" style="margin-bottom: 10px;">
+                        </div>
+                        <input type="submit" value="Change" class="submitLink" style="height: 40px;" />
+                    </td>
+                </tr>
+            </form>
+        </div>        
+     }
+</div>
+
+
+
+@*<h2 style="margin-bottom: 30px">Password change</h2>
 
 @using (Html.BeginForm("ChangePassword", "Manage", FormMethod.Post))
 {
@@ -116,7 +156,7 @@
             </td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(o => o.ChangePasswordViewModel.NewPassword, "Old password:")</td>
+            <td>@Html.LabelFor(o => o.ChangePasswordViewModel.NewPassword, "Confirm old password:")</td>
             <td>
                 @Html.PasswordFor(o => o.ChangePasswordViewModel.NewPassword)
                 <div class="login-validation-message">
@@ -125,7 +165,7 @@
             </td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(o => o.ChangePasswordViewModel.ConfirmPassword, "Confirm new password:")</td>
+            <td>@Html.LabelFor(o => o.ChangePasswordViewModel.ConfirmPassword, "Insert new password:")</td>
             <td>
                 @Html.PasswordFor(o => o.ChangePasswordViewModel.ConfirmPassword)
                 <div class="login-validation-message">
@@ -143,7 +183,7 @@
             </td>
         </tr>
     </table>
-}
+}*@
 
 @section Scripts
 {
