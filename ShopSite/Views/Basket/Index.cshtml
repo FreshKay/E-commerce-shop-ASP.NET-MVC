@@ -1,4 +1,5 @@
 ﻿@model ShopSite.ViewModels.BasketViewModel
+
 @{
     ViewBag.Title = "Cart";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -29,18 +30,15 @@
             {
                 <a class="order" id="cart-pay" href="@Url.Action("Pay", "Basket")">Place Order</a>
             }
-            
+
         </div>
         <div class="col-md-9 cart-items">
             <h1>My Shopping Bag - <span id="basket-count">@Html.Action("GetBasketQuantity", "Basket")</span> </h1>
 
             @foreach (var basketStatus in Model.BasketStatus)
             {
-                <div class="cart-header" id="in-bucket-@basketStatus.Item.ItemId">                    
-                    <div class="cart-sec simpleCart_shelfItem">
-                        <div class="cart-item cyc">
-                            <img src="@Url.Content("~/Content/images" + basketStatus.Item.ItemPicture)" class="img-responsive" alt="" />
-                        </div>
+                <div class="cart-header" id="in-bucket-@basketStatus.Item.ItemId">
+                    <div class="cart-sec simpleCart_shelfItem">                        
                         <div class="cart-item-info">
                             <h3><a href="@Url.Action("Details", "Items", new { id = basketStatus.Item.ItemId })"> @basketStatus.Item.ItemName </a><span>@basketStatus.Item.ItemProducer</span></h3>
                             <ul class="qty">
@@ -55,7 +53,7 @@
                 </div>
             }
 
-            <div id="empty-bucket" @if (Model.BasketStatus != null && Model.BasketStatus.Count > 0) { <text> class="hidden" </text>  }>
+            <div id="empty-bucket" @if (Model.BasketStatus != null && Model.BasketStatus.Count > 0) { <text> class="hidden" </text> }>
                 <td>Your cart is empty.</td>
             </div>
 
@@ -64,7 +62,7 @@
     </div>
 </div>
 @section Scripts{
-    
+
     @System.Web.Optimization.Scripts.Render("~/bundles/jquery")
 
     <script type="text/javascript">

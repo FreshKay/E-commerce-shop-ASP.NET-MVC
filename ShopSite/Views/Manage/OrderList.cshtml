@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div>
+@*<div>
     <hr />
     <h2 class="manageHeader">Your orders</h2>
 
@@ -65,33 +65,135 @@
                                             <article>
                                                 <a href="@Url.Action("Details", "Items", new { id = itemPosition.ItemId })">
                                                     @*<img class="kurs" src="@Url.Content("~/Content/images/" + itemPosition.Item.ItemPicture)" />*@
-                                                    <h1>
-                                                        @itemPosition.Item.ItemProducer - @itemPosition.Item.ItemName<br />
+@*<h1></h1>
+                                                        -@itemPosition.Item.ItemProducer - @itemPosition.Item.ItemName<br />
                                                         <strong>sztuk: @itemPosition.Quantity, łącznie: @(itemPosition.Quantity * @itemPosition.OrderValue)  zł</strong>
-                                                    </h1>
-                                                </a>
-                                            </article>
-                                        </li>
-                                    }
-                                </ul>
-                            </section>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="6"></td>
-                    </tr>
-                    <!-- nastepne zamowienie -->
-                }
-            </table>
-        }
-        else
+
+                                                    </a>
+                                                </article>
+                                            </li>
+                                        }
+                                    </ul>
+                                </section>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="6"></td>
+                        </tr>
+                    }
+                </table>
+            }
+            else
+            {
+                <div style="text-align: center; margin-top: 50px; margin-bottom: 50px;">
+                    No orders.
+                </div>
+            }
+        </div>
+    </div>*@
+<hr />
+<h3>Your orders</h3>
+<br />
+
+@if (Model.Any())
+{
+    <div>
+
+        @foreach (var order in Model)
         {
-            <div style="text-align: center; margin-top: 50px; margin-bottom: 50px;">
-                No orders.
+            <div class="cart-header">
+                <div @if (order.OrderState == ShopSite.Models.OrderState.New) { <text> class="newOrder" </text> }>
+                    <div class="cart-sec simpleCart_shelfItem">
+                        <div class="cart-item-info">
+                            <div class="facts">
+                                <h3>Order number: @order.OrderId<span> <strong>Date:</strong> @order.AdditionDate.ToString("dd-MM-yyyy")</span></h3>
+                                <ul class="qty">
+                                    <li>
+                                        <p>
+                                            <span>
+                                                <strong>State: </strong><br />
+
+                                                @if (ViewBag.UserIsAdmin)
+                                                {
+                                                    using (Html.BeginForm("ChangeOrderState", "Manage"))
+                                                    {
+                                                        @Html.HiddenFor(o => order.OrderId)
+                                                        @Html.EnumDropDownListFor(o => order.OrderState, new { @class = "OrderStateChange" })
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    @Html.DisplayFor(o => order.OrderState)
+                                                }
+                                            </span>
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p>
+                                            <strong>Data for sending:</strong>
+                                            <span>
+                                                <br />
+                                                @order.Name @order.Surname<br />
+                                                @order.Street<br />
+                                                @order.PostalCode @order.City<br />
+                                            </span>
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p>
+                                            <strong>Comment:</strong>
+                                            <span>
+                                                @order.Comment
+                                            </span>
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p>
+                                            <strong>Price :</strong>
+                                            <span>
+                                                $@order.OrderValue
+                                            </span>
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <div colspan="6">
+                                            <section>
+                                                <ul>
+                                                    <div><strong>Items:</strong></div>                                                    
+                                                    @foreach (var itemPosition in order.ItemPosition)
+                                                    {
+                                                        <li>
+                                                            
+                                                                <a href="@Url.Action("Details", "Items", new { id = itemPosition.ItemId })">
+                                                                    <strong> - @itemPosition.Item.ItemName</strong><br />
+                                                                    qty: @itemPosition.Quantity, price: $@(itemPosition.Quantity * @itemPosition.OrderValue)
+                                                                </a>
+                                                            
+                                                        </li>
+                                                    }
+                                                </ul>
+                                            </section>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+
+                    </div>
+                </div>
             </div>
         }
     </div>
-</div>
+    <div class="clearfix"></div>
+}
+else
+{
+    <div style="text-align: center; margin-top: 50px; margin-bottom: 50px;">
+        No orders.
+    </div>
+}
+<hr />
 
 @section Scripts
 {

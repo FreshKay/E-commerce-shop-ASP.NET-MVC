@@ -191,6 +191,10 @@ ul.header-in-right {
             ul.header-in-right li a:hover {
                 color: #555555;
             }
+
+ul.qty li a:hover {
+    color: #555555;
+}
 .search-top{
 	float:left;
 	  width: 30%;
@@ -1358,6 +1362,7 @@ ul.qty li{
    display: inline-block;
    margin-right: 10%;
 }
+
 ul.qty li p{
 	font-size:0.8125em;
 	color:#555;

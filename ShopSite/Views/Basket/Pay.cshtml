@@ -6,9 +6,8 @@
 }
 
 
-@if(Model.OrderValue > 0)
-{
-    using (@Html.BeginForm("Pay", "Basket"))
+
+    @using (@Html.BeginForm("Pay", "Basket"))
     {
         <div class="contact">
             <h3>Fill out the form :</h3><br />
@@ -63,10 +62,4 @@
             </div>
         </div>
      }
-}
-else
-{
-        <div class="contact">
-            <h3>You need to order at least ont item!</h3>            
-        </div>
-}
+
