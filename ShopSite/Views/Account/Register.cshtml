@@ -5,7 +5,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Register</h2>
+<hr />
+<div align="center">
+    <h2>Register</h2>
+</div>
+<hr />
 
 <div>
     @using (@Html.BeginForm("Register", "Account"))
@@ -19,18 +23,20 @@
 
         <table id="login-table" style="margin-left: auto; margin-right: auto;">
             <tr>
-                <td>@Html.LabelFor(o => o.Email, "E-mail:")</td>
+                <td>@Html.LabelFor(o => o.Email, "E-mail:")<hr /></td>
                 <td>
                     @Html.TextBoxFor(o => o.Email)
+                    <hr />
                     <div class="login-validation-message">
                         @Html.ValidationMessageFor(o => o.Email)
                     </div>
                 </td>
             </tr>
             <tr>
-                <td>@Html.LabelFor(o => o.Password, "Password:")</td>
+                <td>@Html.LabelFor(o => o.Password, "Password:")<hr /></td>
                 <td>
                     @Html.PasswordFor(o => o.Password)
+                    <hr />
                     <div class="login-validation-message">
                         @Html.ValidationMessageFor(o => o.Password)
                     </div>
@@ -39,10 +45,11 @@
             </tr>
             <tr>
                 <td style="padding: 0px 20px 0px 0px; text-align: left;">
-                    @Html.LabelFor(o => o.ConfirmPassword, "Confirm password:")
+                    @Html.LabelFor(o => o.ConfirmPassword, "Confirm password:")<hr />
                 </td>
                 <td style="padding: 0px; text-align: left;">
                     @Html.PasswordFor(o => o.ConfirmPassword)
+                    <hr />
                     <div class="login-validation-message">
                         @Html.ValidationMessageFor(o => o.ConfirmPassword)
                     </div>
@@ -52,7 +59,7 @@
             <tr>
                 <td></td>
                 <td colspan="2" style="text-align: right; padding-right: 20px;">
-                    <input type="submit" value="Register" class="submitLink" style="height: 40px; text-align: right; margin: 0px; padding: 0px;" />
+                    <input type="submit" value="Register" class="submitLink" />
                 </td>
             </tr>
         </table>
