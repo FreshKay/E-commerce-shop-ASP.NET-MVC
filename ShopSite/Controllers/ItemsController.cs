@@ -17,11 +17,16 @@ namespace ShopSite.Controllers
             return View();
         }
 
-        public ActionResult List(string name)
+        public ActionResult List(string name, string searchQuery = null)
         {
             var category = db.Categories.Include("Items").Where(k => k.CategoryName.ToUpper() == name.ToUpper()).Single();
-            var items = category.Items.ToList();
+            var items = category.Items.Where(a => (searchQuery == null || a.ItemName.ToLower().Contains(searchQuery.ToLower()) ||
+                        a.ItemProducer.ToLower().Contains(searchQuery.ToLower())) && a.Available);
             
+            if (Request.IsAjaxRequest())
+            {
+                return View("List", items);
+            }
             return View(items);
         }
 

@@ -7,8 +7,8 @@
     <title>FoodShop - @ViewBag.Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    @*<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>*@
+
     @*<script type="text/javascript">
             jQuery(document).ready(function ($) {
                 $(".scroll").click(function (event) {
@@ -18,12 +18,9 @@
             });
         </script>*@
     @*<script>$(document).ready(function () { $(".megamenu").megamenu(); });</script>*@
-    @Styles.Render("~/bundles/jquery", "~/bundles/javascript", "~/bundles/css")
-
-    
-
-</head>
-<body>
+    @Scripts.Render("~/bundles/jquery", "~/bundles/javascript")
+    @Styles.Render("~/bundles/css")
+    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
     <script>
         $(function () {
 
@@ -47,6 +44,9 @@
             $("#search-filter").each(setupAutoComplete);
         });
     </script>
+
+</head>
+<body>
     <!--header-->
     <div class="header">
         <div class="top-header">
@@ -60,8 +60,8 @@
                     </ul>
                     <div class="search-top" id="search">
                         <div class="search">
-                            <form id="search-form" method="get">
-                                <input id="search-filter" type="text" name="searchQuery" data-autocomplete-source="@Url.Action("ItemSuggestions")" placeholder="search about something ?">
+                            <form id="search-form" method="get" data-ajax="true" data-ajax-target="#CategoryList">
+                                <input id="search-filter" type="text" name="searchQuery" data-autocomplete-source="@Url.Action("ItemSuggestions", "Home")" placeholder="search about something ?">
                                 <input type="submit" value="">
                             </form>
                         </div>
@@ -140,11 +140,10 @@
         </div>
     </div>
 
-    <div class="container body-content">
+    <div class="container body-content" id="#CategoryList">
         @RenderBody()
         <hr />
     </div>
-
     <!--footer-->
     <div class="footer">
         <div class="container">
@@ -170,50 +169,61 @@
                 </ul>
             </div>
             <div class="clearfix"> </div>
-        </div>
+        </div>        
         <script>
-            $(function () {
+                $(function () {
 
-                var setupAutoComplete = function () {
-                    var $input = $(this);
+                    var setupAutoComplete = function () {
+                        var $input = $(this);
 
-                    var options =
-                    {
-                        source: $input.attr("data-autocomplete-source"),
-                        select: function (event, ui) {
-                            $input = $(this);
-                            $input.val(ui.item.label);
-                            var $form = $input.parents("form:first");
-                            $form.submit();
-                        }
-                    };
-
+                        var options =
+                        {
+                            source: $input.attr("data-autocomplete-source"),
+                            select: function (event, ui) {
+                                $input = $(this);
+                                $input.val(ui.item.label);
+                                var $form = $input.parents("form:first");
+                                $form.submit();
+                            }
+                        };
                     $input.autocomplete(options);
-                };
-
-                $("#search-filter").each(setupAutoComplete);
-            });
-        </script>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                /*
-                var defaults = {
-                        containerID: 'toTop', // fading element id
-                    containerHoverID: 'toTopHover', // fading element hover id
-                    scrollSpeed: 1200,
-                    easingType: 'linear'
                     };
-                */
+                    var ajaxSubmit = function () {
+                        var $form = $(this);
+                        var settings = {
+                            data: $(this).serialize(),
+                            url: $(this).attr("action"),
+                            type: $(this).attr("method")
+                        };
+                        $.ajax(settings).done(function (result) {
+                            var $targetElement = $($form.data("ajax-target"));
+                            var $newContent = $(result);
+                            $($targetElement).replaceWith($newContent);
+                            $newContent.effect("slide");
+                        });
+                        return false;
+                    };
+                    $("#search-filter").each(setupAutoComplete);
+                    $("#search-form").submit(ajaxSubmit);
+                });
+            </script>
+        @*<script type="text/javascript">
+                $(document).ready(function () {
+                    /*
+                    var defaults = {
+                            containerID: 'toTop', // fading element id
+                        containerHoverID: 'toTopHover', // fading element hover id
+                        scrollSpeed: 1200,
+                        easingType: 'linear'
+                        };
+                    */
 
-                $().UItoTop({ easingType: 'easeOutQuart' });
+                    $().UItoTop({ easingType: 'easeOutQuart' });
 
-            });
-        </script>
-
+                });
+            </script>*@
         <a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
-
-    </div>
-
+    </div>   
     @RenderSection("Scripts", required: false)
 </body>
 </html>
