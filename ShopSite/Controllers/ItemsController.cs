@@ -36,19 +36,7 @@ namespace ShopSite.Controllers
             }
 
             return View(items);
-
-            //var category = db.Categories.Include("Items").Single();
-
-            //var items = category.Items.Where(a => (searchQuery == null || a.ItemName.ToLower().Contains(searchQuery.ToLower()) ||
-            //            a.ItemProducer.ToLower().Contains(searchQuery.ToLower())) && a.Available);
-
-            //return View(items);
         }
-
-
-
-
-
 
         public ActionResult Details(int id)
         {

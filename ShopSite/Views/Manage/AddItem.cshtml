@@ -24,7 +24,7 @@
         </div>
         @Html.HiddenFor(o => o.Item.ItemId)
         @Html.HiddenFor(o => o.Item.AddDate)
-        @Html.HiddenFor(o => o.Item.ItemPicture)
+        @Html.HiddenFor(o => o.Item.ItemPicture)  
 
         <h3>Add item:</h3><br />
         <div class=" col-md-6 contact-left">
@@ -54,48 +54,48 @@
                     @Html.ValidationMessageFor(o => o.Item.ItemPrice)
                 </div>
                 <div>
-                    <span>@Html.LabelFor(o => o.Item.Bestseller, "Bastseller:")</span>
+                    <span>@Html.LabelFor(o => o.Item.Bestseller, "Bestseller:")</span>
                     @Html.CheckBoxFor(o => o.Item.Bestseller)
                 </div>
                 <br />
-                
-                    @if (ViewBag.EditMode == null || !ViewBag.EditMode)
-                    {
-                        <div>
-                            <div colspan="3">
-                                <div class="upload">
-                                    <input type="file" name="file" />
-                                </div>
+
+                @if (ViewBag.EditMode == null || !ViewBag.EditMode)
+                {
+                    <div>
+                        <div colspan="3">
+                            <div class="upload">
+                                <input type="file" name="file" />
                             </div>
                         </div>
+                    </div>
+                }
+
+                <div style="text-align: left">
+                    @if (ViewBag.EditMode)
+                    {
+                        if (Model.Item.Available)
+                        {
+                            <a href="@Url.Action("HideItem", "Manage", new { kursId = Model.Item.ItemId })" style="display: block; margin-top: 15px; font-weight: bold;">
+                                Delete
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("ShowItem", "Manage", new { kursId = Model.Item.ItemId })" style="display: block; margin-top: 15px; font-weight: bold;">
+                                Show
+                            </a>
+                        }
                     }
-                    
-                        <div style="text-align: left">
-                            @if (ViewBag.EditMode)
-                            {
-                                if (Model.Item.Available)
-                                {
-                                    <a href="@Url.Action("HideItem", "Manage", new { kursId = Model.Item.ItemId })" style="display: block; margin-top: 15px; font-weight: bold;">
-                                        Delete
-                                    </a>
-                                }
-                                else
-                                {
-                                    <a href="@Url.Action("ShowItem", "Manage", new { kursId = Model.Item.ItemId })" style="display: block; margin-top: 15px; font-weight: bold;">
-                                        Show
-                                    </a>
-                                }
-                            }
-                        </div>
-                    
+                </div>
+
                 <div style="text-align: right;">
                     <div colspan="3">
                         <div class="checkbox" style="margin-bottom: 10px;">
                         </div>
-                        <input type="submit" value="Change" class="submitLink" style="height: 40px;" />
+                        <input type="submit" value="Confirm" class="submitLink" style="height: 40px;" />
                     </div>
-                </div>                
+                </div>
             </form><br />
         </div>
-     }
+    }
 </div>

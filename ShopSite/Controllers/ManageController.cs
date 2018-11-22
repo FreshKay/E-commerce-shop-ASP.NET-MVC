@@ -240,6 +240,7 @@ namespace ShopSite.Controllers
 
                         model.Item.ItemPicture = filename;
                         model.Item.AddDate = DateTime.Now;
+                        model.Item.Available = true;
 
                         db.Entry(model.Item).State = EntityState.Added;
                         db.SaveChanges();

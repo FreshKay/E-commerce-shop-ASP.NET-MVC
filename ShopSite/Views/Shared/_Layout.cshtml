@@ -59,12 +59,6 @@
                         <li><a href="@Url.Action("StaticSites", "Home", new { nameCat = "termsofuse"})">   Terms of use</a></li>
                     </ul>
                     <div class="search-top" id="search">
-                        @*<div class="search">
-                            <form id="search-form" method="get" data-ajax="true" data-ajax-target="#CategoryList">
-                                <input id="search-filter" type="text" name="searchQuery" data-autocomplete-source="@Url.Action("ItemSuggestions", "Home")" placeholder="search about something ?">
-                                <input type="submit" value="">
-                            </form>
-                        </div>*@
                         <div class="search">
                             @using (Html.BeginForm("SearchList", "Items", FormMethod.Get))
                             {
@@ -73,10 +67,6 @@
                                 <input id="search-filter" type="text" name="searchQuery" data-autocomplete-source="@Url.Action("ItemSuggestions", "Home")" placeholder="search about something ?">
                                 <input type="submit" value="">
                             }
-                            @*<form id="search-form" method="get" data-ajax="true" data-ajax-target="#CategoryList">
-            <input id="search-filter" type="text" name="searchQuery" data-autocomplete-source="@Url.Action("ItemSuggestions", "Home")" placeholder="search about something ?">
-            <input type="submit" value="">
-        </form>*@
                         </div>
                         <div class="clearfix"> </div>
                     </div>
@@ -200,24 +190,8 @@
                             }
                         };
                     $input.autocomplete(options);
-                    };
-                    //var ajaxSubmit = function () {
-                    //    var $form = $(this);
-                    //    var settings = {
-                    //        data: $(this).serialize(),
-                    //        url: $(this).attr("action"),
-                    //        type: $(this).attr("method")
-                    //    };
-                    //    $.ajax(settings).done(function (result) {
-                    //        var $targetElement = $($form.data("ajax-target"));
-                    //        var $newContent = $(result);
-                    //        $($targetElement).replaceWith($newContent);
-                    //        $newContent.effect("slide");
-                    //    });
-                    //    return false;
-                    //};
+                    };                   
                     $("#search-filter").each(setupAutoComplete);
-                    //$("#search-form").submit(ajaxSubmit);
                 });
             </script>
     </div>   
