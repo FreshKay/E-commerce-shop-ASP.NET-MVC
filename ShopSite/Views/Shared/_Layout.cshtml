@@ -59,11 +59,24 @@
                         <li><a href="@Url.Action("StaticSites", "Home", new { nameCat = "termsofuse"})">   Terms of use</a></li>
                     </ul>
                     <div class="search-top" id="search">
-                        <div class="search">
+                        @*<div class="search">
                             <form id="search-form" method="get" data-ajax="true" data-ajax-target="#CategoryList">
                                 <input id="search-filter" type="text" name="searchQuery" data-autocomplete-source="@Url.Action("ItemSuggestions", "Home")" placeholder="search about something ?">
                                 <input type="submit" value="">
                             </form>
+                        </div>*@
+                        <div class="search">
+                            @using (Html.BeginForm("SearchList", "Items", FormMethod.Get))
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <input id="search-filter" type="text" name="searchQuery" data-autocomplete-source="@Url.Action("ItemSuggestions", "Home")" placeholder="search about something ?">
+                                <input type="submit" value="">
+                            }
+                            @*<form id="search-form" method="get" data-ajax="true" data-ajax-target="#CategoryList">
+            <input id="search-filter" type="text" name="searchQuery" data-autocomplete-source="@Url.Action("ItemSuggestions", "Home")" placeholder="search about something ?">
+            <input type="submit" value="">
+        </form>*@
                         </div>
                         <div class="clearfix"> </div>
                     </div>
@@ -140,7 +153,7 @@
         </div>
     </div>
 
-    <div class="container body-content" id="#CategoryList">
+    <div id="CategoryList" class="container body-content">
         @RenderBody()
         <hr />
     </div>
@@ -188,41 +201,25 @@
                         };
                     $input.autocomplete(options);
                     };
-                    var ajaxSubmit = function () {
-                        var $form = $(this);
-                        var settings = {
-                            data: $(this).serialize(),
-                            url: $(this).attr("action"),
-                            type: $(this).attr("method")
-                        };
-                        $.ajax(settings).done(function (result) {
-                            var $targetElement = $($form.data("ajax-target"));
-                            var $newContent = $(result);
-                            $($targetElement).replaceWith($newContent);
-                            $newContent.effect("slide");
-                        });
-                        return false;
-                    };
+                    //var ajaxSubmit = function () {
+                    //    var $form = $(this);
+                    //    var settings = {
+                    //        data: $(this).serialize(),
+                    //        url: $(this).attr("action"),
+                    //        type: $(this).attr("method")
+                    //    };
+                    //    $.ajax(settings).done(function (result) {
+                    //        var $targetElement = $($form.data("ajax-target"));
+                    //        var $newContent = $(result);
+                    //        $($targetElement).replaceWith($newContent);
+                    //        $newContent.effect("slide");
+                    //    });
+                    //    return false;
+                    //};
                     $("#search-filter").each(setupAutoComplete);
-                    $("#search-form").submit(ajaxSubmit);
+                    //$("#search-form").submit(ajaxSubmit);
                 });
             </script>
-        @*<script type="text/javascript">
-                $(document).ready(function () {
-                    /*
-                    var defaults = {
-                            containerID: 'toTop', // fading element id
-                        containerHoverID: 'toTopHover', // fading element hover id
-                        scrollSpeed: 1200,
-                        easingType: 'linear'
-                        };
-                    */
-
-                    $().UItoTop({ easingType: 'easeOutQuart' });
-
-                });
-            </script>*@
-        <a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
     </div>   
     @RenderSection("Scripts", required: false)
 </body>

@@ -399,6 +399,7 @@
     <Content Include="Views\Emails\OrderSend.cshtml" />
     <Content Include="Views\Emails\OrderSend.Html.cshtml" />
     <Content Include="Views\Emails\OrderSend.Text.cshtml" />
+    <Content Include="Views\Items\SearchList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

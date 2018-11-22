@@ -17,18 +17,38 @@ namespace ShopSite.Controllers
             return View();
         }
 
-        public ActionResult List(string name, string searchQuery = null)
+        public ActionResult List(string name)
         {
             var category = db.Categories.Include("Items").Where(k => k.CategoryName.ToUpper() == name.ToUpper()).Single();
-            var items = category.Items.Where(a => (searchQuery == null || a.ItemName.ToLower().Contains(searchQuery.ToLower()) ||
-                        a.ItemProducer.ToLower().Contains(searchQuery.ToLower())) && a.Available);
-            
-            if (Request.IsAjaxRequest())
-            {
-                return View("List", items);
-            }
+            var items = category.Items.ToList();
+
             return View(items);
         }
+
+        public ActionResult SearchList(string searchQuery)
+        {
+            var items = from s in db.Items select s;
+
+            if (!String.IsNullOrEmpty(searchQuery))
+            {
+                items = items.Where(s => (searchQuery == null || s.ItemName.ToLower().Contains(searchQuery.ToLower()) ||
+                        s.ItemProducer.ToLower().Contains(searchQuery.ToLower())) && s.Available);
+            }
+
+            return View(items);
+
+            //var category = db.Categories.Include("Items").Single();
+
+            //var items = category.Items.Where(a => (searchQuery == null || a.ItemName.ToLower().Contains(searchQuery.ToLower()) ||
+            //            a.ItemProducer.ToLower().Contains(searchQuery.ToLower())) && a.Available);
+
+            //return View(items);
+        }
+
+
+
+
+
 
         public ActionResult Details(int id)
         {
