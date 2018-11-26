@@ -1,4 +1,6 @@
-﻿using ShopSite.DAL;
+﻿using PagedList;
+using PagedList.Mvc;
+using ShopSite.DAL;
 using ShopSite.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -17,25 +19,27 @@ namespace ShopSite.Controllers
             return View();
         }
 
-        public ActionResult List(string name)
+        public ActionResult List(string name, int? page)
         {
             var category = db.Categories.Include("Items").Where(k => k.CategoryName.ToUpper() == name.ToUpper()).Single();
             var items = category.Items.ToList();
 
-            return View(items);
+            return View(items.ToPagedList(page ?? 1, 3));
         }
 
-        public ActionResult SearchList(string searchQuery)
+        public ActionResult SearchList(string searchQuery, int? page)
         {
-            var items = from s in db.Items select s;
+            var itemsDb = from s in db.Items select s;
 
             if (!String.IsNullOrEmpty(searchQuery))
             {
-                items = items.Where(s => (searchQuery == null || s.ItemName.ToLower().Contains(searchQuery.ToLower()) ||
+                itemsDb = itemsDb.Where(s => (searchQuery == null || s.ItemName.ToLower().Contains(searchQuery.ToLower()) ||
                         s.ItemProducer.ToLower().Contains(searchQuery.ToLower())) && s.Available);
             }
 
-            return View(items);
+            var items = itemsDb.ToList();
+
+            return View(items.ToPagedList(page ?? 1, 8));
         }
 
         public ActionResult Details(int id)
