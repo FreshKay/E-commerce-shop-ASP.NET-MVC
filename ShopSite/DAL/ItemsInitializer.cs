@@ -172,7 +172,7 @@ namespace ShopSite.DAL
                 " consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis" +
                 " nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate " +
                 "velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt ", Bestseller = false,
-                    Available = true, CategoryId = 3, ItemPrice = 11.99M, ItemPicture = "chcken.jpg" , AddDate= DateTime.Now },
+                    Available = true, CategoryId = 3, ItemPrice = 11.99M, ItemPicture = "chicken.jpg" , AddDate= DateTime.Now },
 
                 new Item() {ItemId = 24, ItemName = "Beef", ItemProducer = "Tasty Compmany", ItemDescription = "Lorem ipsum dolor sit amet," +
                 " consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis" +
@@ -255,7 +255,7 @@ namespace ShopSite.DAL
                 " consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis" +
                 " nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate " +
                 "velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt ", Bestseller = false,
-                    Available = true, CategoryId = 5, ItemPrice = 5.00M, ItemPicture = "bread.jpg" , AddDate= DateTime.Now },
+                    Available = true, CategoryId = 5, ItemPrice = 5.00M, ItemPicture = "bread1.jpg" , AddDate= DateTime.Now },
 
                 new Item() {ItemId = 37, ItemName = "Barrel", ItemProducer = "Tasty Compmany", ItemDescription = "Lorem ipsum dolor sit amet," +
                 " consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis" +
@@ -299,25 +299,25 @@ namespace ShopSite.DAL
                 " consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis" +
                 " nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate " +
                 "velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt ", Bestseller = false,
-                    Available = true, CategoryId = 6, ItemPrice = 14.49M, ItemPicture = "dairy2.jpg" , AddDate= DateTime.Now },
+                    Available = true, CategoryId = 6, ItemPrice = 4.49M, ItemPicture = "dairy2.jpg" , AddDate= DateTime.Now },
 
                 new Item() {ItemId = 44, ItemName = "White Cheese", ItemProducer = "Tasty Compmany", ItemDescription = "Lorem ipsum dolor sit amet," +
                 " consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis" +
                 " nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate " +
                 "velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt ", Bestseller = false,
-                    Available = true, CategoryId = 6, ItemPrice = 13.99M, ItemPicture = "dairy3.jpg" , AddDate= DateTime.Now },
+                    Available = true, CategoryId = 6, ItemPrice = 3.99M, ItemPicture = "dairy3.jpg" , AddDate= DateTime.Now },
 
                 new Item() {ItemId = 45, ItemName = "Goat's Milk", ItemProducer = "Eating Tasty", ItemDescription = "Lorem ipsum dolor sit amet," +
                 " consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis" +
                 " nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate " +
                 "velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt ", Bestseller = false,
-                    Available = true, CategoryId = 6, ItemPrice = 11.99M, ItemPicture = "dairy1" , AddDate= DateTime.Now },
+                    Available = true, CategoryId = 6, ItemPrice = 1.99M, ItemPicture = "dairy1.jpg" , AddDate= DateTime.Now },
 
                 new Item() {ItemId = 46, ItemName = "Goat's Cheese", ItemProducer = "Eating Tasty", ItemDescription = "Lorem ipsum dolor sit amet," +
                 " consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis" +
                 " nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate " +
                 "velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt ", Bestseller = false,
-                    Available = true, CategoryId = 6, ItemPrice = 11.99M, ItemPicture = "dairy4.jpg" , AddDate= DateTime.Now },
+                    Available = true, CategoryId = 6, ItemPrice = 1.99M, ItemPicture = "dairy4.jpg" , AddDate= DateTime.Now },
 
                  new Item() {ItemId = 47, ItemName = "Gouda", ItemProducer = "Fresh Food", ItemDescription = "Lorem ipsum dolor sit amet," +
                 " consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis" +

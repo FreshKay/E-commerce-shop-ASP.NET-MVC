@@ -7,7 +7,7 @@
     <title>FoodShop - @ViewBag.Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    @*<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>*@
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 
     @*<script type="text/javascript">
             jQuery(document).ready(function ($) {
@@ -18,7 +18,7 @@
             });
         </script>*@
     @*<script>$(document).ready(function () { $(".megamenu").megamenu(); });</script>*@
-    @Scripts.Render("~/bundles/jquery", "~/bundles/javascript")
+    @Scripts.Render("~/bundles/jquery") @*"~/bundles/javascript"*@
     @Styles.Render("~/bundles/css")
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'></head>
 <body>
@@ -147,29 +147,29 @@
                 </ul>
             </div>
             <div class="clearfix"> </div>
-        </div>        
+        </div>
         <script>
-                $(function () {
+            $(function () {
 
-                    var setupAutoComplete = function () {
-                        var $input = $(this);
+                var setupAutoComplete = function () {
+                    var $input = $(this);
 
-                        var options =
-                        {
-                            source: $input.attr("data-autocomplete-source"),
-                            select: function (event, ui) {
-                                $input = $(this);
-                                $input.val(ui.item.label);
-                                var $form = $input.parents("form:first");
-                                $form.submit();
-                            }
-                        };
+                    var options =
+                    {
+                        source: $input.attr("data-autocomplete-source"),
+                        select: function (event, ui) {
+                            $input = $(this);
+                            $input.val(ui.item.label);
+                            var $form = $input.parents("form:first");
+                            $form.submit();
+                        }
+                    };
                     $input.autocomplete(options);
-                    };                   
-                    $("#search-filter").each(setupAutoComplete);
-                });
-            </script>
-    </div>   
-    @RenderSection("Scripts", required: false)
+                };
+                $("#search-filter").each(setupAutoComplete);
+            });
+        </script>
+        @RenderSection("Scripts", required: false)
+    </div>      
 </body>
 </html>
