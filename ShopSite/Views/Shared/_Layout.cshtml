@@ -20,32 +20,7 @@
     @*<script>$(document).ready(function () { $(".megamenu").megamenu(); });</script>*@
     @Scripts.Render("~/bundles/jquery", "~/bundles/javascript")
     @Styles.Render("~/bundles/css")
-    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
-    <script>
-        $(function () {
-
-            var setupAutoComplete = function () {
-                var $input = $(this);
-
-                var options =
-                {
-                    source: $input.attr("data-autocomplete-source"),
-                    select: function (event, ui) {
-                        $input = $(this);
-                        $input.val(ui.item.label);
-                        var $form = $input.parents("form:first");
-                        $form.submit();
-                    }
-                };
-
-                $input.autocomplete(options);
-            };
-
-            $("#search-filter").each(setupAutoComplete);
-        });
-    </script>
-
-</head>
+    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'></head>
 <body>
     <!--header-->
     <div class="header">

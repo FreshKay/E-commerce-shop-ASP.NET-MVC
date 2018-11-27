@@ -24,7 +24,7 @@ namespace ShopSite.Controllers
             var category = db.Categories.Include("Items").Where(k => k.CategoryName.ToUpper() == name.ToUpper()).Single();
             var items = category.Items.ToList();
 
-            return View(items.ToPagedList(page ?? 1, 3));
+            return View(items.ToPagedList(page ?? 1, 8));
         }
 
         public ActionResult SearchList(string searchQuery, int? page)
