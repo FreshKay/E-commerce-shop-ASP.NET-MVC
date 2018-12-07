@@ -45,17 +45,20 @@ namespace ShopSite.Controllers
             return View(basketVM);
         }
 
+        // Adding item to basket
         public ActionResult AddToBasket(int id)
         {
             basketManager.AddToBucket(id);
             return RedirectToAction("Index");
         }
 
+        //Shows basket quantity
         public int GetBasketQuantity()
         {
             return basketManager.GetBucketQuantity();
         }
 
+        //Deleting item from basket
         public ActionResult Delete(int itemId)
         {
             int quantityToDelete = basketManager.DeleteFromBucket(itemId);
@@ -73,6 +76,7 @@ namespace ShopSite.Controllers
             return Json(vd);
         }
 
+        //Creating order
         public async Task<ActionResult> Pay()
         {
             if (Request.IsAuthenticated)
@@ -100,29 +104,22 @@ namespace ShopSite.Controllers
         {
             if (ModelState.IsValid)
             {
-                // pobieramy id uzytkownika aktualnie zalogowanego
                 var userId = User.Identity.GetUserId();
-
-                // utworzenie obiektu zamowienia na podstawie tego co mamy w koszyku
                 var newOrder = basketManager.CreateOrder(orderDetails, userId);
-
-                // szczegóły użytkownika - aktualizacja danych 
                 var user = await UserManager.FindByIdAsync(userId);
                 TryUpdateModel(user.UsersData);
                 await UserManager.UpdateAsync(user);
-
-                // opróżnimy nasz koszyk zakupów
                 basketManager.EmptyBucket();
 
                 mailService.OrderConfirmaitonMessage(newOrder);
-
 
                 return RedirectToAction("OrderConfirmation");
             }
             else
                 return View(orderDetails);
         }
-              
+
+        //Shows order confirmation    
         public ActionResult OrderConfirmation()
         {
             return View();

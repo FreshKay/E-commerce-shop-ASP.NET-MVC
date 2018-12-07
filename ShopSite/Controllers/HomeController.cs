@@ -16,6 +16,7 @@ namespace ShopSite.Controllers
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private ItemsContext db = new ItemsContext();
 
+        //Shows bestseller items and new ones
         public ActionResult Index()
         {
             var category = db.Categories.ToList();
@@ -32,8 +33,7 @@ namespace ShopSite.Controllers
             {
                 newOnes = db.Items.Where(a => a.Available).OrderByDescending(a => a.AddDate).Take(4).ToList();
                 cache.Set(Consts.NewsCacheKey, newOnes, 60);
-            }
-          
+            }          
 
             var vm = new HomeViewModel()
             {
@@ -45,13 +45,13 @@ namespace ShopSite.Controllers
             return View(vm);
         }
 
+        //Action for showing static views
         public ActionResult StaticSites(string nameCat)
         {           
             return View(nameCat);
-        }
+        }       
 
-       
-
+        //Autosuggest 
         public ActionResult ItemSuggestions(string term)
         { 
             var items = db.Items.Where(a => a.Available && a.ItemName.ToLower().Contains(term.ToLower())).Take(5).Select(a => new { label = a.ItemName });

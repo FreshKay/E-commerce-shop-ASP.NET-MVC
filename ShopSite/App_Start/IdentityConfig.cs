@@ -18,7 +18,7 @@ namespace ShopSite.App_Start
     {
         public Task SendAsync(IdentityMessage message)
         {
-            // Dołącz tutaj usługę poczty e-mail, aby wysłać wiadomość e-mail.
+            // Add email service to send email
             return Task.FromResult(0);
         }
     }
@@ -27,12 +27,11 @@ namespace ShopSite.App_Start
     {
         public Task SendAsync(IdentityMessage message)
         {
-            // Dołącz tutaj usługę wiadomości SMS, aby wysłać wiadomość SMS.
+            // Add SMS service to send SMS
             return Task.FromResult(0);
         }
     }
 
-    // Skonfiguruj menedżera użytkowników aplikacji używanego w tej aplikacji. Interfejs UserManager jest zdefiniowany w produkcie ASP.NET Identity i jest używany przez aplikację.
     public class ApplicationUserManager : UserManager<ApplicationUser>
     {
         public ApplicationUserManager(IUserStore<ApplicationUser> store)
@@ -43,14 +42,14 @@ namespace ShopSite.App_Start
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
         {
             var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<ItemsContext>()));
-            // Konfiguruj logikę weryfikacji nazw użytkowników
+            // Configurate user verification
             manager.UserValidator = new UserValidator<ApplicationUser>(manager)
             {
                 AllowOnlyAlphanumericUserNames = false,
                 RequireUniqueEmail = true
             };
 
-            // Konfiguruj logikę weryfikacji haseł
+            // Configure password verification
             manager.PasswordValidator = new PasswordValidator
             {
                 RequiredLength = 6,
@@ -60,21 +59,20 @@ namespace ShopSite.App_Start
                 RequireUppercase = true,
             };
 
-            // Konfiguruj ustawienia domyślne blokady użytkownika
+            // Configure users blockades
             manager.UserLockoutEnabledByDefault = true;
             manager.DefaultAccountLockoutTimeSpan = TimeSpan.FromMinutes(5);
             manager.MaxFailedAccessAttemptsBeforeLockout = 5;
 
-            // Zarejestruj dostawców uwierzytelniania dwuetapowego. W przypadku tej aplikacji kod weryfikujący użytkownika jest uzyskiwany przez telefon i pocztą e-mail
-            // Możesz zapisać własnego dostawcę i dołączyć go tutaj.
-            manager.RegisterTwoFactorProvider("Kod — telefon", new PhoneNumberTokenProvider<ApplicationUser>
+            // Two factor registration.
+            manager.RegisterTwoFactorProvider("Code — phone", new PhoneNumberTokenProvider<ApplicationUser>
             {
-                MessageFormat = "Twój kod zabezpieczający: {0}"
+                MessageFormat = "Your confirmation code: {0}"
             });
-            manager.RegisterTwoFactorProvider("Kod — e-mail", new EmailTokenProvider<ApplicationUser>
+            manager.RegisterTwoFactorProvider("Code — e-mail", new EmailTokenProvider<ApplicationUser>
             {
-                Subject = "Kod zabezpieczeń",
-                BodyFormat = "Twój kod zabezpieczający: {0}"
+                Subject = "Security code",
+                BodyFormat = "Your confirmation code: {0}"
             });
             manager.EmailService = new EmailService();
             manager.SmsService = new SmsService();
@@ -88,7 +86,7 @@ namespace ShopSite.App_Start
         }
     }
 
-    // Skonfiguruj menedżera logowania aplikacji używanego w tej aplikacji.
+    //Cofigure login manager
     public class ApplicationSignInManager : SignInManager<ApplicationUser, string>
     {
         public ApplicationSignInManager(ApplicationUserManager userManager, IAuthenticationManager authenticationManager)

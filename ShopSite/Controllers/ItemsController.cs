@@ -19,6 +19,7 @@ namespace ShopSite.Controllers
             return View();
         }
 
+        // Show items by category
         public ActionResult List(string name, int? page)
         {
             var category = db.Categories.Include("Items").Where(k => k.CategoryName.ToUpper() == name.ToUpper()).Single();
@@ -27,6 +28,7 @@ namespace ShopSite.Controllers
             return View(items.ToPagedList(page ?? 1, 8));
         }
 
+        // Show items by search query
         public ActionResult SearchList(string searchQuery, int? page)
         {
             var itemsDb = from s in db.Items select s;
@@ -42,6 +44,7 @@ namespace ShopSite.Controllers
             return View(items.ToPagedList(page ?? 1, 8));
         }
 
+        //Show details
         public ActionResult Details(int id)
         {
             var item = db.Items.Find(id);

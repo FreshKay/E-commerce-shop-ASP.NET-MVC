@@ -57,7 +57,7 @@ namespace ShopSite.Controllers
             }
         }
 
-        // GET: Manage
+        // Checks user role
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
             if (TempData["ViewData"] != null)
@@ -85,6 +85,7 @@ namespace ShopSite.Controllers
             return View(model);
         }
 
+        // Checks for a proper user
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ChangeProfile([Bind(Prefix = "UsersData")]UsersData userData)
@@ -107,6 +108,7 @@ namespace ShopSite.Controllers
             return RedirectToAction("Index");
         }
 
+        // Actionn to change a password
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ChangePassword([Bind(Prefix = "ChangePasswordViewModel")]ChangePasswordViewModel model)
@@ -153,6 +155,8 @@ namespace ShopSite.Controllers
             AuthenticationManager.SignIn(new AuthenticationProperties { IsPersistent = isPersistent }, await user.GenerateUserIdentityAsync(UserManager));
         }
 
+
+        // Shows order list
         public ActionResult OrderList()
         {
             bool isAdmin = User.IsInRole("Admin");
@@ -160,7 +164,6 @@ namespace ShopSite.Controllers
 
             IEnumerable<Order> userOrders;
 
-            // Dla administratora zwracamy wszystkie zamowienia
             if (isAdmin)
             {
                 userOrders = db.Orders.Include("ItemPosition").OrderByDescending(o => o.AdditionDate).ToArray();
@@ -174,6 +177,7 @@ namespace ShopSite.Controllers
             return View(userOrders);
         }
 
+        // Changing state of the order
         [HttpPost]
         [Authorize(Roles = "Admin")]
         public OrderState ChangeOrderState(Order order)
@@ -190,6 +194,7 @@ namespace ShopSite.Controllers
             return order.OrderState;
         }
 
+        //Adding item
         [Authorize(Roles = "Admin")]
         public ActionResult AddItem(int? itemId, bool? confirmation)
         {
@@ -213,25 +218,23 @@ namespace ShopSite.Controllers
             return View(result);
         }
 
+        // Changing the item
         [HttpPost]
         [Authorize(Roles = "Admin")]
         public ActionResult AddItem(EditItemViewModel model, HttpPostedFileBase file)
         {
             if (model.Item.ItemId > 0)
             {
-                // modyfikacja kursu
                 db.Entry(model.Item).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("AddItem", new { confirmation = true });
             }
             else
             {
-                // Sprawdzenie, czy użytkownik wybrał plik
                 if (file != null && file.ContentLength > 0)
                 {
                     if (ModelState.IsValid)
                     {
-                        // Generowanie pliku
                         var fileExt = Path.GetExtension(file.FileName);
                         var filename = Guid.NewGuid() + fileExt;
 
@@ -264,6 +267,7 @@ namespace ShopSite.Controllers
             }
         }
 
+        // Making item unavailable
         [Authorize(Roles = "Admin")]
         public ActionResult HideItem(int itemId)
         {
@@ -274,6 +278,7 @@ namespace ShopSite.Controllers
             return RedirectToAction("AddItem", new { confirmation = true });
         }
 
+        // Making item available
         [Authorize(Roles = "Admin")]
         public ActionResult ShowItem(int itemId)
         {
@@ -284,6 +289,7 @@ namespace ShopSite.Controllers
             return RedirectToAction("AddItem", new { confirmation = true });
         }
 
+        // Order confiration via Postal
         [AllowAnonymous]
         public ActionResult OrderConfirmaitonMessage(int orderId, string surname)
         {
@@ -303,6 +309,7 @@ namespace ShopSite.Controllers
             return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
 
+        // Order sending via Postal
         [AllowAnonymous]
         public ActionResult OrderSendMessage(int orderId, string surname)
         {
