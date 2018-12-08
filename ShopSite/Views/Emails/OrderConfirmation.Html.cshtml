@@ -3,40 +3,36 @@ Content-Type: text/html; charset=utf-8
 
 <html>
 <body>
+    <div class="jumbotron">
+        @Html.EmbedImage("~/content/Images/logo.png")
+        <p>Thank you!</p>
+        <p>
+            You have made order in our shop!.
+        </p>
+        <p>
+            Here are items you have ordered :
+        </p>
 
-    @Html.EmbedImage("~/content/Images/logo.png")
+        @{
+            IEnumerable<ShopSite.Models.ItemPosition> itemPosition = Model.ItemPositions;
 
-    <p>Thank you!</p>
-    <p>
-        You have made order in our shop!.
-    </p>
-    <p>
-        Here are items you have ordered :
-    </p>
-
-    @{
-        IEnumerable<ShopSite.Models.ItemPosition> itemPosition = Model.ItemPositions;
-
-        for (int i = 0; i < itemPosition.Count(); i++)
-        {
-            <p>
-                @itemPosition.ElementAt(i).Item.ItemName - @itemPosition.ElementAt(i).Item.ItemProducer
-                - $@itemPosition.ElementAt(i).Item.ItemPrice - @itemPosition.ElementAt(i).Quantity quantity.
-            </p>
+            for (int i = 0; i < itemPosition.Count(); i++)
+            {
+                <p>
+                    @itemPosition.ElementAt(i).Item.ItemName - @itemPosition.ElementAt(i).Item.ItemProducer
+                    - $@itemPosition.ElementAt(i).Item.ItemPrice - @itemPosition.ElementAt(i).Quantity quantity.
+                </p>
+            }
         }
-    }
 
-            <p>Please send @Model.Value euro, with title: order nr @Model.OrderNumber on our bank account:</p>
-    <p>Food Shop</p>
-    <p>PKO BP 10 0000 0000 0000 0000 0000 </p>
-
-    <p>
-        Thanks for using our site!
-        See you around!
-        Food Shop.
-    </p>
-
-
+        <p>Please send $@Model.Value, with title: order nr @Model.OrderNumber on our bank account:</p>
+        <p>Food Shop</p>
+        <p>XXX XX000XXX000XXX000XXXXX </p>
+        <p>
+            Thanks for using our site!
+            See you around!
+            Food Shop.
+        </p>
+    </div>
 </body>
-
 </html>

@@ -5,8 +5,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
-
     @using (@Html.BeginForm("Pay", "Basket"))
     {
         <div class="contact">
@@ -52,8 +50,7 @@
                         <span>Comment</span>                  
                         <textarea cols="40" rows="3" name="Comment">@Model.Comment</textarea>                   
                     </div>
-                </form>        
-                
+                </form>                
                 @Html.ValidationSummary()
                 <div>                
                     <input type="submit" style="" value="Confirm" />

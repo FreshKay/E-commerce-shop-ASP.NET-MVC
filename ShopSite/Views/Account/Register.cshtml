@@ -10,7 +10,6 @@
     <h2>Register</h2>
 </div>
 <hr />
-
 <div>
     @using (@Html.BeginForm("Register", "Account"))
     {
@@ -20,7 +19,6 @@
             @Html.ValidationMessage("loginerror", "")
             @Html.ValidationSummary()
         </div>
-
         <table id="login-table" style="margin-left: auto; margin-right: auto;">
             <tr>
                 <td>@Html.LabelFor(o => o.Email, "E-mail:")<hr /></td>
