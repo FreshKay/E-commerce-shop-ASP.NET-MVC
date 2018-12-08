@@ -10,6 +10,7 @@ namespace ShopSite.Infrastructure
 {
     public class HangfireMailService : IMailService
     {
+        // Methods to send e-mails in background
         public void OrderConfirmaitonMessage(Order order)
         {
             var urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext);

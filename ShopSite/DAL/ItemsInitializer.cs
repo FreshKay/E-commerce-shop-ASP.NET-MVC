@@ -356,6 +356,7 @@ namespace ShopSite.DAL
 
         public static void SeedUsers(ItemsContext db)
         {
+            // initializes user manager
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
 
@@ -378,7 +379,7 @@ namespace ShopSite.DAL
                 var roleresult = roleManager.Create(role);
             }
 
-            // dodanie uzytkownika do roli Admin jesli juz nie jest w roli
+            // Adds adminif there is none
             var rolesForUser = userManager.GetRoles(user.Id);
             if (!rolesForUser.Contains(role.Name))
             {

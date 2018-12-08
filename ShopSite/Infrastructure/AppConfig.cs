@@ -8,6 +8,7 @@ namespace ShopSite.Infrastructure
 {
     public class AppConfig
     {
+        //Configures path to pictures
         private static string _picturesFolder = ConfigurationManager.AppSettings["PicturesFolder"];
 
         public static string PicturesFolder

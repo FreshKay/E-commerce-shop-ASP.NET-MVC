@@ -10,6 +10,7 @@ namespace ShopSite.Infrastructure
     {
         private Cache cache { get { return HttpContext.Current.Cache; } }
 
+        // Creates set of methods to use with cache
         public object Get(string key)
         {
             return cache[key];

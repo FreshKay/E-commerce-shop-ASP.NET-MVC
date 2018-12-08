@@ -9,6 +9,7 @@ namespace ShopSite.Infrastructure
 {
     public class PostalMailService : IMailService
     {
+        // Methods to set important data send via email
         public void OrderConfirmaitonMessage(Order order)
         {
             OrderConfirmationEmail email = new OrderConfirmationEmail();
