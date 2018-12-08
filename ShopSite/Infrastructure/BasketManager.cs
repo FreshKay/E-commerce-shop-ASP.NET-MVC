@@ -18,6 +18,7 @@ namespace ShopSite.Infrastructure
             this.db = db;
         }
 
+        //Checks basket value (session)
         public List<BasketStatus> DownloadBucket()
         {
             List<BasketStatus> bucket;
@@ -34,6 +35,7 @@ namespace ShopSite.Infrastructure
             return bucket;
         }
 
+        // Adding item by its id to basket
         public void AddToBucket(int itemId)
         {
             var bucket = DownloadBucket();
@@ -63,6 +65,7 @@ namespace ShopSite.Infrastructure
             session.Set(Consts.BasketSessionKey, bucket);
         }
 
+        // Deletes item by its id form basket and lowers its quantity
         public int DeleteFromBucket (int itemId)
         {
             var bucket = DownloadBucket();
@@ -84,12 +87,14 @@ namespace ShopSite.Infrastructure
             return 0;
         }
 
+        // Gets sum of bucket item prices
         public decimal GetBucketValues()
         {
             var bucket = DownloadBucket();
             return bucket.Sum(k => (k.Quantity * k.Item.ItemPrice));
         }
 
+        // Gets basket quantity
         public int GetBucketQuantity()
         {
             var bucket = DownloadBucket();
@@ -97,6 +102,7 @@ namespace ShopSite.Infrastructure
             return quantity;
         }
 
+        // Creates new order from basket data
         public Order CreateOrder(Order newOrder, string userId)
         {
             var bucket = DownloadBucket();
@@ -131,6 +137,7 @@ namespace ShopSite.Infrastructure
             return newOrder;
         }
 
+        // Method to clear basket quantity and value
         public void EmptyBucket()
         {
             session.Set<List<BasketStatus>>(Consts.BasketSessionKey, null);

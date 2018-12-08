@@ -8,6 +8,7 @@ namespace ShopSite.Infrastructure
 {
     public interface ICacheProvider
     {
+        // Interface to maintain key methods in cache classes
         object Get(string key);
         void Set(string key, object data, int cacheTime);
         bool IsSet(string key);
