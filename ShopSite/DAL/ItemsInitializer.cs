@@ -360,7 +360,7 @@ namespace ShopSite.DAL
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
 
-            const string name = "admin@foodshop.com";
+            const string name = "admin@foodshop.c";
             const string password = "P@ssw0rd";
             const string roleName = "Admin";
 
