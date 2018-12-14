@@ -136,7 +136,6 @@ namespace ShopSite.Controllers
             {
                 _userManager = value;
             }
-
         }
     }
 }

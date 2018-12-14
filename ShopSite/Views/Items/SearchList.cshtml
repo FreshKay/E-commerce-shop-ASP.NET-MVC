@@ -25,5 +25,7 @@
             <div class="clearfix"> </div>
         </div>
     </div>
-    @Html.PagedListPager(Model, page => Url.Action("SearchList", new { page, searchQuery = Request.QueryString["searchQuery"] }))
+    <div align="center">
+        @Html.PagedListPager(Model, page => Url.Action("SearchList", new { page, searchQuery = Request.QueryString["searchQuery"] }))
+    </div>
 </div>

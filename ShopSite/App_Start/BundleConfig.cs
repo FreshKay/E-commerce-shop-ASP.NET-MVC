@@ -31,9 +31,7 @@ namespace ShopSite.App_Start
                       "~/Content/themes/base/core.css",
                       "~/Content/themes/base/autocomplete.css",
                       "~/Content/themes/base/theme.css",
-                      "~/Content/themes/base/menu.css"));
-
-            
+                      "~/Content/themes/base/menu.css"));            
         }
     }
 }

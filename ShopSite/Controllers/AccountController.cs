@@ -148,6 +148,5 @@ namespace ShopSite.Controllers
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return RedirectToAction("Index", "Home");
         }
-
     }
 }
