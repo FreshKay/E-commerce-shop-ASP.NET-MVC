@@ -300,7 +300,7 @@ namespace ShopSite.Controllers
 
             OrderConfirmationEmail email = new OrderConfirmationEmail();
             email.To = order.EMail;
-            email.From = "mikolaj.jon@gmail.com";
+            email.From = "";
             email.Value = order.OrderValue;
             email.OrderNumber = order.OrderId;
             email.ItemPositions = order.ItemPosition;
@@ -320,7 +320,7 @@ namespace ShopSite.Controllers
 
             OrderSendEmail email = new OrderSendEmail();
             email.To = order.EMail;
-            email.From = "mikolaj.jon@gmail.com";
+            email.From = "";
             email.OrderNumber = order.OrderId;
             email.Send();
 
